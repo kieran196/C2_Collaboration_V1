@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - UI_Icons
+  - drawingMat
+  - UI_Buttons
+  - ExcludeTeleport
+  - TeleportIgnore
+  - UI_User
   layers:
   - Default
   - TransparentFX
@@ -13,9 +19,9 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - 
-  - 
+  - InteractableGameObject
+  - UI_Icons
+  - Floor
   - 
   - 
   - 

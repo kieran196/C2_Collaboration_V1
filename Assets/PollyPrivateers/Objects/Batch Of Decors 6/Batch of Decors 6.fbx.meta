@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: c772ee9bbca274a4a88701f0775df720
+timeCreated: 1520328873
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bottle
+    100004: candle.002
+    100006: CinnamonTag
+    100008: CorianderTag
+    100010: Flask
+    100012: glassfirst
+    100014: kork
+    100016: largekork1
+    100018: LookingGlassEnd
+    100020: LookinglassMid
+    100022: ParsleyTag
+    100024: Pipe
+    100026: roundLid
+    100028: Scales
+    100030: TeaCan
+    100032: teaccanlit.001
+    100034: Candle
+    100036: teacup
+    100038: PotFromBatch6
+    400000: //RootNode
+    400002: Bottle
+    400004: candle.002
+    400006: CinnamonTag
+    400008: CorianderTag
+    400010: Flask
+    400012: glassfirst
+    400014: kork
+    400016: largekork1
+    400018: LookingGlassEnd
+    400020: LookinglassMid
+    400022: ParsleyTag
+    400024: Pipe
+    400026: roundLid
+    400028: Scales
+    400030: TeaCan
+    400032: teaccanlit.001
+    400034: Candle
+    400036: teacup
+    400038: PotFromBatch6
+    2100000: Material.001
+    2300000: Bottle
+    2300002: candle.002
+    2300004: CinnamonTag
+    2300006: CorianderTag
+    2300008: Flask
+    2300010: glassfirst
+    2300012: kork
+    2300014: largekork1
+    2300016: LookingGlassEnd
+    2300018: LookinglassMid
+    2300020: ParsleyTag
+    2300022: Pipe
+    2300024: roundLid
+    2300026: Scales
+    2300028: TeaCan
+    2300030: teaccanlit.001
+    2300032: Candle
+    2300034: teacup
+    2300036: PotFromBatch6
+    3300000: Bottle
+    3300002: candle.002
+    3300004: CinnamonTag
+    3300006: CorianderTag
+    3300008: Flask
+    3300010: glassfirst
+    3300012: kork
+    3300014: largekork1
+    3300016: LookingGlassEnd
+    3300018: LookinglassMid
+    3300020: ParsleyTag
+    3300022: Pipe
+    3300024: roundLid
+    3300026: Scales
+    3300028: TeaCan
+    3300030: teaccanlit.001
+    3300032: Candle
+    3300034: teacup
+    3300036: PotFromBatch6
+    4300000: candle.002
+    4300002: teaccanlit.001
+    4300004: Bottle
+    4300006: CorianderTag
+    4300008: ParsleyTag
+    4300010: CinnamonTag
+    4300012: kork
+    4300014: LookinglassMid
+    4300016: LookingGlassEnd
+    4300018: TeaCan
+    4300020: glassfirst
+    4300022: roundLid
+    4300024: Scales
+    4300026: Pipe
+    4300028: largekork1
+    4300030: Flask
+    4300032: teacup
+    4300034: Candle
+    4300036: PotFromBatch6
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 69bc68d7aaf9be94794c8247440961c0, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.14
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

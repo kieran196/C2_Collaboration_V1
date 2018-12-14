@@ -1,0 +1,152 @@
+fileFormatVersion: 2
+guid: 79c0ef7228576154b9462b00f2675651
+timeCreated: 1520582828
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bowl
+    100004: FlintPistol
+    100006: Fork
+    100008: KegHolder
+    100010: Plate
+    100012: Spoon
+    100014: TableKnife
+    100016: TinySpoon
+    100018: Wine Glass
+    400000: //RootNode
+    400002: Bowl
+    400004: FlintPistol
+    400006: Fork
+    400008: KegHolder
+    400010: Plate
+    400012: Spoon
+    400014: TableKnife
+    400016: TinySpoon
+    400018: Wine Glass
+    2100000: None
+    2100002: None.002
+    2100004: None.001
+    2300000: Bowl
+    2300002: FlintPistol
+    2300004: Fork
+    2300006: KegHolder
+    2300008: Plate
+    2300010: Spoon
+    2300012: TableKnife
+    2300014: TinySpoon
+    2300016: Wine Glass
+    3300000: Bowl
+    3300002: FlintPistol
+    3300004: Fork
+    3300006: KegHolder
+    3300008: Plate
+    3300010: Spoon
+    3300012: TableKnife
+    3300014: TinySpoon
+    3300016: Wine Glass
+    4300000: Wine Glass
+    4300002: TinySpoon
+    4300004: Bowl
+    4300006: KegHolder
+    4300008: Spoon
+    4300010: Plate
+    4300012: TableKnife
+    4300014: Fork
+    4300016: FlintPistol
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None
+    second: {fileID: 2100000, guid: ba1f949ec0834ae4c96fbdac4a7571b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None.001
+    second: {fileID: 2100000, guid: ba1f949ec0834ae4c96fbdac4a7571b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None.002
+    second: {fileID: 2100000, guid: ba1f949ec0834ae4c96fbdac4a7571b7, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.071
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: 7c233b38958c494409c882d77d75488c
+timeCreated: 1520445339
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bplant_Leaves.001
+    100004: Bplant_Pot.001
+    100006: Bplant_Tree.001
+    100008: Chair_Cushion.001
+    100010: ChairWood.002
+    100012: PaperScroll.002
+    100014: PaperScroll_Band.001
+    100016: Splant_Flower.001
+    100018: Splant_Leaves.001
+    100020: Splant_Plate.001
+    100022: Splant_pot.001
+    100024: Splant_Wood.001
+    100026: Bplant
+    100028: ChairWood
+    100030: PaperScroll
+    100032: Splant
+    100034: Splant_Plate
+    100036: FineChair
+    400000: //RootNode
+    400002: Bplant_Leaves.001
+    400004: Bplant_Pot.001
+    400006: Bplant_Tree.001
+    400008: Chair_Cushion.001
+    400010: ChairWood.002
+    400012: PaperScroll.002
+    400014: PaperScroll_Band.001
+    400016: Splant_Flower.001
+    400018: Splant_Leaves.001
+    400020: Splant_Plate.001
+    400022: Splant_pot.001
+    400024: Splant_Wood.001
+    400026: Bplant
+    400028: ChairWood
+    400030: PaperScroll
+    400032: Splant
+    400034: Splant_Plate
+    400036: FineChair
+    2100000: (null).002
+    2300000: Bplant_Leaves.001
+    2300002: Bplant_Pot.001
+    2300004: Bplant_Tree.001
+    2300006: Chair_Cushion.001
+    2300008: ChairWood.002
+    2300010: PaperScroll.002
+    2300012: PaperScroll_Band.001
+    2300014: Splant_Flower.001
+    2300016: Splant_Leaves.001
+    2300018: Splant_Plate.001
+    2300020: Splant_pot.001
+    2300022: Splant_Wood.001
+    2300024: Bplant
+    2300026: ChairWood
+    2300028: PaperScroll
+    2300030: Splant
+    2300032: Splant_Plate
+    2300034: FineChair
+    3300000: Bplant_Leaves.001
+    3300002: Bplant_Pot.001
+    3300004: Bplant_Tree.001
+    3300006: Chair_Cushion.001
+    3300008: ChairWood.002
+    3300010: PaperScroll.002
+    3300012: PaperScroll_Band.001
+    3300014: Splant_Flower.001
+    3300016: Splant_Leaves.001
+    3300018: Splant_Plate.001
+    3300020: Splant_pot.001
+    3300022: Splant_Wood.001
+    3300024: Bplant
+    3300026: ChairWood
+    3300028: PaperScroll
+    3300030: Splant
+    3300032: Splant_Plate
+    3300034: FineChair
+    4300000: ChairWood.002
+    4300002: PaperScroll.002
+    4300004: PaperScroll_Band.001
+    4300006: Bplant_Pot.001
+    4300008: Chair_Cushion.001
+    4300010: Splant_pot.001
+    4300012: Bplant_Leaves.001
+    4300014: Splant_Leaves.001
+    4300016: Bplant_Tree.001
+    4300018: Splant_Plate.001
+    4300020: Splant_Flower.001
+    4300022: Splant_Wood.001
+    4300024: ChairWood
+    4300026: PaperScroll
+    4300028: Bplant
+    4300030: Splant_Plate
+    4300032: Splant
+    4300034: FineChair
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: (null).002
+    second: {fileID: 2100000, guid: f17ec661b889fd941a4a333de0a4b52e, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.1710648
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

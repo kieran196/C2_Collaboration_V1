@@ -113,9 +113,11 @@ public class SelectionManipulation : MonoBehaviour {
     private void moveObject() {
         if (controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && pickedUpObject == false) {
             print("picked up object");
+            extendDistance = Vector3.Distance(trackedObj.transform.forward, selectedObject.transform.position);
             oldParent = selectedObject.transform.parent;
             pickedUpObject = true;
             selectedObject.transform.SetParent(trackedObj.transform);
+            
         }
         else if (controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && pickedUpObject == true) {
             print("dropped object");
@@ -167,12 +169,42 @@ public class SelectionManipulation : MonoBehaviour {
             }
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private float extendDistance = 0f;
+    public float reelSpeed = 40f; // Decrease to make faster, Increase to make slower
+
+    private void PadScrolling(GameObject obj) {
+        if(obj.transform.name == "Mirrored Cube") {
+            return;
+        }
+        Vector3 controllerPos = trackedObj.transform.forward;
+        if(controller.GetAxis().y != 0) {
+            extendDistance += controller.GetAxis().y / reelSpeed;
+            reelObject(obj);
+        }
+    }
+
+    void reelObject(GameObject obj) {
+        Vector3 controllerPos = trackedObj.transform.forward;
+        Vector3 pos = trackedObj.transform.position;
+        float distance_formula_on_vector = Mathf.Sqrt(controllerPos.x * controllerPos.x + controllerPos.y * controllerPos.y + controllerPos.z * controllerPos.z);
+        // Using formula to find a point which lies at distance on a 3D line from vector and direction
+        pos.x += (extendDistance / (distance_formula_on_vector)) * controllerPos.x;
+        pos.y += (extendDistance / (distance_formula_on_vector)) * controllerPos.y;
+        pos.z += (extendDistance / (distance_formula_on_vector)) * controllerPos.z;
+
+        obj.transform.position = pos;
+        obj.transform.rotation = trackedObj.transform.rotation;
+    }
+
+    // Update is called once per frame
+    void Update () {
         controller = SteamVR_Controller.Input((int)trackedObj.index);
         navigateOptions();
         resetManipulationMenu();
+        if(pickedUpObject == true) {
+            PadScrolling(selectedObject);
+        }
         if (changeSizeEnabled == true) {
             changeSize();
             confirmSize();

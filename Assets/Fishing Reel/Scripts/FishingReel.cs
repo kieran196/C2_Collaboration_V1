@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class FishingReel : MonoBehaviour {
@@ -9,6 +10,7 @@ public class FishingReel : MonoBehaviour {
      * */
 
     public LayerMask interactionLayers;
+    private Transform oldParent;
 
     public GameObject controllerRight = null;
     public GameObject controllerLeft = null;
@@ -21,6 +23,8 @@ public class FishingReel : MonoBehaviour {
     private Transform laserTransform;
     private Vector3 hitPoint;
     private GameObject mirroredCube;
+
+    public ToolPicker toolPicker;
 
     public enum InteractionType {Selection, Manipulation_Movement, Manipulation_Full};
     public InteractionType interacionType;
@@ -68,6 +72,7 @@ public class FishingReel : MonoBehaviour {
         if (trackedObj != null) {
             if (controller.GetPressDown(trigger) && pickedUpObject == false) {
                 if (interacionType == InteractionType.Manipulation_Movement) {
+                    oldParent = obj.transform.parent;
                     obj.transform.SetParent(trackedObj.transform);
                     extendDistance = Vector3.Distance(controllerPos, obj.transform.position);
                     lastSelectedObject = obj; // Storing the object as an instance variable instead of using the obj parameter fixes glitch of it not properly resetting on TriggerUp
@@ -84,7 +89,7 @@ public class FishingReel : MonoBehaviour {
             }
             if (controller.GetPressUp(trigger) && pickedUpObject == true) {
                 if (interacionType == InteractionType.Manipulation_Movement) {
-                    lastSelectedObject.transform.SetParent(null);
+                    lastSelectedObject.transform.SetParent(oldParent);
                     pickedUpObject = false;
                     droppedObject.Invoke();
                 }
@@ -134,6 +139,20 @@ public class FishingReel : MonoBehaviour {
     }
 
     private GameObject manipulationIcons;
+    public whiteboardTool whiteboard;
+
+    public void configureWhiteboardTool(RaycastHit hit) {
+        if(controller.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
+            if(hit.point != Vector3.zero) {
+                this.whiteboard.SetColor(Color.blue);
+                this.whiteboard.SetDrawPos(hit.textureCoord.x, hit.textureCoord.y);
+                this.whiteboard.ToggleDrawing(true);
+                Debug.Log("Is drawing currently..");
+            }
+        } else if(controller.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
+            this.whiteboard.ToggleDrawing(false);
+        }       
+    }
 
     void Awake() {
         mirroredCube = this.transform.Find("Mirrored Cube").gameObject;
@@ -146,7 +165,6 @@ public class FishingReel : MonoBehaviour {
             print("Couldn't detect trackedObject, please specify the controller type in the settings.");
             Application.Quit();
         }
-
         if (interacionType == InteractionType.Manipulation_Full) {
 
             //this.gameObject.AddComponent<ColorPicker>();
@@ -162,21 +180,63 @@ public class FishingReel : MonoBehaviour {
     void Start() {
         //print("joystick names:" + Valve.VR.iN);
         laser = Instantiate(laserPrefab);
+        laser.transform.SetParent(this.transform);
         laserTransform = laser.transform;
+    }
+
+    private GameObject lastHoveredButton;
+    private GameObject lastSelectedButton;
+    public linkIcons linking;
+    void Hover2DButtons(GameObject obj) {
+        if(obj.transform.tag == "UI_Buttons") {
+            if(controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
+                obj.transform.GetComponent<Image>().color = Color.green;
+                linking.currentlyLinking = true;
+                linking.targetObject1 = obj;
+                if (lastSelectedButton != null) lastSelectedButton.GetComponent<Image>().color = Color.white;
+                lastSelectedButton = obj;
+            }
+            if(lastHoveredButton == null) {
+                lastHoveredButton = obj;
+                obj.transform.GetComponent<Image>().color = Color.yellow;
+            }
+            if(lastHoveredButton != obj) { //New object has been hovered
+                if(lastHoveredButton != lastSelectedButton) {
+                    lastHoveredButton.transform.GetComponent<Image>().color = Color.white;
+                }
+                obj.transform.GetComponent<Image>().color = Color.yellow;
+                lastHoveredButton = obj;
+            }
+        }
+        if (obj.transform.tag == "UI_User") {
+            if(controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && linking.currentlyLinking == true) {
+                linking.currentlyLinking = false;
+                linking.linkObject(lastSelectedButton.transform, obj.transform);
+            }
+        }
     }
 
     void Update() {
         controller = SteamVR_Controller.Input((int)trackedObj.index);
+        toolPicker.rotateToolPicker(controller, trackedObj);
         mirroredObject();
         ShowLaser();
         Ray ray = Camera.main.ScreenPointToRay(trackedObj.transform.position);
         RaycastHit hit;
         if (Physics.Raycast(trackedObj.transform.position, trackedObj.transform.forward, out hit, 100)) {
             hitPoint = hit.point;
-                PickupObject(hit.transform.gameObject);
-                if (pickedUpObject == true && lastSelectedObject == hit.transform.gameObject) {
-                    PadScrolling(hit.transform.gameObject);
-                }
+            if(whiteboard != null) {
+                configureWhiteboardTool(hit);
+            }
+            if (linking != null && linking.currentlyLinking == true) {
+                linking.hitPos = hitPoint;
+            }
+            Hover2DButtons(hit.transform.gameObject);
+            PickupObject(hit.transform.gameObject);
+            toolPicker.hoverTool(hit.transform.gameObject, trackedObj);
+            if (pickedUpObject == true && lastSelectedObject == hit.transform.gameObject) {
+                PadScrolling(hit.transform.gameObject);
+            }
             ShowLaser(hit);
         }
     }
