@@ -18,7 +18,7 @@ public class ToolPicker : MonoBehaviour {
             if(lastHoveredTool == null) {
                 lastHoveredTool = tool;
             }
-            if(lastHoveredTool != tool) { //New object has been hovered
+            if(lastHoveredTool != tool) { //New object has been hovered .. 0.092, -0.179, 0.053 | -4.107
                 lastHoveredTool.transform.GetChild(0).transform.localScale = new Vector3(1f, 1f, 0.1f);
                 lastHoveredTool.transform.GetChild(0).transform.localPosition = new Vector3(0f, 0f, 0.06f);
                 lastHoveredTool.transform.localPosition = new Vector3(lastHoveredTool.transform.localPosition.x, lastHoveredTool.transform.localPosition.y, 0f);
@@ -39,13 +39,18 @@ public class ToolPicker : MonoBehaviour {
 
     private void resetRotation() {
         this.GetComponent<Animator>().SetBool("rotate", false);
+        this.GetComponent<Animator>().SetBool("rotateOpposite", false);
     }
 
     public void rotateToolPicker(SteamVR_Controller.Device controller, SteamVR_TrackedObject trackedObj) {
         if (this.gameObject.activeInHierarchy == true) {
             if (controller.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
-                print("Rotating tool..");
-                this.GetComponent<Animator>().SetBool("rotate", true);
+                Vector2 touchpadAxis = (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0));
+                if (touchpadAxis.x > 0.7f) {
+                    this.GetComponent<Animator>().SetBool("rotate", true);
+                } else if (touchpadAxis.x < -0.7f) {
+                    this.GetComponent<Animator>().SetBool("rotateOpposite", true);
+                }
             }
         }
     }

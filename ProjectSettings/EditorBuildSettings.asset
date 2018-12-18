@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Networking/NetworkTestNonVR.unity
     guid: d1f4fe201e0e4d74f9322cce9480d1c0
+  - enabled: 0
+    path: Assets/Scenes/C2_Environment.unity
+    guid: da943aa0c3f751449bac84d264389b2b
   m_configObjects: {}

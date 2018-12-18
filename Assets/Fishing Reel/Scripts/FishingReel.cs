@@ -56,6 +56,35 @@ public class FishingReel : MonoBehaviour {
 
     private Valve.VR.EVRButtonId trigger = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
 
+    public GameObject hitPointObj;
+    public GameObject cameraRig;
+    public Material greenMat, redMat;
+
+
+    public void teleportOnFloor(RaycastHit hit) {
+        // When the laser hits the floor, a small bubble(hitPointObj) showing the user the location they'll teleport to.
+        if(hit.transform.gameObject.layer == LayerMask.NameToLayer("Floor")) {
+            laserTransform.GetComponent<MeshRenderer>().material = greenMat;
+            if(hitPointObj.activeInHierarchy == false) {
+                hitPointObj.SetActive(true);
+            }
+            hitPointObj.transform.position = hit.point;
+            // If trigger is pressed, the user will teleport to the given location
+            if(controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
+                print("Teleported to:" + hit.transform.position);
+                //Vector3 offset = cameraRig.transform.position - this.transform.position;
+                Vector3 offset = Vector3.zero;
+                cameraRig.transform.position = new Vector3(hitPoint.x + offset.x, hitPoint.y, hitPoint.z + offset.z);
+            }
+        } else {
+            //Laser changes from green to red
+            laserTransform.GetComponent<MeshRenderer>().material = redMat;
+            if(hitPointObj.activeInHierarchy == true) {
+                hitPointObj.SetActive(false);
+            }
+        }
+    }
+
     private bool pickedUpObject = false; //ensure only 1 object is picked up at a time
     public GameObject lastSelectedObject;
     public void PickupObject(GameObject obj) {
@@ -231,6 +260,7 @@ public class FishingReel : MonoBehaviour {
             if (linking != null && linking.currentlyLinking == true) {
                 linking.hitPos = hitPoint;
             }
+            teleportOnFloor(hit);
             Hover2DButtons(hit.transform.gameObject);
             PickupObject(hit.transform.gameObject);
             toolPicker.hoverTool(hit.transform.gameObject, trackedObj);

@@ -17628,7 +17628,7 @@ GameObject:
   - component: {fileID: 318437315}
   - component: {fileID: 318437314}
   m_Layer: 0
-  m_Name: model
+  m_Name: CommandRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39311,6 +39311,54 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 737316009}
   m_Mesh: {fileID: 4300472, guid: 312c164a9e582bb44901cb19bfd3e706, type: 3}
+--- !u!1001 &739120266
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4668860147712818, guid: 1712de89a5868a64a8b7478826209ad1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668860147712818, guid: 1712de89a5868a64a8b7478826209ad1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668860147712818, guid: 1712de89a5868a64a8b7478826209ad1, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668860147712818, guid: 1712de89a5868a64a8b7478826209ad1, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668860147712818, guid: 1712de89a5868a64a8b7478826209ad1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668860147712818, guid: 1712de89a5868a64a8b7478826209ad1, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668860147712818, guid: 1712de89a5868a64a8b7478826209ad1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668860147712818, guid: 1712de89a5868a64a8b7478826209ad1, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114281819444037538, guid: 1712de89a5868a64a8b7478826209ad1,
+        type: 2}
+      propertyPath: m_PlayerPrefab
+      value: 
+      objectReference: {fileID: 1534543192598788, guid: 01c64d1a1fbff84429f5d9117af20a62,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1712de89a5868a64a8b7478826209ad1, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &741095475
 GameObject:
   m_ObjectHideFlags: 0
@@ -110602,7 +110650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &2108884353
 AudioListener:
   m_ObjectHideFlags: 0

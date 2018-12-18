@@ -25,7 +25,7 @@ public class paintbrush : NetworkBehaviour {
 
     [Command]
     public void CmdCreateTexture() {
-        if(this.isActiveAndEnabled) {
+        if(this.isActiveAndEnabled && this.transform.parent.parent.parent.GetComponent<NetworkBehaviour>().isLocalPlayer) {
             if (drawing == false) {
                 AssignParent();
             }
@@ -49,6 +49,12 @@ public class paintbrush : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
         trackedObj = this.GetComponent<SteamVR_TrackedObject>();
+    }
+
+    private void Update() {
+        if (!drawParent.gameObject.activeInHierarchy) {
+            drawParent.SetParent(this.transform.parent.parent); //Set it to SteamVR / VRSimulator Parent
+        }
     }
 
 }

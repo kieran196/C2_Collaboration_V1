@@ -11,8 +11,8 @@ public class controllerMenu : MonoBehaviour {
     private void changeVisibility() {
         if(controller.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu)) {
             menu.transform.SetParent(this.transform);
-            menu.transform.localPosition = new Vector3(0f, 0.1f, 0f);
-            menu.transform.localEulerAngles = Vector3.zero;
+            menu.transform.localPosition = new Vector3(0.092f, -0.179f, 0.053f);
+            menu.transform.localEulerAngles = new Vector3(0f, -4.107f, 0f);
             menu.SetActive(!menu.activeInHierarchy);
         }
     }

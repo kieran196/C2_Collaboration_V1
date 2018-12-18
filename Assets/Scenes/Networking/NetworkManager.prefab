@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4668860147712818}
   - component: {fileID: 114281819444037538}
   - component: {fileID: 114912880366169778}
+  - component: {fileID: 114981324060843666}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -61,7 +62,7 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1182208216913464, guid: 85446cfd94ef76d468a0a892604ede54,
+  m_PlayerPrefab: {fileID: 1534543192598788, guid: 01c64d1a1fbff84429f5d9117af20a62,
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
@@ -69,7 +70,8 @@ MonoBehaviour:
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 1993507616975254, guid: 6043c2d78d0c92a4b9b63860af467fa4, type: 2}
-  - {fileID: 1255747304086458, guid: cbfc6ba6a1e2be14a9073023fdeac05e, type: 2}
+  - {fileID: 1255747304086458, guid: a330116f7a128d34e93bd77827fa0143, type: 2}
+  - {fileID: 1113135422599608, guid: 72990d42501ac89498549cccf2ae7f9d, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -112,7 +114,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 
+  m_Channels: 0500000000000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -140,3 +142,15 @@ MonoBehaviour:
   showGUI: 1
   offsetX: 0
   offsetY: 0
+--- !u!114 &114981324060843666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1125704345833742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6974ee91d7549c04ea4ef705b2bb4c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObjects: []
