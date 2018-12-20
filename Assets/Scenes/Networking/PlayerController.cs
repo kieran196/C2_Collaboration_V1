@@ -11,12 +11,14 @@ public class PlayerController : NetworkBehaviour {
     public GameObject Cube;
     public bool VRActivated = false;
     private PlayerStorage playerStorage;
+    public eventHandler events;
 
     private void Awake() {
         playerStorage = GameObject.Find("NetworkManager").GetComponent<PlayerStorage>();
     }
 
     private void Start() {
+        events.spaceDown.AddListener(CmdFire);
         playerText.text = "Player:" + netId;
         this.name = playerText.text;
         playerStorage.playerObjects.Add(this.gameObject);
@@ -62,7 +64,10 @@ public class PlayerController : NetworkBehaviour {
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
         if(Input.GetKeyDown(KeyCode.Space)) {
-            CmdFire();
+           events.spaceDown.Invoke();
+           // events.spaceDown.
+           // CmdFire();
+            print("Firing bullet..");
             //CmdSwitchClient();
         }
     }

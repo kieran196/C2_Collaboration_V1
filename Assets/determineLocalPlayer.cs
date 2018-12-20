@@ -10,6 +10,7 @@ public class determineLocalPlayer : NetworkBehaviour {
 
     private void Start() {
         rig = GetComponent<VRTK_Switcher>().currentRig;
+        this.transform.SetParent(GameObject.Find("Parent").transform);
     }
 
     void Update() {

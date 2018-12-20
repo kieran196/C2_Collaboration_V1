@@ -68,19 +68,27 @@ public class Raycast : MonoBehaviour {
         }
     }
 
+    //TODO -> OnClick disable the AR Rig, enable a VR perspective rig at the hitpoint position.
+    //- This way AR users will be able to switch between AR and VR modes
+    public void handleClick(Vector3 hit) {
+        if (Input.GetMouseButtonDown(1)) {
+            print("Mouse was clicked..");
+        }
+    }
+
     void Update() {
-        //mirroredObject();
         //ShowLaser();
         Ray ray = Camera.main.ScreenPointToRay(this.transform.position);
         RaycastHit hit;
         if(Physics.Raycast(this.transform.position, this.transform.forward, out hit, 100)) {
             selectedObject = hit.transform.gameObject;
             hitPoint = hit.point;
+            handleClick(hitPoint);
             ShowLaser(hit);
-            Convert2DTo3D(hit.transform.gameObject);
+            //Convert2DTo3D(hit.transform.gameObject);
         } else {
             laser.SetActive(false);
-            Convert2DTo3D();
+            //Convert2DTo3D();
             selectedObject = null;
         }
     }

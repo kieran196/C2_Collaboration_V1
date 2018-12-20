@@ -1,9 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Networking;
 
-public class eventHandler : MonoBehaviour {
+public class eventHandler : NetworkBehaviour {
 
     public UnityEvent triggerDownL;
     public UnityEvent triggerDownR;
@@ -17,13 +18,4 @@ public class eventHandler : MonoBehaviour {
     public UnityEvent spaceDown;
     public UnityEvent spaceUp;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

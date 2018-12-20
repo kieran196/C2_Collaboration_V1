@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 23829636754620024}
   - component: {fileID: 54603795217009938}
   - component: {fileID: 64831845988731684}
+  - component: {fileID: 114577364735219788}
+  - component: {fileID: 114745490788503814}
   m_Layer: 2
   m_Name: SplashTexture
   m_TagString: Untagged
@@ -114,3 +116,56 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: d2d05aa980543e84993e2958723d8e9f, type: 3}
+--- !u!114 &114577364735219788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1255747304086458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 71
+    i1: 229
+    i2: 27
+    i3: 190
+    i4: 151
+    i5: 86
+    i6: 43
+    i7: 100
+    i8: 249
+    i9: 202
+    i10: 0
+    i11: 61
+    i12: 110
+    i13: 162
+    i14: 159
+    i15: 237
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114745490788503814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1255747304086458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1

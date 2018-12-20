@@ -8,6 +8,7 @@ public class ToolPicker : MonoBehaviour {
     private GameObject lastSelectedTool;
     private SteamVR_Controller.Device device;
     public GameObject eraser;
+    public GameObject rootParent;
 
     public void hoverTool(GameObject tool, SteamVR_TrackedObject trackedObj) {
         if(tool.transform.tag == "UI_Icons") {
@@ -31,9 +32,9 @@ public class ToolPicker : MonoBehaviour {
     }
 
     private void disableTools(SteamVR_TrackedObject trackedObj) {
-        trackedObj.GetComponent<paintbrush>().enabled = false;
-        trackedObj.GetComponent<pencil>().enabled = false;
-        trackedObj.GetComponent<splashTool>().enabled = false;
+        rootParent.GetComponent<paintbrush>().enabled = false;
+        rootParent.GetComponent<pencil>().enabled = false;
+        rootParent.GetComponent<splashTool>().enabled = false;
         eraser.SetActive(false);
     }
 
@@ -68,7 +69,7 @@ public class ToolPicker : MonoBehaviour {
         if(tool.transform.name == "ReturnIcon") {
             this.gameObject.SetActive(false);
         } else if(tool.transform.name == "PaintBrush") {
-            trackedObj.GetComponent<paintbrush>().enabled = true;
+            rootParent.GetComponent<paintbrush>().enabled = true;
         } else if(tool.transform.name == "Eraser") {
             eraser.GetComponent<eraser>().trackedObj = trackedObj;
             eraser.SetActive(true);
@@ -76,9 +77,9 @@ public class ToolPicker : MonoBehaviour {
             eraser.transform.localPosition = Vector3.zero;
             eraser.transform.localEulerAngles = Vector3.zero;
         } else if(tool.transform.name == "Pencil") {
-            trackedObj.GetComponent<pencil>().enabled = true;
+            rootParent.GetComponent<pencil>().enabled = true;
         } else if(tool.transform.name == "Splatter") {
-            trackedObj.GetComponent<splashTool>().enabled = true;
+            rootParent.GetComponent<splashTool>().enabled = true;
         }
     }
 

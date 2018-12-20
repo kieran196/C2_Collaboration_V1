@@ -74,6 +74,8 @@ GameObject:
   - component: {fileID: 33120543600302992}
   - component: {fileID: 23425867518395518}
   - component: {fileID: 136267555319127494}
+  - component: {fileID: 114732135416430942}
+  - component: {fileID: 114089392325774396}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1531,6 +1533,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: -1
   origin: {fileID: 0}
+--- !u!114 &114089392325774396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156350273727898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 133
+    i1: 68
+    i2: 108
+    i3: 253
+    i4: 148
+    i5: 239
+    i6: 118
+    i7: 212
+    i8: 104
+    i9: 160
+    i10: 168
+    i11: 146
+    i12: 96
+    i13: 78
+    i14: 222
+    i15: 84
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114101052864283318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1854,11 +1888,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerText: {fileID: 102187466437945452, guid: 48caa1c0ca1469846b7f8d89d8611130,
     type: 2}
-  camera: {fileID: 20365989539764578, guid: 48caa1c0ca1469846b7f8d89d8611130, type: 2}
   bulletPrefab: {fileID: 1993507616975254, guid: 6043c2d78d0c92a4b9b63860af467fa4,
     type: 2}
   bulletSpawn: {fileID: 4453745709571882, guid: 48caa1c0ca1469846b7f8d89d8611130,
     type: 2}
+  Sphere: {fileID: 0}
+  Cube: {fileID: 0}
+  VRActivated: 0
 --- !u!114 &114669076362306638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1907,6 +1943,16 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  triggerPressL:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  triggerPressR:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   triggerUpL:
     m_PersistentCalls:
       m_Calls: []
@@ -1920,8 +1966,8 @@ MonoBehaviour:
   spaceDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114569348421539520}
-        m_MethodName: CmdCreateTexture
+      - m_Target: {fileID: 114732135416430942}
+        m_MethodName: CmdFire
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1935,20 +1981,27 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   spaceUp:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114569348421539520}
-        m_MethodName: disableDrawing
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114732135416430942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156350273727898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4828cc4272bbed48b46963ebe7f2898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerText: {fileID: 102061090000265238}
+  bulletPrefab: {fileID: 1993507616975254, guid: 6043c2d78d0c92a4b9b63860af467fa4,
+    type: 2}
+  bulletSpawn: {fileID: 4176090513726988}
+  Sphere: {fileID: 0}
+  Cube: {fileID: 0}
+  VRActivated: 0
 --- !u!114 &114843223915991214
 MonoBehaviour:
   m_ObjectHideFlags: 1
