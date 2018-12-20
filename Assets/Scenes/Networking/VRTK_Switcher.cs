@@ -11,7 +11,7 @@ public class VRTK_Switcher : NetworkBehaviour {
     public GameObject AR_Rig;
 
     public GameObject currentRig;
-    public GameObject menuPanel;
+    public GameObject mainPanel;
     public GameObject sidePanel;
 
     public Text label;
@@ -29,13 +29,23 @@ public class VRTK_Switcher : NetworkBehaviour {
         return Input.GetKeyDown(KeyCode.Alpha1) ? VRSimulator_Rig : Input.GetKeyDown(KeyCode.Alpha2) ? SteamVR_Rig : Input.GetKeyDown(KeyCode.Alpha3) ? AR_Rig : null;
     }
 
+    /*[Command]
+    void CmdSwitchClient() {
+        RpcSwitchClient();
+    }
+
+    [ClientRpc]
+    void RpcSwitchClient() {
+        SwitchClient();
+    }*/
+
     [Command]
-    public void CmdswitchClient() {
-        if (Input.anyKeyDown) {
+    void CmdSwitchClient() {
+        if(Input.anyKeyDown) {
             GameObject rig = getRig();
             if(rig == null) return;
-            if(currentRig == null) currentRig = rig; menuPanel.SetActive(false); sidePanel.SetActive(true);
-            if (rig.activeInHierarchy == false) {
+            if(currentRig == null) currentRig = rig; mainPanel.SetActive(false); sidePanel.SetActive(true);
+            if(rig.activeInHierarchy == false) {
                 currentRig.SetActive(false);
                 rig.SetActive(true);
                 currentRig = rig;
@@ -44,20 +54,54 @@ public class VRTK_Switcher : NetworkBehaviour {
         }
     }
 
+    void SwitchClient() {
+        if(Input.anyKeyDown) {
+            GameObject rig = getRig();
+            if(rig == null) return;
+            if(currentRig == null) currentRig = rig; mainPanel.SetActive(false); sidePanel.SetActive(true);
+            if(rig.activeInHierarchy == false) {
+                currentRig.SetActive(false);
+                rig.SetActive(true);
+                currentRig = rig;
+                updateLabel();
+            }
+        }
+    }
+
+    /*[Command]
+    public void CmdSwitchClient() {
+        if (Input.anyKeyDown) {
+            GameObject rig = getRig();
+            if(rig == null) return;
+            if(currentRig == null) currentRig = rig; mainPanel.SetActive(false); sidePanel.SetActive(true);
+            if (rig.activeInHierarchy == false) {
+                currentRig.SetActive(false);
+                rig.SetActive(true);
+                currentRig = rig;
+                updateLabel();
+            }
+        }
+    }*/
+
     public bool VRActivated = false;
     private void Update() {
-        if(!isLocalPlayer) {
+        /*if(!isLocalPlayer) {
             return;
-        }
-        CmdswitchClient();
-        /*if (Input.GetKeyDown(KeyCode.Q)) {
-            CmdswitchClient();
         }*/
+        SwitchClient();
     }
 
     public override void OnStartLocalPlayer() {
-        //GetComponent<MeshRenderer>().material.color = Color.blue;
-        currentRig = VRSimulator_Rig;
+        print("OnStartLocalPlayer called..");
+        if(isLocalPlayer) {
+            //GetComponentInChildren<Canvas>().enabled = true;
+            this.enabled = true;
+            this.transform.Find("MenuScreen").GetComponent<Canvas>().enabled = true;
+            this.transform.Find("MenuScreen").GetComponentInChildren<Camera>().enabled = true;
+            print("Canvas loaded.." + this.transform.Find("MenuScreen").GetComponent<Canvas>().enabled);
+            Cursor.visible = true;
+        }
+        //currentRig = VRSimulator_Rig;
     }
 
 }

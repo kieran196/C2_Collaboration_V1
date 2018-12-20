@@ -47,7 +47,7 @@ public class paintbrush : NetworkBehaviour {
         }
     }
 
-    [Command]
+    //[Command]
     public void CmdCreateTexture() {
         //print("Called CmdCreateTexture()");
         if(this.isActiveAndEnabled) {

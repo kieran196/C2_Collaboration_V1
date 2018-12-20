@@ -263,7 +263,7 @@ public class FishingReel : MonoBehaviour {
             teleportOnFloor(hit);
             Hover2DButtons(hit.transform.gameObject);
             PickupObject(hit.transform.gameObject);
-            toolPicker.hoverTool(hit.transform.gameObject, trackedObj);
+            toolPicker.hoverTool(hit.transform.gameObject, trackedObj, hitPoint);
             if (pickedUpObject == true && lastSelectedObject == hit.transform.gameObject) {
                 PadScrolling(hit.transform.gameObject);
             }

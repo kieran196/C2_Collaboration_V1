@@ -10,11 +10,11 @@ public class ToolPicker : MonoBehaviour {
     public GameObject eraser;
     public GameObject rootParent;
 
-    public void hoverTool(GameObject tool, SteamVR_TrackedObject trackedObj) {
+    public void hoverTool(GameObject tool, SteamVR_TrackedObject trackedObj, Vector3 hitPoint) {
         if(tool.transform.tag == "UI_Icons") {
             device = SteamVR_Controller.Input((int)trackedObj.index);
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
-                selectTool(tool, trackedObj);
+                selectTool(tool, trackedObj, hitPoint);
             }
             if(lastHoveredTool == null) {
                 lastHoveredTool = tool;
@@ -56,7 +56,19 @@ public class ToolPicker : MonoBehaviour {
         }
     }
 
-    public void selectTool(GameObject tool, SteamVR_TrackedObject trackedObj) {
+    public GameObject cubePrefab;
+    public GameObject cylinderPrefab;
+    public GameObject spherePrefab;
+    public GameObject planePrefab;
+
+    public void createObject(SteamVR_TrackedObject trackedObj, Vector3 hitPoint, GameObject prefab) {
+        GameObject obj = Instantiate(prefab);
+        obj.transform.localPosition = hitPoint;
+        obj.transform.SetParent(trackedObj.transform);
+        obj.layer = LayerMask.NameToLayer("InteractableGameObjectGen");
+    }
+
+    public void selectTool(GameObject tool, SteamVR_TrackedObject trackedObj, Vector3 hitPoint) {
         if (lastSelectedTool == null) {
             lastSelectedTool = tool;
         }
@@ -80,8 +92,16 @@ public class ToolPicker : MonoBehaviour {
             rootParent.GetComponent<pencil>().enabled = true;
         } else if(tool.transform.name == "Splatter") {
             rootParent.GetComponent<splashTool>().enabled = true;
+        } else if(tool.transform.name == "CubeIcon") {
+            createObject(trackedObj, hitPoint, cubePrefab);
+        } else if(tool.transform.name == "CylinderIcon") {
+            createObject(trackedObj, hitPoint, cylinderPrefab);
+        } else if(tool.transform.name == "SphereIcon") {
+            createObject(trackedObj, hitPoint, spherePrefab);
+        } else if(tool.transform.name == "PlaneIcon") {
+            createObject(trackedObj, hitPoint, planePrefab);
         }
-    }
+    } 
 
     /*private void Update() {
         print("In the tool picker");

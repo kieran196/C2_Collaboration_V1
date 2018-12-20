@@ -125,7 +125,7 @@ public class SelectionManipulation : MonoBehaviour {
             manipulationMovementEnabled = false;
             iconHighlighter.transform.localPosition = new Vector3(-1f, 0f, 0f);
             index = 0;
-            if (oldParent != null) {
+            if (oldParent != null && oldParent != trackedObj) {
                 selectedObject.transform.SetParent(oldParent);
             } else {
                 selectedObject.transform.SetParent(null);
@@ -217,7 +217,7 @@ public class SelectionManipulation : MonoBehaviour {
                 print(selectedObject);
                 this.GetComponent<ColorPicker>().selectedObj = selectedObject;
                 print("position set:" + manipulationIcons.transform.position);
-                manipulationIcons.transform.localEulerAngles = Camera.main.transform.localEulerAngles;
+                manipulationIcons.transform.localEulerAngles = trackedObj.transform.localEulerAngles;
                 inManipulationMode = true;
                 manipulationIcons.SetActive(true);
                 manipulationIcons.transform.SetParent(selectedObject.transform);

@@ -22,7 +22,7 @@ TagManager:
   - InteractableGameObject
   - UI_Icons
   - Floor
-  - 
+  - InteractableGameObjectGen
   - 
   - 
   - 
