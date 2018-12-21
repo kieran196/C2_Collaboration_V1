@@ -17,7 +17,27 @@ public class determineLocalPlayer : NetworkBehaviour {
         this.transform.SetParent(GameObject.Find("Parent").transform);
     }
 
+    public GameObject[] getUsers() {
+        return GameObject.FindGameObjectsWithTag("Player");
+    }
+
     void Update() {
+        //Here
+        int count = 0;
+        foreach(GameObject user in getUsers()) {
+            print("Player:" + count + "  | Current Rig:" + user.GetComponent<VRTK_Switcher>().rigType + " | Last Rig: " + user.GetComponent<VRTK_Switcher>().lastRig);
+
+            //enableAllUsers.GetComponent<VRTK_Switcher>()
+            if(user.GetComponent<VRTK_Switcher>().rigType != null && user.GetComponent<VRTK_Switcher>().rigType != "" && user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.activeInHierarchy == false) {
+                user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.SetActive(true);
+                if(user.GetComponent<VRTK_Switcher>().lastRig != null && user.GetComponent<VRTK_Switcher>().lastRig != "") {
+                    print(user.GetComponent<VRTK_Switcher>().lastRig.Length);
+                    user.transform.Find(user.GetComponent<VRTK_Switcher>().lastRig).gameObject.SetActive(false);
+                }
+            }
+            count++;
+        }
+
         if (isLocalPlayer && GetComponentInChildren<cameraController>() != null) {
             if(cam == null) {
                 cam = GetComponentInChildren<cameraController>().cam;
@@ -27,13 +47,28 @@ public class determineLocalPlayer : NetworkBehaviour {
     }
 
     [Command]
-    void CmdSendNameToServer(string nameToSend) {
-        RpcSetPlayerName(nameToSend);
+    void CmdAssignPlayerName() {
+        RpcAssignPlayerName();
     }
 
     [ClientRpc]
-    void RpcSetPlayerName(string name) {
-        print(name);
+    void RpcAssignPlayerName() {
+        playerName = "Player " + netId;
+        print("Player joined the session: " + playerName);
+    }
+
+    public void assignPlayerName() {
+        if(!isServer) {
+            return;
+        }
+        playerName = "Player " + netId;
+    }
+
+    public override void OnStartLocalPlayer() {
+        CmdAssignPlayerName();
+        /*foreach(GameObject user in getUsers()) {
+            user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.SetActive(true);
+        }*/
     }
 
 }

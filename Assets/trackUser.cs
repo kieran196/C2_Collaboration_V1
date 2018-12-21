@@ -8,12 +8,13 @@ public class trackUser : MonoBehaviour {
     public bool tracking = true;
 
     public Vector3 lastLocation;
-    public Text user1;
+    //public Text user1;
     public GameObject texture;
 
     public float totalDistance = 0f;
     public float timeElapsed = 0f;
     public Transform walkParent;
+
 
     // Use this for initialization
     void Start () {
@@ -23,7 +24,8 @@ public class trackUser : MonoBehaviour {
     private float addDistance() {
         if (tracking) {
             timeElapsed += Time.deltaTime;
-            user1.text = "User 1\nDistance moved:" + totalDistance + "m\nElapsed time:"+(int)timeElapsed+"s";
+            //user1.text = "User 1\nDistance moved:" + totalDistance + "m\nElapsed time:"+(int)timeElapsed+"s";
+            //print("User 1\nDistance moved:" + totalDistance + "m\nElapsed time:" + (int)timeElapsed + "s");
             float distanceMoved = Vector3.Distance(this.transform.position, lastLocation);
             if (distanceMoved != 0f) {
                 GameObject newTexture;
@@ -31,7 +33,7 @@ public class trackUser : MonoBehaviour {
                 newTexture.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
                 newTexture.transform.localScale += new Vector3(this.transform.position.x - lastLocation.x, (this.transform.position.z - lastLocation.z), 0f);
                 newTexture.transform.SetParent(walkParent);
-                newTexture.tag = "drawingMat";
+                newTexture.layer = LayerMask.NameToLayer("walkingMat");
             }
             return distanceMoved;
         }
@@ -49,4 +51,11 @@ public class trackUser : MonoBehaviour {
         totalDistance += addDistance();
         lastLocation = this.transform.position;
     }
+
+    public override string ToString() {
+        return  "Player:" +this.GetComponent<determineLocalPlayer>().playerName+
+                "\nDistance moved: " +totalDistance+
+                "\n Elapsed time:" +(int)timeElapsed + "s\n";
+    }
+
 }

@@ -10,6 +10,7 @@ TagManager:
   - ExcludeTeleport
   - TeleportIgnore
   - UI_User
+  - Operator
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - UI_Icons
   - Floor
   - InteractableGameObjectGen
-  - 
+  - walkingMat
   - 
   - 
   - 

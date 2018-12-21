@@ -102,8 +102,4 @@ public class ToolPicker : MonoBehaviour {
             createObject(trackedObj, hitPoint, planePrefab);
         }
     } 
-
-    /*private void Update() {
-        print("In the tool picker");
-    }*/
 }
