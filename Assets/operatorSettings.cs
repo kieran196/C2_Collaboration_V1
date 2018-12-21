@@ -13,11 +13,22 @@ public class operatorSettings : MonoBehaviour {
         return GameObject.FindGameObjectsWithTag("Player");
     }
 
-    public void enableAllUsers() {
+    public void enableMovementAllUsers() {
         foreach (GameObject user in getUsers()) {
             print(user.GetComponent<trackUser>().ToString());
+            user.transform.Find("WalkParent").gameObject.SetActive(true);
         }
         print("Completed record of all users..");
+    }
+
+    public void enableMovementUser(int count) {
+        foreach (GameObject user in getUsers()) {
+            if (user.GetComponent<determineLocalPlayer>().playerName == "Player "+count) {
+                user.transform.Find("WalkParent").gameObject.SetActive(true);
+            } else {
+                user.transform.Find("WalkParent").gameObject.SetActive(false);
+            }
+        }
     }
 
     void Update() {

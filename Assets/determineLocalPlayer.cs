@@ -38,11 +38,13 @@ public class determineLocalPlayer : NetworkBehaviour {
             count++;
         }
 
+
         if (isLocalPlayer && GetComponentInChildren<cameraController>() != null) {
             if(cam == null) {
                 cam = GetComponentInChildren<cameraController>().cam;
             }
             this.GetComponentInChildren<cameraController>().cam.enabled = true;
+            print("local player:" + this.GetComponentInChildren<cameraController>().cam.enabled);
         }
     }
 
