@@ -6,11 +6,13 @@ using UnityEngine.Networking;
 public class cameraController : NetworkBehaviour {
 
     public Camera cam;
+    public Canvas canvas;
 	
 	// Update is called once per frame
 	void Update () {
-        if(isLocalPlayer && !cam.enabled) {
+        if(isLocalPlayer && !cam.enabled && !canvas.GetComponent<Canvas>().enabled) {
             cam.enabled = true;
+            canvas.GetComponent<Canvas>().enabled = true;
             print("Enabled camera for:" + this.name);
         }
     }

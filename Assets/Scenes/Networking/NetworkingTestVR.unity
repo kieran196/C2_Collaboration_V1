@@ -5598,6 +5598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1235523300}
+  canvas: {fileID: 0}
 --- !u!114 &688401273
 MonoBehaviour:
   m_ObjectHideFlags: 0

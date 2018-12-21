@@ -9,6 +9,8 @@ public class determineLocalPlayer : NetworkBehaviour {
     private Camera cam;
     private GameObject rig;
 
+    public GameObject menuCanvas;
+
     [SyncVar]
     public string playerName;
 
@@ -22,6 +24,11 @@ public class determineLocalPlayer : NetworkBehaviour {
     }
 
     void Update() {
+        if(isLocalPlayer && !menuCanvas.GetComponent<Canvas>().enabled) {
+            menuCanvas.GetComponent<Canvas>().enabled = true;
+        }
+
+
         //Here
         int count = 0;
         foreach(GameObject user in getUsers()) {
