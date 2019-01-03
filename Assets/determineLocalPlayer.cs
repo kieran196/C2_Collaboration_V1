@@ -11,7 +11,8 @@ public class determineLocalPlayer : NetworkBehaviour {
 
     public GameObject menuCanvas;
 
-    [SyncVar]
+
+    [SyncVar(hook = "onNameChange")]
     public string playerName;
 
     private void Start() {
@@ -32,7 +33,7 @@ public class determineLocalPlayer : NetworkBehaviour {
         //Here
         int count = 0;
         foreach(GameObject user in getUsers()) {
-            print("Player:" + count + "  | Current Rig:" + user.GetComponent<VRTK_Switcher>().rigType + " | Last Rig: " + user.GetComponent<VRTK_Switcher>().lastRig);
+            //print(playerName + "  | Current Rig:" + user.GetComponent<VRTK_Switcher>().rigType + " | Last Rig: " + user.GetComponent<VRTK_Switcher>().lastRig);
 
             //enableAllUsers.GetComponent<VRTK_Switcher>()
             if(user.GetComponent<VRTK_Switcher>().rigType != null && user.GetComponent<VRTK_Switcher>().rigType != "" && user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.activeInHierarchy == false) {
@@ -51,29 +52,39 @@ public class determineLocalPlayer : NetworkBehaviour {
                 cam = GetComponentInChildren<cameraController>().cam;
             }
             this.GetComponentInChildren<cameraController>().cam.enabled = true;
-            print("local player:" + this.GetComponentInChildren<cameraController>().cam.enabled);
+            //print("local player:" + this.GetComponentInChildren<cameraController>().cam.enabled);
         }
     }
 
     [Command]
     void CmdAssignPlayerName() {
-        RpcAssignPlayerName();
+        //RpcAssignPlayerName();
+        playerName = "Player " + netId;
+        print("Assigned player name:" +playerName);
     }
 
-    [ClientRpc]
+    /*[ClientRpc]
     void RpcAssignPlayerName() {
         playerName = "Player " + netId;
         print("Player joined the session: " + playerName);
     }
 
+    public void onNameChange(string newName) {
+        playerName = newName;
+        Debug.Log("Name has been changed on client:"+playerName);
+    }
+
     public void assignPlayerName() {
-        if(!isServer) {
-            return;
-        }
         playerName = "Player " + netId;
+    }*/
+
+    public void onNameChange(string newName) {
+        playerName = newName;
+        Debug.Log("Name has been changed on client: updated?" + playerName);
     }
 
     public override void OnStartLocalPlayer() {
+        print("Trying to assign players name...");
         CmdAssignPlayerName();
         /*foreach(GameObject user in getUsers()) {
             user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.SetActive(true);

@@ -58,6 +58,7 @@ public class FishingReel : MonoBehaviour {
 
     public GameObject hitPointObj;
     public GameObject cameraRig;
+    public GameObject cameraHead;
     public Material greenMat, redMat;
 
 
@@ -109,6 +110,7 @@ public class FishingReel : MonoBehaviour {
                 } else if (interacionType == InteractionType.Manipulation_Full && this.GetComponent<SelectionManipulation>().inManipulationMode == false) {
                     lastSelectedObject = obj;
                     objectSelected = true;
+                    print("Object has been selected:" + obj);
                     this.GetComponent<SelectionManipulation>().selectedObject = obj;
                 } else if (interacionType == InteractionType.Selection) {
                     lastSelectedObject = obj;

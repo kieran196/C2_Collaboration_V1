@@ -46,7 +46,6 @@ public class SelectionManipulation : MonoBehaviour {
             inManipulationMode = false;
             colourPickerEnabled = false;
             changeSizeEnabled = false;
-            print(startParent);
             manipulationIcons.transform.SetParent(startParent);
             manipulationIcons.SetActive(false);
             manipulationIcons.transform.SetParent(null);
@@ -115,6 +114,7 @@ public class SelectionManipulation : MonoBehaviour {
             print("picked up object");
             extendDistance = Vector3.Distance(trackedObj.transform.forward, selectedObject.transform.position);
             oldParent = selectedObject.transform.parent;
+            print("The previous parent:" + oldParent);
             pickedUpObject = true;
             selectedObject.transform.SetParent(trackedObj.transform);
             
@@ -125,7 +125,7 @@ public class SelectionManipulation : MonoBehaviour {
             manipulationMovementEnabled = false;
             iconHighlighter.transform.localPosition = new Vector3(-1f, 0f, 0f);
             index = 0;
-            if (oldParent != null && oldParent != trackedObj) {
+            if (oldParent != null && oldParent.GetComponent<SteamVR_TrackedObject>() == null) {
                 selectedObject.transform.SetParent(oldParent);
             } else {
                 selectedObject.transform.SetParent(null);
@@ -214,16 +214,16 @@ public class SelectionManipulation : MonoBehaviour {
         }
         if (controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
             if (inManipulationMode == false && selectedObject != null && selectedObject.name != "Mirrored Cube" && manipulationIcons.activeInHierarchy == false) {
-                print(selectedObject);
+                print("Made it to manipulation mode..");
                 this.GetComponent<ColorPicker>().selectedObj = selectedObject;
                 print("position set:" + manipulationIcons.transform.position);
-                manipulationIcons.transform.localEulerAngles = trackedObj.transform.localEulerAngles;
+                manipulationIcons.transform.eulerAngles = trackedObj.transform.eulerAngles;
                 inManipulationMode = true;
                 manipulationIcons.SetActive(true);
-                manipulationIcons.transform.SetParent(selectedObject.transform);
+                manipulationIcons.transform.SetParent(trackedObj.transform);
                 //manipulationIcons.transform.position = new Vector3(selectedObject.transform.position.x, selectedObject.transform.position.y * 2.2f, selectedObject.transform.position.z);
-                manipulationIcons.transform.localPosition = new Vector3(0f, 1f, 0f);
-                manipulationIcons.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                manipulationIcons.transform.localPosition = new Vector3(-0.041f, 0.0383f, 0.022f);
+                manipulationIcons.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             } else if (inManipulationMode == true && manipulationIcons.activeInHierarchy == true) {
                 selectIcon();
             }

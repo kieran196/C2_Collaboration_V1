@@ -14,8 +14,15 @@ public class VRTK_Switcher : NetworkBehaviour {
     //[SyncVar]
     public GameObject currentRig;
 
-    [SyncVar]
+    //[SyncVar]
+    [SyncVar(hook = "OnRigTypeChange")]
     public string rigType;
+
+    [SyncVar]
+    public string varRigType;
+
+    [SyncVar]
+    public string rigTypeRpcTesting;
 
     [SyncVar]
     public string lastRig;
@@ -43,6 +50,7 @@ public class VRTK_Switcher : NetworkBehaviour {
 
     [Command]
     void CmdLastRig() {
+        
         RpclastRigType();
     }
 
@@ -53,16 +61,21 @@ public class VRTK_Switcher : NetworkBehaviour {
         }
     }
 
+    void OnRigTypeChange(string newRig) {
+        if(isLocalPlayer)
+            return;
+        rigType = newRig;
+    }
+
     [Command]
     void CmdAssignRig(string rig) {
-        RpcAssignPlayerName(rig);
+        RpcAssignRig(rig);
     }
 
     [ClientRpc]
-    void RpcAssignPlayerName(string rig) {
+    void RpcAssignRig(string rig) {
         if(rig != "OperatorPanel" && rig != "AR_Rig") {
             rigType = rig;
-            //GameObject.Find(rigType).SetActive(true);
             print("New rig enabled:" + rigType);
         }
     }
@@ -71,6 +84,20 @@ public class VRTK_Switcher : NetworkBehaviour {
         rig.GetComponentInChildren<Camera>().targetDisplay = 1;
     }
 
+    public void assignRigs(string rigName) {
+        if(isServer) {
+            RpcAssignRig(rigName);
+        } else {
+            CmdAssignRig(rigName);
+        }
+    }
+
+    public override void OnStartClient() {
+        base.OnStartClient();
+        OnRigTypeChange(rigType);
+    }
+
+
     void SwitchClient() {
         if(Input.anyKeyDown) {
             GameObject rig = getRig();
@@ -78,6 +105,7 @@ public class VRTK_Switcher : NetworkBehaviour {
             CmdLastRig();
             //if(rig == Operator_Panel) operatorPanelRig(rig);
             if(currentRig == null) currentRig = rig; CmdAssignRig(rig.name); mainPanel.SetActive(false); sidePanel.SetActive(true);
+
             if(rig.activeInHierarchy == false) {
                 currentRig.SetActive(false);
                 if(rig == Operator_Panel || rig == AR_Rig) { //Local rigs
@@ -90,16 +118,39 @@ public class VRTK_Switcher : NetworkBehaviour {
         }
     }
 
+    /*[SyncVar]
+    public string networkID;
+
+    [ClientRpc]
+    void RpcSyncVarWithClients(string varToSync) {
+        networkID = varToSync;
+        this.transform.name = networkID;
+    }*/
+
     public bool VRActivated = false;
+    public bool rpcVarAssigned = false;
     private void Update() {
-        /*if(!isServer) {
-            return;
-        }
-        if(!isLocalPlayer) {
-            return;
+        /*if(isServer && currentRig != null) {
+            RpcSyncVarWithClients(currentRig.name);
+        } else if (isServer) {
+            RpcSyncVarWithClients("");
         }*/
-        //CmdSwitchClient();
-        SwitchClient();
+
+
+        if(isLocalPlayer) {
+            if(currentRig != null) {
+                CmdAssignRig(currentRig.name);
+            }
+            SwitchClient();
+        }
+        /*if(isServer) {
+            if(rigType != null) {
+                RpcSyncVarWithClients(transform.GetComponent<NetworkIdentity>().netId.ToString());
+                rpcVarAssigned = true;
+            } else {
+                RpcSyncVarWithClients("Unassigned..");
+            }
+        }*/
     }
 
     public override void OnStartLocalPlayer() {

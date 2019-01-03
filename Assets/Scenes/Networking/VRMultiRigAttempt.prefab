@@ -5945,6 +5945,8 @@ MonoBehaviour:
   Operator_Panel: {fileID: 0}
   currentRig: {fileID: 0}
   rigType: 
+  varRigType: 
+  rigTypeRpcTesting: 
   lastRig: 
   mainPanel: {fileID: 231}
   sidePanel: {fileID: 236}
@@ -5952,6 +5954,7 @@ MonoBehaviour:
   player: {fileID: 317}
   drawParent: {fileID: 353}
   VRActivated: 0
+  rpcVarAssigned: 0
 --- !u!114 &665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5964,7 +5967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae11e528596b98f4b939424f7da08ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuCam: {fileID: 411}
   menuCanvas: {fileID: 229}
   playerName: 
 --- !u!114 &671
@@ -6232,6 +6234,7 @@ MonoBehaviour:
   cylinderPrefab: {fileID: 0}
   spherePrefab: {fileID: 0}
   planePrefab: {fileID: 0}
+  perspectiveViewerEnabled: 0
 --- !u!95 &568
 Animator:
   serializedVersion: 3
@@ -8479,6 +8482,7 @@ MonoBehaviour:
   hitPointObj: {fileID: 1294938387997160, guid: 3f6ebe575ea9eb04c99857d10ddf7fd4,
     type: 3}
   cameraRig: {fileID: 141}
+  cameraHead: {fileID: 0}
   greenMat: {fileID: 2100000, guid: 4656a0d788ca85142be4045ff4ac8463, type: 2}
   redMat: {fileID: 2100000, guid: 863a61bffe02b014186107a83f3c769f, type: 2}
   lastSelectedObject: {fileID: 0}
@@ -11053,7 +11057,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5, y: 149}
+  m_AnchoredPosition: {x: 0.5, y: 211}
   m_SizeDelta: {x: -662, y: -362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &619
