@@ -11,15 +11,15 @@ public class PlayerController : NetworkBehaviour {
     public GameObject Cube;
     public bool VRActivated = false;
     private PlayerStorage playerStorage;
-    public eventHandler events;
+    //public eventHandler events;
 
     private void Awake() {
         playerStorage = GameObject.Find("NetworkManager").GetComponent<PlayerStorage>();
     }
 
     private void Start() {
-        events.spaceDown.AddListener(CmdFire);
-        playerText.text = "Player:" + netId;
+        //events.spaceDown.AddListener(CmdFire);
+        //playerText.text = "Player:" + netId;
         this.name = playerText.text;
         playerStorage.playerObjects.Add(this.gameObject);
         playerStorage.updatePerspective(this.gameObject);
@@ -33,10 +33,16 @@ public class PlayerController : NetworkBehaviour {
             bulletPrefab,
             bulletSpawn.position,
             bulletSpawn.rotation);
+        bullet.SetActive(true);
+        ClientScene.RegisterPrefab(bullet);
+        /*foreach(var prefab in m_SpawnPrefabs) {
+            if(prefab != null) {
+                ClientScene.RegisterPrefab(bullet);
+            }
+        }*/
 
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6f;
         NetworkServer.Spawn(bullet);
-        Destroy(bullet, 2f);
+        Destroy(bullet, 10f);
     }
 
     [Command]
@@ -53,20 +59,20 @@ public class PlayerController : NetworkBehaviour {
             return;
         } else {
             Camera cam = this.GetComponentInChildren<Camera>();
-            if (!cam.enabled) {
+            if (cam != null && !cam.enabled) {
                 cam.enabled = true;
                 print("Enabled camera for:" + this.name);
             }
         }
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+        /*var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
 
         transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
+        transform.Translate(0, 0, z);*/
         if(Input.GetKeyDown(KeyCode.Space)) {
-           events.spaceDown.Invoke();
+           //events.spaceDown.Invoke();
            // events.spaceDown.
-           // CmdFire();
+            CmdFire();
             print("Firing bullet..");
             //CmdSwitchClient();
         }

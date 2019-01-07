@@ -11,6 +11,7 @@ public class PlayerStorage : NetworkManager {
         GameObject player = (GameObject)Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         print("Spawned a new player.. ... ..");
+        
     }
 
     public List<GameObject> playerObjects = new List<GameObject>();

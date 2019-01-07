@@ -97,6 +97,13 @@ public class VRTK_Switcher : NetworkBehaviour {
         OnRigTypeChange(rigType);
     }
 
+    public void loadPrefabs() {
+        foreach(var prefab in FindObjectOfType<NetworkManager>().spawnPrefabs) {
+            if(prefab != null) {
+                ClientScene.RegisterPrefab(prefab);
+            }
+        }
+    }
 
     void SwitchClient() {
         if(Input.anyKeyDown) {
@@ -104,7 +111,7 @@ public class VRTK_Switcher : NetworkBehaviour {
             if(rig == null) return;
             print("Activated Rig:"+rig.name);
             CmdLastRig();
-            if(currentRig == null) currentRig = rig; CmdAssignRig(rig.name); mainPanel.SetActive(false); sidePanel.SetActive(true);
+            if(currentRig == null) currentRig = rig; CmdAssignRig(rig.name); mainPanel.SetActive(false); sidePanel.SetActive(true); loadPrefabs();
 
             if(rig.activeInHierarchy == false) {
                 currentRig.SetActive(false);
@@ -117,8 +124,8 @@ public class VRTK_Switcher : NetworkBehaviour {
                 currentRig = rig;
                 CmdAssignRig(rig.name);
                 if(rig.GetComponent<cameraController>()) {
-                    this.GetComponent<UserAvatarLoader>().userAvatar.transform.SetParent(rig.GetComponent<cameraController>().cam.transform);
-                    this.GetComponent<UserAvatarLoader>().resetOrientation();
+                    //this.GetComponent<UserAvatarLoader>().userAvatar.transform.SetParent(rig.GetComponent<cameraController>().cam.transform);
+                    //this.GetComponent<UserAvatarLoader>().resetOrientation();
                 }
                 updateLabel();
             }

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class UserAvatarLoader : MonoBehaviour {
+public class UserAvatarLoader : NetworkBehaviour {
 
     public GameObject userAvatar;
+    private PlayerStorage playerStorage;
 
     private void Awake() {
-        //DontDestroyOnLoad(AvatarInfo.STORED_AVATAR);
+        playerStorage = GameObject.Find("NetworkManager").GetComponent<PlayerStorage>();
+        AvatarInfo.STORED_AVATAR.SetActive(true);
     }
 
     public void resetOrientation() {
@@ -17,6 +19,11 @@ public class UserAvatarLoader : MonoBehaviour {
         userAvatar.SetActive(true);
     }
 
+    public override void OnStartClient() {
+        
+    }
+
+    [Command]
     public void CmdSpawnAvatar() {
         userAvatar = (GameObject)Instantiate(
                       AvatarInfo.STORED_AVATAR,
@@ -25,15 +32,29 @@ public class UserAvatarLoader : MonoBehaviour {
         userAvatar.AddComponent<NetworkIdentity>();
         userAvatar.AddComponent<NetworkTransform>();
         userAvatar.transform.SetParent(this.transform);
-        //resetOrientation();
+        RpcUpdateNetworkSpawn(userAvatar);
+        //ClientScene.RegisterPrefab(userAvatar);
+        if(isServer)
+            FindObjectOfType<NetworkManager>().spawnPrefabs.Add(userAvatar);
+        ClientScene.RegisterPrefab(userAvatar);
+        resetOrientation();
         NetworkServer.Spawn(userAvatar);
+        print("Spawned User Avatar at:" + userAvatar.transform);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateNetworkSpawn(GameObject avatar) {
+        playerStorage.spawnPrefabs.Add(avatar);
+        ClientScene.RegisterPrefab(avatar);
     }
 
     // Use this for initialization
     void Start () {
 		if (AvatarInfo.STORED_AVATAR != null) {
-            CmdSpawnAvatar();
             print("Successfully created avatar:" + AvatarInfo.STORED_AVATAR);
+            playerStorage.spawnPrefabs.Add(AvatarInfo.STORED_AVATAR);
+            ClientScene.RegisterPrefab(AvatarInfo.STORED_AVATAR);
+            CmdSpawnAvatar();
         } else {
             print("Unable to generate avatar...");
         }
@@ -41,6 +62,6 @@ public class UserAvatarLoader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //print(AvatarInfo.STORED_AVATAR);
+        print(AvatarInfo.STORED_AVATAR + ", "+userAvatar);
 	}
 }

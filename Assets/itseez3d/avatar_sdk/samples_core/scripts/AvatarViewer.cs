@@ -463,7 +463,7 @@ namespace ItSeez3D.AvatarSdkSamples.Core
             AvatarInfo.STORED_AVATAR = avatarObj;
             print("Stored Avatar Object: " + AvatarInfo.STORED_AVATAR);
             DontDestroyOnLoad(AvatarInfo.STORED_AVATAR);
-            avatarObj.SetActive(false);
+            //avatarObj.SetActive(false);
             SceneManager.LoadScene("NetworkingTestVR");
         }
 
