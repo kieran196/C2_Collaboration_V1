@@ -76,7 +76,7 @@ public class VRTK_Switcher : NetworkBehaviour {
     void RpcAssignRig(string rig) {
         if(rig != "OperatorPanel" && rig != "AR_Rig") {
             rigType = rig;
-            print("New rig enabled:" + rigType);
+            //print("New rig enabled:" + rigType);
         }
     }
 
@@ -102,17 +102,24 @@ public class VRTK_Switcher : NetworkBehaviour {
         if(Input.anyKeyDown) {
             GameObject rig = getRig();
             if(rig == null) return;
+            print("Activated Rig:"+rig.name);
             CmdLastRig();
-            //if(rig == Operator_Panel) operatorPanelRig(rig);
             if(currentRig == null) currentRig = rig; CmdAssignRig(rig.name); mainPanel.SetActive(false); sidePanel.SetActive(true);
 
             if(rig.activeInHierarchy == false) {
                 currentRig.SetActive(false);
-                if(rig == Operator_Panel || rig == AR_Rig) { //Local rigs
+                if(rig == Operator_Panel) { //Local rigs
+                    rig.SetActive(true);
+                    Operator_Panel.transform.GetComponentInChildren<Camera>().enabled = true;
+                } if (rig == AR_Rig) {
                     rig.SetActive(true);
                 }
                 currentRig = rig;
                 CmdAssignRig(rig.name);
+                if(rig.GetComponent<cameraController>()) {
+                    this.GetComponent<UserAvatarLoader>().userAvatar.transform.SetParent(rig.GetComponent<cameraController>().cam.transform);
+                    this.GetComponent<UserAvatarLoader>().resetOrientation();
+                }
                 updateLabel();
             }
         }
@@ -158,7 +165,7 @@ public class VRTK_Switcher : NetworkBehaviour {
         Operator_Panel = GameObject.Find("OperatorPanel");
         AR_Rig.SetActive(false);
         Operator_Panel.SetActive(false);
-        Operator_Panel.GetComponentInChildren<Camera>().enabled = true;
+        Operator_Panel.GetComponent<Camera>().enabled = true;
 
         //PlayerStorage.AddPlayer();
         //Operator_Panel = GameObject.FindGameObjectWithTag("Operator");

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class operatorSettings : MonoBehaviour {
     public GameObject movementPanel;
+    public GameObject perspectivesPanel;
+
+    public void persectivesPanelActivation() {
+        perspectivesPanel.SetActive(!perspectivesPanel.activeInHierarchy);
+    }
 
     public void movementPanelActivation() {
         movementPanel.SetActive(!movementPanel.activeInHierarchy);
