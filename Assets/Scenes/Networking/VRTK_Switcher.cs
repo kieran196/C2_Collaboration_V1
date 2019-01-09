@@ -170,9 +170,14 @@ public class VRTK_Switcher : NetworkBehaviour {
     public override void OnStartLocalPlayer() {
         AR_Rig = GameObject.Find("AR_Rig");
         Operator_Panel = GameObject.Find("OperatorPanel");
-        AR_Rig.SetActive(false);
-        Operator_Panel.SetActive(false);
-        Operator_Panel.GetComponent<Camera>().enabled = true;
+        if (AR_Rig != null)
+            AR_Rig.SetActive(false);
+        //Causing exceptions all of a sudden?
+        /*if (Operator_Panel != null)
+            Operator_Panel.SetActive(false);
+            Operator_Panel.transform.Find("Camera").GetComponent<Camera>().enabled = true;
+            */
+
 
         //PlayerStorage.AddPlayer();
         //Operator_Panel = GameObject.FindGameObjectWithTag("Operator");

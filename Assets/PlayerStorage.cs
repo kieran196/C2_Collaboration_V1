@@ -6,9 +6,11 @@ using UnityEngine.Networking;
 public class PlayerStorage : NetworkManager {
 
     public static List<string> players = new List<string>();
+    public bool automaticStartup;
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId) {
         GameObject player = (GameObject)Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        //player.SetActive(true);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         print("Spawned a new player.. ... ..");
         
@@ -25,6 +27,13 @@ public class PlayerStorage : NetworkManager {
 
     public void Update() {
         //print(players.Count);
+    }
+
+    public void Start() {
+        //singleton.StartServer();
+        if(automaticStartup) {
+            singleton.StartClient();
+        }
     }
 
 }

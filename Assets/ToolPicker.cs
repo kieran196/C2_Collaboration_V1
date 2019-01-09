@@ -8,12 +8,14 @@ public class ToolPicker : MonoBehaviour {
     private GameObject lastHoveredTool;
     private GameObject lastSelectedTool;
     private SteamVR_Controller.Device device;
+    private Transform trackedObjTransform;
     public GameObject eraser;
     public GameObject rootParent;
 
     public void hoverTool(GameObject tool, SteamVR_TrackedObject trackedObj, Vector3 hitPoint) {
         if(tool.transform.tag == "UI_Icons") {
             device = SteamVR_Controller.Input((int)trackedObj.index);
+            trackedObjTransform = trackedObj.transform;
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
                 selectTool(tool, trackedObj, hitPoint);
             }
@@ -128,6 +130,15 @@ public class ToolPicker : MonoBehaviour {
         obj.layer = LayerMask.NameToLayer("InteractableGameObjectGen");
     }
 
+    /*[Command]
+    public void CmdCreateObject(Vector3 hitPoint, GameObject prefab) {
+        GameObject obj = Instantiate(prefab);
+        obj.transform.localPosition = hitPoint;
+        obj.transform.SetParent(trackedObjTransform);
+        obj.layer = LayerMask.NameToLayer("InteractableGameObjectGen");
+        NetworkServer.Spawn(obj);
+    }*/
+
     public void selectTool(GameObject tool, SteamVR_TrackedObject trackedObj, Vector3 hitPoint) {
         if (lastSelectedTool == null) {
             lastSelectedTool = tool;
@@ -153,6 +164,7 @@ public class ToolPicker : MonoBehaviour {
         } else if(tool.transform.name == "Splatter") {
             rootParent.GetComponent<splashTool>().enabled = true;
         } else if(tool.transform.name == "CubeIcon") {
+            //createObject(trackedObj, hitPoint, cubePrefab);
             createObject(trackedObj, hitPoint, cubePrefab);
         } else if(tool.transform.name == "CylinderIcon") {
             createObject(trackedObj, hitPoint, cylinderPrefab);
