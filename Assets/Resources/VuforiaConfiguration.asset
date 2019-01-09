@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: AZ45bsz/////AAABmZFnxtdBR07kob1GXt3D+IR1Mg3zPB00CcvXs59lU8kB+/oji3Be/y6f1es7uiUb3ZviqR41ctTDEyzcbH6a1hv4gmXGywmVOA+YcvytWY8QH7IrF4yG/NTctKbZAJoGeUJgFiW5f0nz5/zD7U4fEP2MIsT88d2uyECFSMItl+K5LPpfweeOstn32gjQnhGNcOKCYp6s0QmfYNu2MQ8ntnJR4UZsyqss/+Ti57c+8/w9YhuG1r50l8gc85z7maOcbnZf8qU7M30+8iaTfaBuXCXang31JST/JrNb1w44kAPqB9LlWySId4AimuuYL1IckbbP7fFgVLRHQ8JE6iRzenx+Z+mvvVyvd3F/jP2Rfw62
-    ufoLicenseKey: QWZKK0VSSC8vLy8vQUFBQUtQYWpFOVpKUjB4R3J6SHExZHNYcDNXY090M3hLRzJTb0FucWdkc3QwMFlaa2JjWXFxUkViY1lWYzlFQllPV1duRXRabzVpNG0zdjZ5MkhTbjZLQWV5ZWEySHpjNFdBQVBKVkhYNlRteUcrdThWaGFFQ3hyRGR1RWtOQjIzVU8vd2ZXOVdCcEJnb2FDVVlGeXZHUWRQSjVzRXFKaEY0NzRmTjVCUUJTSkM3K0JjRWFDa1JELzIzK2pneEd2TVgwRitTaGlDczJFRnZDNlNENnp6NFI1VWsxUHRLcVpINnhmemV1d3ZjVVU1cnBHZTQ3M2dsbWRBbjZDdmp5c3d4dURCMnFNTmpIS0luWlRZWTN3dWZSYW5BV2x3K2RTbnk4V1FMU0lNd3RDdGFwekpFOTZnK0wxeGEyTVovdWxKeVhCaGQ4YlJsMGMvTGlOR2VsRjFFYVpvZ3RkTGdlNkY4NWt0V3hLaklxaVpLM3E=
+    vuforiaLicenseKey: 
+    ufoLicenseKey: QVpzYVhyLy8vLy8vQUFBQUtJdVZkeG9NZFVhVWxHVUcra0puQ3p3SFJPbEpzZVNxNlRKQjZZOE0rKzYvYkxObzZEUzlkVTRGeWFBZWVXMis1d1lScSs3amlob2gwTHlLVnRuT1BkaDVaMXRvUUg4RXQyUFphYmNSYUl3L2xwQXBmNXlzc1YxUUlXUU1UblQzT21ydGsxbHdHeWZsUUp0NHZ5WFBCcmNOMUNKdWlJeE5iQVdFajBmeFRXblRuNmVlUlJMcnowS3FBRjNNSUkyNDhRM2JaNFZEdlBpeVZlaUFlbDlJa1c2ZmdVNFJlSjRtdlNuV2RVK2RyZlNZK1A1ZzY5R1NUMlZMa0tuMENVYmJNeGVrejdkcVV0SVFKbDZ4Z01aZlNOdDZsNUNuOTBCTVN6dVZKYlVEMXhwUWhHdjd2VVQwTk5lKzMwSG52R3RKUUhDNkYzR0xaM3V5QnppMk1paWtqVnczNHZ6V3cwakdaVTJ3emNqdWNjV2I=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 2
+    maxSimultaneousImageTargets: 1
     maxSimultaneousObjectTargets: 1
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     autoInitTracker: 0
     autoStartTracker: 0
   webcam:
-    deviceNameSetInEditor: DroidCam Source 3
+    deviceNameSetInEditor: 
     flipHorizontally: 0
     turnOffWebCam: 0
     renderTextureLayer: 30
