@@ -25,6 +25,10 @@ public class determineLocalPlayer : NetworkBehaviour {
     }
 
     void Update() {
+        if(isLocalPlayer && playerName != "") {
+            CmdAssignPlayerName("Player:" + netId);
+        }
+
         if(isLocalPlayer && !menuCanvas.GetComponent<Canvas>().enabled) {
             menuCanvas.GetComponent<Canvas>().enabled = true;
         }
@@ -47,7 +51,7 @@ public class determineLocalPlayer : NetworkBehaviour {
         }
 
 
-        if (isLocalPlayer && GetComponentInChildren<cameraController>() != null) {
+        if(isLocalPlayer && GetComponentInChildren<cameraController>() != null) {
             if(cam == null) {
                 cam = GetComponentInChildren<cameraController>().cam;
             }
@@ -57,26 +61,15 @@ public class determineLocalPlayer : NetworkBehaviour {
     }
 
     [Command]
-    void CmdAssignPlayerName() {
-        //RpcAssignPlayerName();
-        playerName = "Player " + netId;
-        print("Assigned player name:" +playerName);
+    void CmdAssignPlayerName(string name) {
+        RpcAssignPlayerName(name);
     }
 
-    /*[ClientRpc]
-    void RpcAssignPlayerName() {
-        playerName = "Player " + netId;
-        print("Player joined the session: " + playerName);
+    [ClientRpc]
+    void RpcAssignPlayerName(string name) {
+        playerName = name;
+        this.transform.name = playerName;
     }
-
-    public void onNameChange(string newName) {
-        playerName = newName;
-        Debug.Log("Name has been changed on client:"+playerName);
-    }
-
-    public void assignPlayerName() {
-        playerName = "Player " + netId;
-    }*/
 
     public void onNameChange(string newName) {
         playerName = newName;
@@ -85,7 +78,7 @@ public class determineLocalPlayer : NetworkBehaviour {
 
     public override void OnStartLocalPlayer() {
         print("Trying to assign players name...");
-        CmdAssignPlayerName();
+        CmdAssignPlayerName("Player:" + netId);
         /*foreach(GameObject user in getUsers()) {
             user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.SetActive(true);
         }*/

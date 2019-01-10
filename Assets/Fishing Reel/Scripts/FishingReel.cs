@@ -190,8 +190,10 @@ public class FishingReel : MonoBehaviour {
         if (controllerPicked == ControllerPicked.Right_Controller) {
             print(controllerRight);
             trackedObj = controllerRight.GetComponent<SteamVR_TrackedObject>();
+            controllerRight.SetActive(true);
         } else if (controllerPicked == ControllerPicked.Left_Controller) {
             trackedObj = controllerLeft.GetComponent<SteamVR_TrackedObject>();
+            controllerLeft.SetActive(true);
         } else {
             print("Couldn't detect trackedObject, please specify the controller type in the settings.");
             Application.Quit();
@@ -248,7 +250,17 @@ public class FishingReel : MonoBehaviour {
     }
 
     void Update() {
+        if(controllerRight != null && controllerRight.activeInHierarchy == false) {
+            controllerRight.SetActive(true);
+        }
+        if(controllerLeft != null && controllerLeft.activeInHierarchy == false) {
+            controllerLeft.SetActive(true);
+        }
         controller = SteamVR_Controller.Input((int)trackedObj.index);
+
+        if (trackedObj.gameObject.activeInHierarchy == false) {
+            trackedObj.gameObject.SetActive(true);
+        }
         toolPicker.rotateToolPicker(controller, trackedObj);
         mirroredObject();
         ShowLaser();
