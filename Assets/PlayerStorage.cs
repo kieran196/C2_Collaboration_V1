@@ -30,7 +30,6 @@ public class PlayerStorage : NetworkManager {
     }
 
     public void Start() {
-        //singleton.StartServer();
         if(automaticStartup) {
             singleton.StartClient();
         }
