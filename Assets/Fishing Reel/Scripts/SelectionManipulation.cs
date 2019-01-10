@@ -63,6 +63,11 @@ public class SelectionManipulation : MonoBehaviour {
             manipulationIcons.transform.SetParent(startParent);
             manipulationIcons.SetActive(false);
             manipulationIcons.transform.SetParent(null);
+            print("Selected Object Parent:"+ selectedObject.transform.parent + " , " + trackedObj.name);
+            if (selectedObject.transform.parent == trackedObj.transform) {
+                selectedObject.transform.SetParent(null);
+            }
+            selectedObject = null;
             inManipulationMode = false;
         } else if (index == 1) { // Regular movement
             print("Moving object");
@@ -79,6 +84,7 @@ public class SelectionManipulation : MonoBehaviour {
             manipulationIcons.transform.SetParent(startParent);
             manipulationIcons.SetActive(false);
             manipulationIcons.transform.SetParent(null);
+            selectedObject = null;
             iconHighlighter.transform.localPosition = new Vector3(-1f, 0f, 0f);
             index = 0;
         } else if (index == 3) { // Change colour

@@ -11,6 +11,7 @@ TagManager:
   - TeleportIgnore
   - UI_User
   - Operator
+  - box
   layers:
   - Default
   - TransparentFX

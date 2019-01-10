@@ -16,6 +16,7 @@ public class Health : NetworkBehaviour {
 
     void Update() {
         if(isLocalPlayer) {
+            CmdSyncVarWithClients("val:" + counter.ToString());
             if(counter != 0) {
                 CmdSyncVarWithClients("val:" + counter.ToString());
             }

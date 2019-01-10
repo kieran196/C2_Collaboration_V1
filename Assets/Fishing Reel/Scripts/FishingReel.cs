@@ -256,6 +256,7 @@ public class FishingReel : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(trackedObj.transform.position, trackedObj.transform.forward, out hit, 100)) {
             hitPoint = hit.point;
+            //print("Currently hitting object:" + hit.transform.gameObject.name);
             if(whiteboard != null) {
                 configureWhiteboardTool(hit);
             }
