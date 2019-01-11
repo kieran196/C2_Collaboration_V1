@@ -1,42 +1,64 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class boxCollision : MonoBehaviour {
+public class boxCollision : NetworkBehaviour {
 
-    private SteamVR_TrackedObject trackedObj;
-    private SteamVR_Controller.Device controller;
-
-    private GameObject[] InteractableCubes;
 
     public float globalTimer = 0;
-    public float localTimer = 0f;
 
-    public float reactionTime = 10f;
+    public float SPAWN_SPEED = 2f; //Spawns an object for every "" seconds
+    public float DESTROY_SPEED = 2f;
 
-    public GameObject selectedCube;
+    public GameObject popupPrefab;
+    private Transform cubeParent;
 
-    void OnCollisionEnter(Collision col) {
-        print("Collided with obj:" + col.transform.name);
-    }
+    private float[,] positions = new float[,] { {-1f, 0.5f}, { -0.35f, 0.5f } , { 0.35f, 0.5f }, { 1f, 0.5f },
+                                                {-1f, -0.175f}, { -0.35f, -0.175f } , { 0.35f, -0.175f }, { 1f, -0.175f},
+                                                {-1f, 0.175f}, { -0.35f, 0.175f } , { 0.35f, 0.175f }, { 1f, 0.175f},
+                                                {-1f, -0.5f}, { -0.35f, -0.5f } , { 0.35f, -0.5f }, { 1f, -0.5f }};
+    private List<int> activePositions = new List<int>();
 
-    void OnTriggerStay(Collider col) {
-        print("Triggered with obj:" + col.transform.name);
-        if(col.tag == "box") {
-            onSelect(col.gameObject);
-        }
-    }
+    //public GameObject selectedCube;
+    public List<GameObject> activeCubes = new List<GameObject>();
+
+    public List<float> reactionRates = new List<float>();
 
     void Start() {
-        trackedObj = GetComponent<SteamVR_TrackedObject>();
-        InteractableCubes = GameObject.FindGameObjectsWithTag("box");
-        localTimer = reactionTime;
+        cubeParent = GameObject.Find("CubeParent").transform;
     }
 
 
+
+    private float reactionRate = 0;
+
+    [Command]
+    public void CmdspawnCube(GameObject obj, int randomNum) {
+        obj.name = randomNum.ToString();
+        obj.transform.SetParent(cubeParent);
+        obj.transform.localPosition = new Vector3(positions[randomNum, 0], 0.5f, positions[randomNum, 1]);
+        obj.transform.localScale = new Vector3(0.5f, 0.15f, 0.25f);
+        reactionRate = 0;
+        NetworkServer.Spawn(obj);
+        print("Spawned object..");
+    }
+
     public GameObject randomlySelectCube() {
-        int randomNum = Random.Range(0, InteractableCubes.Length);
-        return InteractableCubes[randomNum];
+        if (activePositions.Count == positions.Length/2) { //Already full..
+            print("Already full!" + activePositions.Count + " , " + positions.Length / 2);
+            return null;
+        }
+        int randomNum = Random.Range(0, positions.Length/2);
+        while (activePositions.Contains(randomNum)) {
+            randomNum = Random.Range(0, positions.Length/2);
+        }
+        activePositions.Add(randomNum);
+        GameObject obj = Instantiate(popupPrefab);
+        print("Created new object:"+obj.name);
+        CmdspawnCube(obj, randomNum);
+        return obj;
     }
 
 
@@ -44,43 +66,110 @@ public class boxCollision : MonoBehaviour {
 
     }
 
-    void onSelect(GameObject obj) {
-        if(controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
-            //Destroy(obj);
-            print("Selected object:" + obj.name);
-            obj.GetComponent<Renderer>().material.color = Color.red;
-        }
+    public void onSelect(GameObject obj) {
+        print("Selected object:" + obj.name);
+        reactionRates.Add(reactionRate);
+        reactionRate = 0;
+        activePositions.Remove(int.Parse(obj.name));
+        activeCubes.Remove(obj);
+        Destroy(obj.gameObject);
+        //activeCubes.Add(randomlySelectCube());
     }
 
-    /*
-            if (selectedCube != null) {
-            selectedCube.GetComponent<Renderer>().material.color = new Color(selectedCube.GetComponent<Renderer>().material.color.r, selectedCube.GetComponent<Renderer>().material.color.g, selectedCube.GetComponent<Renderer>().material.color.b, 255);
-        }
-
-    */
-
     private int secondCounter = 0;
+    public int currentDifficulty = 0;
+    public bool increaseDifficulty = true;
+    public bool started = false;
 
     public void addSecond() {
         secondCounter = (int)globalTimer;
+        if (secondCounter % SPAWN_SPEED == 0 && increaseDifficulty) {
+            activeCubes.Add(randomlySelectCube());
+        }
     }
 
+    public void startApp() {
+        started = true;
+    }
+
+    public bool hasStarted() {
+        return started;
+    }
+
+
+    [Command]
+    public void CmdSyncCubes() {
+        foreach(GameObject cube in activeCubes.ToArray()) {
+            cube.GetComponent<SyncTransperancy>().CmdSyncVarWithClients(cube.GetComponent<Renderer>().material.color.a - (Time.deltaTime / DESTROY_SPEED));
+
+            cube.GetComponent<Renderer>().material.color = new Color(cube.GetComponent<Renderer>().material.color.r, cube.GetComponent<Renderer>().material.color.g, cube.GetComponent<Renderer>().material.color.b, cube.GetComponent<Renderer>().material.color.a - (Time.deltaTime / DESTROY_SPEED));
+            cube.GetComponentInChildren<Text>().text = cube.GetComponent<Renderer>().material.color.a.ToString();
+            //cube.GetComponent<SyncTransperancy>().colorAlpha = cube.GetComponent<Renderer>().material.color.a;
+            //print(selectedCube.GetComponent<Renderer>().material.color.a + " | " + globalTimer);
+            if(cube.GetComponent<Renderer>().material.color.a <= 0) {
+                activePositions.Remove(int.Parse(cube.name));
+                activeCubes.Remove(cube);
+                Destroy(cube.gameObject);
+                //activeCubes.Add(randomlySelectCube());
+                currentDifficulty++;
+
+            }
+        }
+    }
+
+
     void Update() {
-        controller = SteamVR_Controller.Input((int)trackedObj.index);
-        if (globalTimer == 0) {
-            print("Spawn first item..");
-            selectedCube = randomlySelectCube();
+        if(!isLocalPlayer)
+            return;
+            //controller = SteamVR_Controller.Input((int)trackedObj.index);
+        if(hasStarted()) {
+            if((int)globalTimer != secondCounter) {
+                addSecond();
+            }
+            if(globalTimer == 0) {
+                print("Spawn first item..");
+                activeCubes.Add(randomlySelectCube());
+                /*if(increaseDifficulty) {
+                    if(currentDifficulty > 10)
+                        activeCubes.Add(randomlySelectCube());
+                    if(currentDifficulty > 20)
+                        activeCubes.Add(randomlySelectCube());
+                }*/
+            }
+            if(activeCubes.Count >= 0) {
+                reactionRate += Time.deltaTime;
+                CmdSyncCubes();
+                /*foreach(GameObject cube in activeCubes.ToArray()) {
+                    cube.GetComponent<Renderer>().material.color = new Color(cube.GetComponent<Renderer>().material.color.r, cube.GetComponent<Renderer>().material.color.g, cube.GetComponent<Renderer>().material.color.b, cube.GetComponent<Renderer>().material.color.a - (Time.deltaTime / DESTROY_SPEED));
+                    cube.GetComponentInChildren<Text>().text = cube.GetComponent<Renderer>().material.color.a.ToString();
+                    cube.GetComponent<SyncTransperancy>().color = cube.GetComponent<Renderer>().material.color;
+                    //print(selectedCube.GetComponent<Renderer>().material.color.a + " | " + globalTimer);
+                    if(cube.GetComponent<Renderer>().material.color.a <= 0) {
+                        activePositions.Remove(int.Parse(cube.name));
+                        activeCubes.Remove(cube);
+                        Destroy(cube.gameObject);
+                        //activeCubes.Add(randomlySelectCube());
+                        currentDifficulty++;
+
+                        /*
+                        print("---- ANALAYSIS ----");
+                        int count = 0;
+                        foreach(float RRate in reactionRates) {
+                            count++;
+                            print("Obj: " + count + " | Reaction Rate:" + RRate);
+                        }
+                        
+#if UNITY_EDITOR
+                        UnityEditor.EditorApplication.isPlaying = false;
+#else
+                        Application.Quit();
+#endif*/
+
+                  //  }
+                //}
+            }
+            globalTimer += Time.deltaTime;
         }
-        if (selectedCube != null) {
-            //addSecond();
-            //localTimer -= Time.deltaTime;
-            //print(localTimer);
-            selectedCube.GetComponent<Renderer>().material.color = new Color(selectedCube.GetComponent<Renderer>().material.color.r, selectedCube.GetComponent<Renderer>().material.color.g, selectedCube.GetComponent<Renderer>().material.color.b, selectedCube.GetComponent<Renderer>().material.color.a - Time.deltaTime/10);
-        }
-
-
-        globalTimer += Time.deltaTime;
-
     }
     
 
