@@ -175,7 +175,7 @@ public class VRTK_Switcher : NetworkBehaviour {
         //Causing exceptions all of a sudden?
         if (Operator_Panel != null)
             Operator_Panel.SetActive(false);
-            Operator_Panel.transform.Find("Camera").GetComponent<Camera>().enabled = true;
+            Operator_Panel.GetComponent<Camera>().enabled = true;
 
         //PlayerStorage.AddPlayer();
         //Operator_Panel = GameObject.FindGameObjectWithTag("Operator");

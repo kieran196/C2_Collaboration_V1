@@ -17,6 +17,8 @@ public class MainMenuController : MonoBehaviour {
     public GameObject ControlsPanel;
     public GameObject GfxPanel;
     public GameObject LoadGamePanel;
+    public GameObject movementPanel;
+    public GameObject perspectivesPanel;
 
     // Use this for initialization
     void Start () {
@@ -68,7 +70,9 @@ public class MainMenuController : MonoBehaviour {
         GamePanel.SetActive(true);
         ControlsPanel.SetActive(false);
         GfxPanel.SetActive(false);
+        movementPanel.SetActive(false);
         LoadGamePanel.SetActive(false);
+        perspectivesPanel.SetActive(false);
 
         //play anim for opening game options panel
         anim.Play("OptTweenAnim_on");
@@ -83,7 +87,9 @@ public class MainMenuController : MonoBehaviour {
         GamePanel.SetActive(false);
         ControlsPanel.SetActive(true);
         GfxPanel.SetActive(false);
+        movementPanel.SetActive(false);
         LoadGamePanel.SetActive(false);
+        perspectivesPanel.SetActive(false);
 
         //play anim for opening game options panel
         anim.Play("OptTweenAnim_on");
@@ -98,7 +104,9 @@ public class MainMenuController : MonoBehaviour {
         GamePanel.SetActive(false);
         ControlsPanel.SetActive(false);
         GfxPanel.SetActive(true);
+        movementPanel.SetActive(false);
         LoadGamePanel.SetActive(false);
+        perspectivesPanel.SetActive(false);
 
         //play anim for opening game options panel
         anim.Play("OptTweenAnim_on");
@@ -108,13 +116,47 @@ public class MainMenuController : MonoBehaviour {
 
     }
 
+    public void openMovementTracker() {
+        //enable respective panel
+        GamePanel.SetActive(false);
+        ControlsPanel.SetActive(false);
+        GfxPanel.SetActive(false);
+        LoadGamePanel.SetActive(false);
+        movementPanel.SetActive(true);
+        perspectivesPanel.SetActive(false);
+
+        //play anim for opening game options panel
+        anim.Play("OptTweenAnim_on");
+
+        //play click sfx
+        playClickSound();
+    }
+
+    public void openPerspectivesPanel() {
+        //enable respective panel
+        GamePanel.SetActive(false);
+        ControlsPanel.SetActive(false);
+        GfxPanel.SetActive(false);
+        LoadGamePanel.SetActive(false);
+        movementPanel.SetActive(false);
+        perspectivesPanel.SetActive(true);
+
+        //play anim for opening game options panel
+        anim.Play("OptTweenAnim_on");
+
+        //play click sfx
+        playClickSound();
+    }
+
     public void openContinue_Load()
     {
         //enable respective panel
         GamePanel.SetActive(false);
         ControlsPanel.SetActive(false);
         GfxPanel.SetActive(false);
+        movementPanel.SetActive(false);
         LoadGamePanel.SetActive(true);
+        perspectivesPanel.SetActive(false);
 
         //play anim for opening game options panel
         anim.Play("OptTweenAnim_on");
