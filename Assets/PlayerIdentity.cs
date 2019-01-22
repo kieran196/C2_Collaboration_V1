@@ -24,8 +24,6 @@ public class PlayerIdentity : NetworkBehaviour {
         }
     }
 
-
-
     [Client]
     void GetIdentity() {
         playerNetID = GetComponent<NetworkIdentity>().netId;

@@ -12,6 +12,8 @@ TagManager:
   - UI_User
   - Operator
   - box
+  - avatar
+  - networkedAvatar
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,7 @@ TagManager:
   - Floor
   - InteractableGameObjectGen
   - walkingMat
-  - 
+  - Player
   - 
   - 
   - 

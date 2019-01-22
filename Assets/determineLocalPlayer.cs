@@ -10,14 +10,18 @@ public class determineLocalPlayer : NetworkBehaviour {
     private GameObject rig;
 
     public GameObject menuCanvas;
+    public Text playerNameText;
+    public bool assignIdOnLoad;
 
 
-    [SyncVar(hook = "onNameChange")]
+    //[SyncVar(hook = "onNameChange")]
+    [SyncVar]
     public string playerName;
 
     private void Start() {
         rig = GetComponent<VRTK_Switcher>().currentRig;
         this.transform.SetParent(GameObject.Find("Parent").transform);
+        //print(menuCanvas.name);
     }
 
     public GameObject[] getUsers() {
@@ -25,8 +29,14 @@ public class determineLocalPlayer : NetworkBehaviour {
     }
 
     void Update() {
-        if(isLocalPlayer && playerName != "") {
-            CmdAssignPlayerName("Player:" + netId);
+        /*if(isLocalPlayer && playerName == "" && GetComponent<VRTK_Switcher>().currentState == VRTK_Switcher.GAME_STATES.GAME) {
+            CmdAssignPlayerName(assignIdOnLoad ? "Player:" + netId : playerNameText.text);
+            print(playerNameText.text);
+        }*/
+
+        if(isLocalPlayer && playerName == "") { // Assign on client
+            CmdAssignPlayerName(assignIdOnLoad ? "Player:" + netId : playerNameText.text);
+            print(playerNameText.text);
         }
 
         if(isLocalPlayer && !menuCanvas.GetComponent<Canvas>().enabled) {
@@ -37,9 +47,6 @@ public class determineLocalPlayer : NetworkBehaviour {
         //Here
         int count = 0;
         foreach(GameObject user in getUsers()) {
-            //print(playerName + "  | Current Rig:" + user.GetComponent<VRTK_Switcher>().rigType + " | Last Rig: " + user.GetComponent<VRTK_Switcher>().lastRig);
-
-            //enableAllUsers.GetComponent<VRTK_Switcher>()
             if(user.GetComponent<VRTK_Switcher>().rigType != null && user.GetComponent<VRTK_Switcher>().rigType != "" && user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.activeInHierarchy == false) {
                 user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.SetActive(true);
                 if(user.GetComponent<VRTK_Switcher>().lastRig != null && user.GetComponent<VRTK_Switcher>().lastRig != "") {
@@ -76,9 +83,14 @@ public class determineLocalPlayer : NetworkBehaviour {
         //Debug.Log("Name has been changed on client: updated?" + playerName);
     }
 
+    public override void OnStartClient() {
+        base.OnStartClient();
+        CmdAssignPlayerName(assignIdOnLoad ? "Player:" + netId : playerNameText.text);
+    }
+
     public override void OnStartLocalPlayer() {
-        print("Trying to assign players name...");
-        CmdAssignPlayerName("Player:" + netId);
+        CmdAssignPlayerName(assignIdOnLoad ? "Player:"+netId : playerNameText.text);
+        this.GetComponent<UserAvatarLoader>().enabled = true;
         /*foreach(GameObject user in getUsers()) {
             user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.SetActive(true);
         }*/

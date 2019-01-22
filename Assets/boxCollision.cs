@@ -9,11 +9,14 @@ public class boxCollision : NetworkBehaviour {
 
     public float globalTimer = 0;
 
-    public float SPAWN_SPEED = 2f; //Spawns an object for every "" seconds
-    public float DESTROY_SPEED = 2f;
+    public float SPAWN_SPEED; //Spawns an object for every "" seconds
+    public float DESTROY_SPEED; //Destroys an object for every "" seconds
+    public int SPAWN_AMOUNT; //Spawns * objects at a time
 
     public GameObject popupPrefab;
     private Transform cubeParent;
+
+    public float TASK_DIFFICULTY;
 
     private float[,] positions = new float[,] { {-1f, 0.5f}, { -0.35f, 0.5f } , { 0.35f, 0.5f }, { 1f, 0.5f },
                                                 {-1f, -0.175f}, { -0.35f, -0.175f } , { 0.35f, -0.175f }, { 1f, -0.175f},
@@ -38,7 +41,7 @@ public class boxCollision : NetworkBehaviour {
     public void CmdspawnCube(GameObject obj, int randomNum) {
         obj.name = randomNum.ToString();
         obj.transform.SetParent(cubeParent);
-        obj.transform.localPosition = new Vector3(positions[randomNum, 0], 0.5f, positions[randomNum, 1]);
+        obj.transform.localPosition = new Vector3(positions[randomNum, 0], 0.55f, positions[randomNum, 1]);
         obj.transform.localScale = new Vector3(0.5f, 0.15f, 0.25f);
         reactionRate = 0;
         NetworkServer.Spawn(obj);
@@ -73,18 +76,21 @@ public class boxCollision : NetworkBehaviour {
         activePositions.Remove(int.Parse(obj.name));
         activeCubes.Remove(obj);
         Destroy(obj.gameObject);
-        //activeCubes.Add(randomlySelectCube());
+        currentDifficulty += 0.1f;
+        for (int i=0; i<(int)currentDifficulty&&increaseDifficulty; i++)
+            activeCubes.Add(randomlySelectCube());
     }
 
     private int secondCounter = 0;
-    public int currentDifficulty = 0;
+    private float currentDifficulty = 1;
     public bool increaseDifficulty = true;
     public bool started = false;
 
     public void addSecond() {
         secondCounter = (int)globalTimer;
-        if (secondCounter % SPAWN_SPEED == 0 && increaseDifficulty) {
-            activeCubes.Add(randomlySelectCube());
+        if ((int)(secondCounter % SPAWN_SPEED) == 0) {
+            for(int i = 0; i < SPAWN_AMOUNT; i++)
+                activeCubes.Add(randomlySelectCube());
         }
     }
 
@@ -110,8 +116,9 @@ public class boxCollision : NetworkBehaviour {
                 activePositions.Remove(int.Parse(cube.name));
                 activeCubes.Remove(cube);
                 Destroy(cube.gameObject);
-                //activeCubes.Add(randomlySelectCube());
-                currentDifficulty++;
+                if (increaseDifficulty)
+                    activeCubes.Add(randomlySelectCube());
+                //currentDifficulty++;
 
             }
         }
@@ -119,6 +126,7 @@ public class boxCollision : NetworkBehaviour {
 
 
     void Update() {
+        TASK_DIFFICULTY = (100f / (SPAWN_SPEED + DESTROY_SPEED)) * SPAWN_AMOUNT;
         if(!isLocalPlayer)
             return;
             //controller = SteamVR_Controller.Input((int)trackedObj.index);

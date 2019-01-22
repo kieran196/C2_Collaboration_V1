@@ -8,7 +8,8 @@ public class VRTK_Switcher : NetworkBehaviour {
 
     public GameObject VRSimulator_Rig;
     public GameObject SteamVR_Rig;
-    public GameObject AR_Rig;
+    public GameObject OptiTracker;
+   // public GameObject AR_Rig;
     public GameObject Operator_Panel;
 
     //[SyncVar]
@@ -33,6 +34,8 @@ public class VRTK_Switcher : NetworkBehaviour {
     public Text label;
     public Transform player;
     public Transform drawParent;
+    public enum GAME_STATES {MENU, GAME}
+    public GAME_STATES currentState;
 
     public void updateLabel() {
         Debug.Log("Updating these labels..");
@@ -45,7 +48,7 @@ public class VRTK_Switcher : NetworkBehaviour {
     }
 
     public GameObject getRig() {
-        return Input.GetKeyDown(KeyCode.Alpha1) ? VRSimulator_Rig : Input.GetKeyDown(KeyCode.Alpha2) ? SteamVR_Rig : Input.GetKeyDown(KeyCode.Alpha3) ? AR_Rig : Input.GetKeyDown(KeyCode.Alpha4) ? Operator_Panel : null;
+        return Input.GetKeyDown(KeyCode.Alpha1) ? VRSimulator_Rig : Input.GetKeyDown(KeyCode.Alpha2) ? SteamVR_Rig : Input.GetKeyDown(KeyCode.Alpha3) ? OptiTracker : Input.GetKeyDown(KeyCode.Alpha4) ? Operator_Panel : null;
     }
 
     [Command]
@@ -111,15 +114,13 @@ public class VRTK_Switcher : NetworkBehaviour {
             if(rig == null) return;
             print("Activated Rig:"+rig.name);
             CmdLastRig();
-            if(currentRig == null) currentRig = rig; CmdAssignRig(rig.name); mainPanel.SetActive(false); sidePanel.SetActive(true); loadPrefabs();
+            if(currentRig == null) currentRig = rig; CmdAssignRig(rig.name); mainPanel.SetActive(false); sidePanel.SetActive(true); loadPrefabs(); currentState = GAME_STATES.GAME;
 
             if(rig.activeInHierarchy == false) {
                 currentRig.SetActive(false);
                 if(rig == Operator_Panel) { //Local rigs
                     rig.SetActive(true);
                     Operator_Panel.transform.GetComponentInChildren<Camera>().enabled = true;
-                } if (rig == AR_Rig) {
-                    rig.SetActive(true);
                 }
                 currentRig = rig;
                 CmdAssignRig(rig.name);
@@ -168,14 +169,10 @@ public class VRTK_Switcher : NetworkBehaviour {
     }
 
     public override void OnStartLocalPlayer() {
-        AR_Rig = GameObject.Find("AR_Rig");
-        Operator_Panel = GameObject.Find("OperatorPanel");
-        if (AR_Rig != null)
-            AR_Rig.SetActive(false);
-        //Causing exceptions all of a sudden?
+        Operator_Panel = GameObject.FindGameObjectWithTag("Operator");
         if (Operator_Panel != null)
-            Operator_Panel.SetActive(false);
             Operator_Panel.GetComponent<Camera>().enabled = true;
+            Operator_Panel.SetActive(false);
 
         //PlayerStorage.AddPlayer();
         //Operator_Panel = GameObject.FindGameObjectWithTag("Operator");

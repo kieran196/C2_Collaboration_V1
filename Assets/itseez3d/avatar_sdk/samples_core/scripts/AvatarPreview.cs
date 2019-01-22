@@ -22,7 +22,9 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 	{
 		void OnShowAvatar(string avatarCode);
 
-		void OnEditAvatar(string avatarCode);
+        void OnCreateAvatar(string avatarCode);
+
+        void OnEditAvatar(string avatarCode);
 
 		void OnDeleteAvatar(string avatarCode);
 	}
@@ -120,7 +122,11 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 				progress.text = string.Empty;
 		}
 
-		public void UpdateAvatarName(string name)
+        void Start() {
+            OnCreate();
+        }
+
+        public void UpdateAvatarName(string name)
 		{
 			avatarName.text = string.Format("Name: {0}", name);
 		}
@@ -141,11 +147,16 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 
 		#region Button click handlers
 
+        public void OnCreate() 
+        {
+            gallery.OnCreateAvatar(avatarCode);
+        }
+
 		public void OnShow ()
 		{
             gallery.OnShowAvatar (avatarCode);
             //AvatarInfo.STORED_AVATAR;
-		}
+        }
 
 		public void OnEdit ()
 		{

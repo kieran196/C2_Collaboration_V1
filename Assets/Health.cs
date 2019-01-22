@@ -20,10 +20,10 @@ public class Health : NetworkBehaviour {
             if(counter != 0) {
                 CmdSyncVarWithClients("val:" + counter.ToString());
             }
-            if(Input.anyKeyDown && isLocalPlayer) {
+            /*if(Input.anyKeyDown && isLocalPlayer) {
                 CmdSyncVarWithClients("val:" + counter.ToString());
                 counter++;
-            }
+            }*/
         }
             /*if(isLocalPlayer) {
                 setValues();
@@ -43,13 +43,6 @@ public class Health : NetworkBehaviour {
             }*/
         }
 
-    public void setValues() {
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            counter++;
-            CmdSyncVarWithClients("val:" + counter.ToString());
-        }
-    }
-
     //this will sync var from server to all clients by calling the "SyncVarWithClientsRpc" funtion on the clients with the value of the variable "varToSync" equals to the value of "example1"
     [ClientRpc]
     void RpcSyncVarWithClients(string varToSync) {
@@ -65,10 +58,6 @@ public class Health : NetworkBehaviour {
     public override void OnStartClient() {
         base.OnStartClient();
         CmdSyncVarWithClients("val:" + counter.ToString());
-    }
-
-    void OnChangeVal(string val) {
-        networkID = val;
     }
 
 }

@@ -9,6 +9,8 @@ public class FishingReel : MonoBehaviour {
      * 
      * */
 
+
+    public bool enableTeleporter;
     public LayerMask interactionLayers;
     private Transform oldParent;
 
@@ -263,7 +265,8 @@ public class FishingReel : MonoBehaviour {
             if (linking != null && linking.currentlyLinking == true) {
                 linking.hitPos = hitPoint;
             }
-            teleportOnFloor(hit);
+            if (enableTeleporter)
+                teleportOnFloor(hit);
             Hover2DButtons(hit.transform.gameObject);
             PickupObject(hit.transform.gameObject);
             toolPicker.hoverTool(hit.transform.gameObject, trackedObj, hitPoint);
