@@ -13,7 +13,7 @@ public class PlayerStorage : NetworkManager {
         //player.SetActive(true);
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         print("Spawned a new player.. ... ..");
-        
+        player.GetComponent<UserAvatarLoader>().setupAvatar();
     }
 
     public List<GameObject> playerObjects = new List<GameObject>();
