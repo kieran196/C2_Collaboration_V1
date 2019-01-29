@@ -267,7 +267,8 @@ public class UserAvatarLoader : NetworkBehaviour {
     private bool parentSet = false;
     // Update is called once per frame
     void Update() {
-        if (NetworkServer.connections.Count >= 2 && isServer && !parentSet) {
+        //TODO - For some reason client is crashing if server sets the parent before client joins
+        if (NetworkServer.connections.Count >= 2 && isServer && !parentSet && userAvatar != null) {
             print("Setting parent..");
             StartCoroutine(Wait(2));
         }

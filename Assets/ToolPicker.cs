@@ -59,40 +59,6 @@ public class ToolPicker : MonoBehaviour {
         }
     }
 
-    public GameObject[] getUsers() {
-        return GameObject.FindGameObjectsWithTag("Player");
-    }
-
-    public GameObject findPlayer() {
-        GameObject[] activeUsers = getUsers();
-        int count = 0;
-        foreach(GameObject user in getUsers()) {
-            if (!user.GetComponent<NetworkIdentity>().isLocalPlayer && count == 0) {
-                count += 1;
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public Transform getNonLocalPlayerHead(GameObject player, bool VRMode) {
-        userCameras cameras = player.GetComponent<userCameras>();
-        if (VRMode == true) {
-            return cameras.VR_Camera.transform.parent;
-        } else {
-            return cameras.VRSim_Camera.transform.parent;
-        }
-    }
-
-    public Transform getLocalPlayerHead(bool VRMode) {
-        userCameras cameras = rootParent.GetComponent<userCameras>();
-        if(VRMode == true) {
-            return cameras.VR_Camera.transform.parent;
-        } else {
-            return cameras.VRSim_Camera.transform.parent;
-        }
-    }
-
 
     public void enableNonLocalUsersCameras(GameObject player) {
         userCameras cameras = player.GetComponent<userCameras>();
@@ -179,13 +145,48 @@ public class ToolPicker : MonoBehaviour {
 
     public bool perspectiveViewerEnabled = false;
 
+
+    public GameObject[] getUsers() {
+        return GameObject.FindGameObjectsWithTag("Player");
+    }
+
+    public GameObject findPlayer() {
+        GameObject[] activeUsers = getUsers();
+        int count = 0;
+        foreach(GameObject user in getUsers()) {
+            if(!user.GetComponent<NetworkIdentity>().isLocalPlayer && count == 0) {
+                count += 1;
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public Transform getNonLocalPlayerHead(GameObject player, bool VRMode) {
+        userCameras cameras = player.GetComponent<userCameras>();
+        return (VRMode) ? cameras.VR_Camera.transform.parent : cameras.VRSim_Camera.transform.parent;
+    }
+
+    public Transform getLocalPlayerHead(bool VRMode) {
+        userCameras cameras = rootParent.GetComponent<userCameras>();
+        return (VRMode) ? cameras.VR_Camera.transform.parent : cameras.VRSim_Camera.transform.parent;
+    }
+
+
+
     void Update() {
         if(perspectiveViewerEnabled) {
-            Transform nonLocalPlayerPerspective = getNonLocalPlayerHead(findPlayer(), false); //Not in VR
-            Transform localPlayerPerspective = getLocalPlayerHead(true); //In VR
-                                                                         //Set values
-            localPlayerPerspective.position = nonLocalPlayerPerspective.position;
-            localPlayerPerspective.eulerAngles = nonLocalPlayerPerspective.eulerAngles;
+            if (Input.GetKeyDown(KeyCode.P)) { // For testing ..
+                print("Changing user perspective..");
+                Transform nonLocalPlayerPerspective = getNonLocalPlayerHead(findPlayer(), false); //Not in VR
+                if(nonLocalPlayerPerspective != null) {
+                    Transform localPlayerPerspective = getLocalPlayerHead(false); //In VR
+                    nonLocalPlayerPerspective.position = nonLocalPlayerPerspective.position;
+                    nonLocalPlayerPerspective.eulerAngles = nonLocalPlayerPerspective.eulerAngles;
+                }
+            }
+
+
         }
     }
 }
