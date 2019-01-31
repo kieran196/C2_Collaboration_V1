@@ -15,12 +15,12 @@ public class UserAvatarLoader : NetworkBehaviour {
     public GameObject headParent;
 
     public GameObject headPrefab;
-    
+
     [SyncVar]
     public string avatarName;
 
     private void Awake() {
-        print("CODE:"+AvatarInfo.STORED_CODE);
+        print("CODE:" + AvatarInfo.STORED_CODE);
         playerStorage = GameObject.Find("NetworkManager").GetComponent<PlayerStorage>();
         if(AvatarInfo.STORED_AVATAR != null) {
             AvatarInfo.STORED_AVATAR.SetActive(false);
@@ -95,7 +95,7 @@ public class UserAvatarLoader : NetworkBehaviour {
     }
 
     public void setHeadParent() {
-        if (userAvatar != null && userAvatar.transform.parent == null) {
+        if(userAvatar != null && userAvatar.transform.parent == null) {
             print("Setting head parent..");
             userAvatar.transform.SetParent(headParent.transform);
         }
@@ -106,7 +106,7 @@ public class UserAvatarLoader : NetworkBehaviour {
         RpcSpawnHead();
     }
 
-    
+
 
     [Command]
     public void CmdSpawnAvatar() {
@@ -267,14 +267,17 @@ public class UserAvatarLoader : NetworkBehaviour {
     private bool parentSet = false;
     // Update is called once per frame
     void Update() {
-        //TODO - For some reason client is crashing if server sets the parent before client joins
-        if (NetworkServer.connections.Count >= 2 && isServer && !parentSet && userAvatar != null) {
+        if(NetworkServer.connections.Count >= 2 && isServer && !parentSet) {
             print("Setting parent..");
             StartCoroutine(Wait(2));
         }
 
+        /*if(isClient && avatarName != "") {
+            setupAvatar();
+        }*/
+
         //print(NetworkServer.connections.Count);
-        if (isLocalPlayer && AvatarInfo.STORED_CODE != null) {
+        if(isLocalPlayer && AvatarInfo.STORED_CODE != null) {
             CmdSyncVarWithClients(AvatarInfo.STORED_CODE);
             if(userAvatar != null && isServer) {
                 userAvatar.GetComponent<avatarData>().CmdSyncVarWithClients(avatarName);
@@ -282,13 +285,10 @@ public class UserAvatarLoader : NetworkBehaviour {
             }
         }
 
-        /*if (isLocalPlayer && !findAvatar) {
+        if (isLocalPlayer && !findAvatar) {
             print("Spawned a head?");
             findAvatar = true;
             CmdSpawnHead();
-        }*/
-        if (isLocalPlayer && avatarName != "") {
-            setupAvatar();
         }
     }
 

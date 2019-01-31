@@ -91,13 +91,13 @@ public class avatarData : NetworkBehaviour {
 
     private bool updatedName = false;
     void Update() {
-        if (!isServer && avatarID != "" && updatedName == false) {
+        if(!isServer && avatarID != "" && updatedName == false) {
             updatedName = true;
             this.name = avatarID;
             this.tag = "networkedAvatar";
         }
-       if (avatarID != null && this.transform.parent == null) {
-           // GameObject obj = findPlayerByNetworkID();
+        if(avatarID != null && this.transform.parent == null) {
+            // GameObject obj = findPlayerByNetworkID();
             //print("Found obj:" + obj);
             //GameObject[] spawnedPlayers = GameObject.FindGameObjectsWithTag("Player");
             //this.transform.SetParent(spawnedPlayers[0].GetComponent<VRTK_Switcher>().VRSimulator_Rig.GetComponent<cameraController>().cam.transform);

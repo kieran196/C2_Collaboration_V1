@@ -180,6 +180,7 @@ public class VRTK_Switcher : NetworkBehaviour {
         print("OnStartLocalPlayer called.. IS THIS COMPILING?");
         if(isLocalPlayer) {
             //GetComponentInChildren<Canvas>().enabled = true;
+            this.GetComponent<readPythonData>().enabled = true;
             this.enabled = true;
             this.transform.Find("MenuScreen").GetComponent<Canvas>().enabled = true;
             this.transform.Find("MenuScreen").GetComponentInChildren<Camera>().enabled = true;

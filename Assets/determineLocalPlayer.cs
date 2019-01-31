@@ -36,7 +36,7 @@ public class determineLocalPlayer : NetworkBehaviour {
 
         if(isLocalPlayer && playerName == "") { // Assign on client
             CmdAssignPlayerName(assignIdOnLoad ? "Player:" + netId : playerNameText.text);
-            print(playerNameText.text);
+            //print(playerNameText.text);
         }
 
         if(isLocalPlayer && !menuCanvas.GetComponent<Canvas>().enabled) {
