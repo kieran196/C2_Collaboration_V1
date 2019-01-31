@@ -190,7 +190,10 @@ namespace ItSeez3D.AvatarSdk.Core
 					Utils.CombinePaths (Application.dataPath, "..", "avatar_sdk"),
 				};
 
+                //var options = Application.dataPath
+
 				for (int i = 0; i < options.Length; ++i) {
+                    Debug.Log("dir: "+options[i] + ", " + Application.persistentDataPath);
 					Debug.LogFormat ("Trying {0} as data root...", options [i]);
 					if (Utils.HasNonAscii (options [i])) {
 						Debug.LogWarningFormat ("Data path \"{0}\" contains non-ASCII characters, trying next option...", options [i]);

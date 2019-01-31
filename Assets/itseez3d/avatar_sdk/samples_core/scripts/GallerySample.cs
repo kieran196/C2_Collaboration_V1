@@ -162,14 +162,14 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 				AsyncRequest request = r;
 				while (request != null)
 				{
-					progress.Add(string.Format("{0}: {1}%", request.State, request.ProgressPercent.ToString("0.0")));
+					//progress.Add(string.Format("{0}: {1}%", request.State, request.ProgressPercent.ToString("0.0")));
 					request = request.CurrentSubrequest;
 				}
 
 				if (string.IsNullOrEmpty(avatarCode))
 				{
 					// update progress at the top of the screen
-					progressText.text = string.Join("  -->  ", progress.ToArray());
+					//progressText.text = string.Join("  -->  ", progress.ToArray());
 				}
 				else
 				{
@@ -178,7 +178,7 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 				}
 			}
 
-			progressText.text = string.Empty;
+			//progressText.text = string.Empty;
 		}
 
 		#endregion
@@ -497,12 +497,27 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 			yield return CreateNewAvatar(bytes);
 		}
 
-		/// <summary>
-		/// Button click handler.
-		/// </summary>
-		public void OnShowAvatar(string avatarCode)
-		{
-			var avatar = GetAvatar(avatarCode);
+        public void OnCreateAvatar(string avatarCode) {
+            AvatarViewer comp = this.gameObject.AddComponent<AvatarViewer>();
+            comp.isStatic = false;
+            comp.showAvatarTest(avatarCode, avatarProvider);
+        }
+
+        /// <summary>
+        /// Button click handler.
+        /// </summary>
+        /// 
+        //TODO - Get multiple avatar prefabs at a time in the same scene
+        public void OnShowAvatar(string avatarCode) {
+            //AvatarViewer avatarViewer = new AvatarViewer();
+            //AvatarViewer comp = this.gameObject.AddComponent<AvatarViewer>();
+            //comp.showAvatarTest(avatarCode, avatarProvider);
+            print("AVATAR CODE:" + avatarCode);
+            foreach(KeyValuePair<string, AvatarPreview> preview in avatarPreviews) {
+                print("Preview:" + preview.Key);
+            }
+
+            var avatar = GetAvatar(avatarCode);
 			if (avatar.state != GalleryAvatarState.COMPLETED)
 			{
 				Debug.LogErrorFormat("Avatar not ready to be opened: {0}, state: {1}", avatarCode, avatar.state);
@@ -517,7 +532,7 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 				showSettings = true
 			});
 			SceneManager.LoadScene(PluginStructure.GetViewerSceneName());
-		}
+        }
 
 		/// <summary>
 		/// Finds the avatar with the given code in the loadedAvatars

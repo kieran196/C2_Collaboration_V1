@@ -6,6 +6,9 @@ public static class AvatarInfo  {
 
     public static GameObject STORED_AVATAR; //Store the selected GameObject avatar
     public static GameObject STORED_NAME;
+    public static string STORED_CODE;
 
-	
+    public static List<GameObject> AVATARS = new List<GameObject>();
+
+
 }

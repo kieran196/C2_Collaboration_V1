@@ -13,6 +13,7 @@ using ItSeez3D.AvatarSdk.Core;
 using ItSeez3D.AvatarSdkSamples.Core;
 using System.Collections;
 using System.Linq;
+using UnityEngine;
 
 namespace ItSeez3D.AvatarSdkSamples.Cloud
 {
@@ -142,6 +143,18 @@ namespace ItSeez3D.AvatarSdkSamples.Cloud
 			avatarEdit.descriptionField.text = avatarToEdit.description;
 			editPanel.SetActive(true);
 		}
+
+        private bool avatarsAdded = false;
+
+        void Update() {
+            int count = 0;
+            if(avatarsAdded == false && loadedAvatars != null) {
+     
+                //AvatarPrefabBuilder.CreateAvatarPrefab(GameObject.Find(AVATAR_OBJECT_NAME), HEAD_OBJECT_NAME, HAIRCUT_OBJECT_NAME, currentAvatarCode, GetCurrentHaircutName());
+                avatarsAdded = true;
+                count++;
+            }
+        }
 
 		/// <summary>
 		/// Applies the changes in avatar name and description. Updates this avatar on the server.

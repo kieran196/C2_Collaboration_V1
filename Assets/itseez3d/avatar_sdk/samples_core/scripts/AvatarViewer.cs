@@ -23,6 +23,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using Valve.VR.InteractionSystem;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -32,13 +33,15 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 {
 	public class AvatarViewer : MonoBehaviour, IHaircutViewer
 	{
-		public class SceneParams
+        public bool isStatic = true;
+        public class SceneParams
 		{
 			public string avatarCode;
 			public string sceneToReturn;
 			public IAvatarProvider avatarProvider;
 			public bool showSettings = true;
 			public bool useAnimations = true;
+            
 
 			// Is used for WebGL Demo sample to display two avatars (head and face)
 			public AsyncRequest<AvatarData> faceAvatarRequest = null;
@@ -180,7 +183,7 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 		private void OnDisplayedHaircutChanged(string newHaircutId)
 		{
 			int slashPos = newHaircutId.LastIndexOfAny(new char[] { '\\', '/' });
-			haircutText.text = slashPos == -1 ? newHaircutId : newHaircutId.Substring(slashPos + 1);
+			//haircutText.text = slashPos == -1 ? newHaircutId : newHaircutId.Substring(slashPos + 1);
 			if (displayedHaircutChanged != null)
 				displayedHaircutChanged(newHaircutId);
 		}
@@ -206,12 +209,12 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 			initParams = sceneParams;
 		}
 
-		#endregion
+        #endregion
 
-		#region properties
+        #region properties
 
-		// Flag indicates if the unlit shader is used for head.
-		public bool IsUnlitMode
+        // Flag indicates if the unlit shader is used for head.
+        public bool IsUnlitMode
 		{
 			get;
 			private set;
@@ -233,13 +236,20 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 			}
 		}
 
-		#endregion
+        #endregion
 
-		#region Lifecycle
+        #region Lifecycle
+
+        void Awake() {
+            if(isStatic)
+                foreach(GameObject obj in GameObject.FindGameObjectsWithTag("avatar")) {
+                    DontDestroyOnLoad(obj);
+                }
+        }
 
 		void Start()
 		{
-			avatarControls.SetActive(false);
+			//avatarControls.SetActive(false);
 
 			// default values for properties
 			IsUnlitMode = true;
@@ -264,8 +274,8 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 					matrix.m23 += j * d;
 					deltaMatrixList.Add(matrix);
 				}
-
-			StartCoroutine(InitializeScene());
+            if (isStatic)
+			    StartCoroutine(InitializeScene());
 		}
 
 		/// <summary>
@@ -451,17 +461,19 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 
 		public void CreateAvatarPrefab()
 		{
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
 			AvatarPrefabBuilder.CreateAvatarPrefab(GameObject.Find(AVATAR_OBJECT_NAME), HEAD_OBJECT_NAME, HAIRCUT_OBJECT_NAME, currentAvatarCode, GetCurrentHaircutName());
-#endif
+    #endif
         }
+
 
         public void SelectAvatarObject() {
             GameObject avatarObj = GameObject.Find(AVATAR_OBJECT_NAME);
             avatarObj.AddComponent<NetworkIdentity>();
             avatarObj.AddComponent<NetworkTransform>();
             AvatarInfo.STORED_AVATAR = avatarObj;
-            print("Stored Avatar Object: " + AvatarInfo.STORED_AVATAR);
+            AvatarInfo.STORED_CODE = currentAvatarCode;
+            print("Stored Avatar Object: " + AvatarInfo.STORED_AVATAR + " Avatar code:" + AvatarInfo.STORED_CODE);
             DontDestroyOnLoad(AvatarInfo.STORED_AVATAR);
             //avatarObj.SetActive(false);
             SceneManager.LoadScene("NetworkingTestVR");
@@ -488,11 +500,11 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 					Debug.LogError(r.ErrorMessage);
 					yield break;
 				}
-
-				progressText.text = string.Format("{0}: {1}%", r.State, r.ProgressPercent.ToString("0.0"));
+                if(isStatic)
+                    progressText.text = string.Format("{0}: {1}%", r.State, r.ProgressPercent.ToString("0.0"));
 			}
-
-			progressText.text = string.Empty;
+            if(isStatic)
+                progressText.text = string.Empty;
 		}
 
 		#endregion
@@ -539,15 +551,110 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 				Debug.LogError("Scene parameters were no set!");
 		}
 
-		#endregion
+        public void showAvatarTest(string avatarCode, IAvatarProvider avProvider) {
+            // ShowAvatar(avatarCode);
+            StartCoroutine(ShowAvatar(avatarCode, avProvider));
+        }
 
-		#region Avatar processing
+        #endregion
 
-		/// <summary>
-		/// Show avatar in the scene. Also load haircut information to allow further haircut change.
-		/// </summary>
-		private IEnumerator ShowAvatar(string avatarCode)
+        #region Avatar processing
+
+        public static int count = 0;
+
+        private IEnumerator ShowAvatar(string avatarCode, IAvatarProvider avProvider) {
+            print("Called ShowAvatar()" + count);
+            count++;
+            //ChangeControlsInteractability(false);
+            yield return new WaitForSeconds(0.05f);
+
+            StartCoroutine(SampleUtils.DisplayPhotoPreview(avatarCode, photoPreview));
+            currentHaircut = 0;
+
+            var currentAvatar = GameObject.Find(AVATAR_OBJECT_NAME);
+            if(currentAvatar != null)
+                Destroy(currentAvatar);
+
+            var avatarObject = new GameObject(AVATAR_OBJECT_NAME);
+            avatarObject.AddComponent<DontDestroyOnLoad>();
+            //DontDestroyOnLoad(avatarObject.gameObject);
+            AvatarInfo.AVATARS.Add(avatarObject);
+            avatarObject.tag = "avatar";
+            avatarObject.AddComponent<NetworkIdentity>();
+            avatarObject.AddComponent<NetworkTransform>();
+            //avatarObject.name = "Avatar:"+ count;
+            avatarObject.name = avatarCode;
+            var headMeshRequest = avProvider.GetHeadMeshAsync(avatarCode, true);
+            yield return Await(headMeshRequest);
+
+            if(headMeshRequest.IsError) {
+                Debug.LogError("Could not load avatar from disk!");
+            } else {
+                TexturedMesh texturedMesh = headMeshRequest.Result;
+
+                // game object can be deleted if we opened another avatar
+                if(avatarObject != null && avatarObject.activeSelf) {
+                    headObject = new GameObject(HEAD_OBJECT_NAME);
+                    var meshRenderer = headObject.AddComponent<SkinnedMeshRenderer>();
+                    meshRenderer.sharedMesh = texturedMesh.mesh;
+                    //meshRenderer.material = IsUnlitMode ? unlitMaterial : litMaterial;
+                    meshRenderer.material = unlitMaterial;
+                    meshRenderer.material.mainTexture = texturedMesh.texture;
+                    meshRenderer.material.shader = Shader.Find("AvatarUnlitShader");
+                    meshRenderer.enabled = false;
+                    headObject.transform.SetParent(avatarObject.transform);
+                    SetAvatarScale(avatarCode, avatarObject.transform);
+
+                    if(useAnimations) {
+                        /*if(isWebGLDemo)
+                            // don't show all animations in webgl demo
+                            GetComponent<AnimationManager>().CreateAnimator(headObject, animations.GetRange(0, 5));
+                        else
+                            GetComponent<AnimationManager>().CreateAnimator(headObject, animations);*/
+                    } else {
+                        //add an empty blendshape with index -1
+                        availableBlendshapes.Add(-1, "None");
+
+                        var mesh = headObject.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+                        for(int i = 0; i < mesh.blendShapeCount; i++)
+                            availableBlendshapes.Add(i, mesh.GetBlendShapeName(i));
+                        ChangeCurrentBlendshape(-1);
+                        blendshapesSelectingView.InitItems(availableBlendshapes.Values.ToList());
+
+                        if(availableBlendshapes.Count == 1)
+                            blendshapesPanel.SetActive(false);
+                    }
+                }
+                
+            }
+
+            var haircutsIdsRequest = GetHaircutsIdsAsync(avatarCode, avProvider);
+            yield return haircutsIdsRequest;
+
+            string[] haircuts = haircutsIdsRequest.Result;
+            if(haircuts != null && haircuts.Length > 0) {
+                //Add fake "bald" haircut
+                var haircutsList = haircuts.ToList();
+                haircutsList.Insert(0, BALD_HAIRCUT_NAME);
+                avatarHaircuts = haircutsList.ToArray();
+                OnDisplayedHaircutChanged(avatarHaircuts[currentHaircut]);
+                haircutsSelectingView.InitItems(avatarCode, avatarHaircuts.ToList(), avProvider);
+                //haircutsPanel.SetActive(true);
+            } else {
+                //haircutsPanel.SetActive(false);
+                OnDisplayedHaircutChanged(BALD_HAIRCUT_NAME);
+            }
+            //avatarObject.SetActive(false);
+            //ChangeControlsInteractability(true);
+            //avatarControls.SetActive(true);
+        }
+
+        /// <summary>
+        /// Show avatar in the scene. Also load haircut information to allow further haircut change.
+        /// </summary>
+        private IEnumerator ShowAvatar(string avatarCode)
 		{
+            print("Called ShowAvatar()");
 			ChangeControlsInteractability(false);
 			yield return new WaitForSeconds(0.05f);
 
@@ -664,7 +771,30 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 			request.Result = haircuts;
 		}
 
-		private string[] ReorderHaircutIds(string[] haircuts)
+        private AsyncRequest<string[]> GetHaircutsIdsAsync(string avatarCode, IAvatarProvider avProvider) {
+            var request = new AsyncRequest<string[]>();
+            StartCoroutine(GetHaircutsIdsFunc(avatarCode, request, avProvider));
+            return request;
+        }
+
+        private IEnumerator GetHaircutsIdsFunc(string avatarCode, AsyncRequest<string[]> request, IAvatarProvider avProvider) {
+            string[] haircuts = null;
+            if(cachedHaircuts.ContainsKey(avatarCode))
+                haircuts = cachedHaircuts[avatarCode];
+            else {
+                var haircutsRequest = avProvider.GetHaircutsIdAsync(avatarCode);
+                yield return request.AwaitSubrequest(haircutsRequest, 1.0f);
+                if(request.IsError)
+                    yield break;
+
+                haircuts = ReorderHaircutIds(haircutsRequest.Result);
+                cachedHaircuts[avatarCode] = haircuts;
+            }
+            request.IsDone = true;
+            request.Result = haircuts;
+        }
+
+        private string[] ReorderHaircutIds(string[] haircuts)
 		{
 			if (haircuts == null)
 				return null;
