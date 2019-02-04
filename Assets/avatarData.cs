@@ -49,7 +49,8 @@ public class avatarData : NetworkBehaviour {
             foreach(GameObject player in spawnedPlayers) {
                 print("player:" + player + ", netID:" + player.GetComponent<NetworkIdentity>().netId);
                 if(player.GetComponent<NetworkIdentity>().netId.ToString() == networkID) {
-                    this.transform.SetParent(player.GetComponent<VRTK_Switcher>().VRSimulator_Rig.GetComponent<cameraController>().cam.transform);
+                    //this.transform.SetParent(player.GetComponent<VRTK_Switcher>().VRSimulator_Rig.GetComponent<cameraController>().cam.transform);
+                    this.transform.SetParent(player.GetComponent<VRTK_Switcher>().SteamVR_Rig.GetComponent<cameraController>().cam.transform);
                     this.transform.localPosition = Vector3.zero;
                 }
             }

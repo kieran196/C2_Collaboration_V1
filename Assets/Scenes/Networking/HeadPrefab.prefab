@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 1932}
   - component: {fileID: 1718}
   - component: {fileID: 1934}
+  - component: {fileID: 2061334691}
   m_Layer: 0
   m_Name: HeadPrefab
   m_TagString: Untagged
@@ -244,3 +245,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avatarID: 
   networkID: 
+--- !u!114 &2061334691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a3db3f630a4414d94c9a1ae238a00b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorController: {fileID: 9100000, guid: 2fe826f3805a07946a8ba5297666daeb, type: 2}
