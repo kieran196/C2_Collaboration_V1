@@ -26,8 +26,6 @@ ExportedObj/
 *.VC.db
 
 # Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
@@ -36,4 +34,3 @@ sysinfo.txt
 *.apk
 *.unitypackage
 *.terrainlayer
-*.meta
