@@ -13,6 +13,7 @@ TagManager:
   - Operator
   - box
   - avatar
+  - networkedAvatar
   layers:
   - Default
   - TransparentFX

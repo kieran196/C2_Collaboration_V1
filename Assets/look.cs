@@ -18,7 +18,7 @@ public class look : MonoBehaviour
     void Update() {
         if(target != null) {
             this.transform.LookAt(target.transform);
-            print("Distance:" + Vector3.Distance(this.transform.position, target.transform.position));
+            //print("Distance:" + Vector3.Distance(this.transform.position, target.transform.position));
             var planes = GeometryUtility.CalculateFrustumPlanes(this.transform.parent.GetComponent<Camera>());
             Bounds bounds = (!vrEnabled) ? target.transform.Find("Player").GetComponent<Renderer>().bounds : target.GetComponent<Renderer>().bounds;
             if(GeometryUtility.TestPlanesAABB(planes, bounds)) {

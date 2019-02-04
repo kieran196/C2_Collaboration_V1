@@ -73,7 +73,7 @@ public class determineLocalPlayer : NetworkBehaviour {
 
     public void onNameChange(string newName) {
         playerName = newName;
-        Debug.Log("Name has been changed on client: updated?" + playerName);
+        //Debug.Log("Name has been changed on client: updated?" + playerName);
     }
 
     public override void OnStartLocalPlayer() {

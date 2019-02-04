@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class VRTK_Switcher : NetworkBehaviour {
 
+    public bool usingHololens = false;
+
     public GameObject VRSimulator_Rig;
     public GameObject SteamVR_Rig;
     public GameObject AR_Rig;
@@ -74,7 +76,7 @@ public class VRTK_Switcher : NetworkBehaviour {
 
     [ClientRpc]
     void RpcAssignRig(string rig) {
-        if(rig != "OperatorPanel" && rig != "AR_Rig") {
+        if(rig != "OperatorPanel") {
             rigType = rig;
             //print("New rig enabled:" + rigType);
         }
@@ -105,6 +107,26 @@ public class VRTK_Switcher : NetworkBehaviour {
         }
     }
 
+    void AutoSwitchClientHololens() {
+        print("Auto Switching Client..");
+        GameObject rig = AR_Rig;
+        if(rig == null) return;
+        print("Activated Rig:" + rig.name);
+        CmdLastRig();
+        if(currentRig == null) currentRig = rig; CmdAssignRig(rig.name); mainPanel.SetActive(false); sidePanel.SetActive(true); loadPrefabs();
+
+        if(rig.activeInHierarchy == false) {
+            currentRig.SetActive(false);
+            if(rig == Operator_Panel) { //Local rigs
+                rig.SetActive(true);
+                Operator_Panel.transform.GetComponentInChildren<Camera>().enabled = true;
+            }
+            currentRig = rig;
+            CmdAssignRig(rig.name);
+            updateLabel();
+        }
+    }
+
     void SwitchClient() {
         if(Input.anyKeyDown) {
             GameObject rig = getRig();
@@ -118,8 +140,6 @@ public class VRTK_Switcher : NetworkBehaviour {
                 if(rig == Operator_Panel) { //Local rigs
                     rig.SetActive(true);
                     Operator_Panel.transform.GetComponentInChildren<Camera>().enabled = true;
-                } if (rig == AR_Rig) {
-                    rig.SetActive(true);
                 }
                 currentRig = rig;
                 CmdAssignRig(rig.name);
@@ -151,11 +171,15 @@ public class VRTK_Switcher : NetworkBehaviour {
         }*/
 
 
-        if(isLocalPlayer) {
+        if(isLocalPlayer && !usingHololens) {
             if(currentRig != null) {
                 CmdAssignRig(currentRig.name);
             }
             SwitchClient();
+        } else if (isLocalPlayer && usingHololens) {
+            if(currentRig == null && AR_Rig != null) {
+                AutoSwitchClientHololens();
+            }
         }
         /*if(isServer) {
             if(rigType != null) {
@@ -168,10 +192,7 @@ public class VRTK_Switcher : NetworkBehaviour {
     }
 
     public override void OnStartLocalPlayer() {
-        AR_Rig = GameObject.Find("AR_Rig");
         Operator_Panel = GameObject.Find("OperatorPanel");
-        if (AR_Rig != null)
-            AR_Rig.SetActive(false);
         //Causing exceptions all of a sudden?
         /*if (Operator_Panel != null)
             Operator_Panel.SetActive(false);
