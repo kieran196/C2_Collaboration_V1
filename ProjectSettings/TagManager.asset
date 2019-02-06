@@ -15,6 +15,7 @@ TagManager:
   - avatar
   - networkedAvatar
   - LinkedCube
+  - networkedBody
   layers:
   - Default
   - TransparentFX

@@ -27,7 +27,8 @@ public class avatarData : NetworkBehaviour {
 
     public void assignParent(GameObject parent) {
         //this.transform.SetParent(parent.GetComponent<VRTK_Switcher>().VRSimulator_Rig.GetComponent<cameraController>().cam.transform);
-        this.transform.SetParent(parent.GetComponent<VRTK_Switcher>().SteamVR_Rig.GetComponent<cameraController>().cam.transform);
+        //this.transform.SetParent(parent.GetComponent<VRTK_Switcher>().SteamVR_Rig.GetComponent<cameraController>().cam.transform);
+        this.transform.SetParent(parent.GetComponent<VRTK_Switcher>().SteamVR_Rig.GetComponent<cameraController>().avatarHead.transform);
         this.transform.localPosition = Vector3.zero;
     }
 
@@ -50,7 +51,8 @@ public class avatarData : NetworkBehaviour {
                 print("player:" + player + ", netID:" + player.GetComponent<NetworkIdentity>().netId);
                 if(player.GetComponent<NetworkIdentity>().netId.ToString() == networkID) {
                     //this.transform.SetParent(player.GetComponent<VRTK_Switcher>().VRSimulator_Rig.GetComponent<cameraController>().cam.transform);
-                    this.transform.SetParent(player.GetComponent<VRTK_Switcher>().SteamVR_Rig.GetComponent<cameraController>().cam.transform);
+                    //this.transform.SetParent(player.GetComponent<VRTK_Switcher>().SteamVR_Rig.GetComponent<cameraController>().cam.transform);
+                    this.transform.SetParent(player.GetComponent<VRTK_Switcher>().SteamVR_Rig.GetComponent<cameraController>().avatarHead.transform);
                     this.transform.localPosition = Vector3.zero;
                 }
             }

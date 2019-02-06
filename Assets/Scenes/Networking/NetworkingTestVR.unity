@@ -56716,7 +56716,6 @@ MonoBehaviour:
   - {fileID: 8165251595685390820, guid: 978e2a7f534c8ca4db54cda888b55a3c, type: 3}
   - {fileID: 1332, guid: cea5d5e365d89074889b69ad3d50288d, type: 3}
   - {fileID: 1291, guid: ff935f19e762f434182ae3ca9b429c44, type: 3}
-  - {fileID: 677076610424802403, guid: 9fc76097b02e7104ca45297db67731cc, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -81930,11 +81929,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 678260896, guid: 22b3de6bfd7af2444b3e42482bfeda9d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.00021065236
+      value: -0.000112292924
       objectReference: {fileID: 0}
     - target: {fileID: 678260896, guid: 22b3de6bfd7af2444b3e42482bfeda9d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00037684132
+      value: -0.0001305613
       objectReference: {fileID: 0}
     - target: {fileID: 107565000, guid: 22b3de6bfd7af2444b3e42482bfeda9d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -126641,11 +126640,6 @@ PrefabInstance:
       propertyPath: m_AssetId.i15
       value: 184
       objectReference: {fileID: 0}
-    - target: {fileID: 2250, guid: dc9c57a325cf3424481a682f9501c2b8, type: 3}
-      propertyPath: bodyPrefab
-      value: 
-      objectReference: {fileID: 677076610424802403, guid: 9fc76097b02e7104ca45297db67731cc,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc9c57a325cf3424481a682f9501c2b8, type: 3}
 --- !u!1 &2116510475

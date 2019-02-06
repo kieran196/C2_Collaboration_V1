@@ -7,7 +7,6 @@ using System.Linq;
 public class UserAvatarLoader : NetworkBehaviour {
 
     public GameObject userAvatar;
-    public GameObject userBody;
 
     [SyncVar]
     public GameObject syncVarAvatar;
@@ -17,7 +16,6 @@ public class UserAvatarLoader : NetworkBehaviour {
     public GameObject headParent;
 
     public GameObject headPrefab;
-    public GameObject bodyPrefab;
 
     [SyncVar]
     public string avatarName;
@@ -77,15 +75,6 @@ public class UserAvatarLoader : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcSpawnBody() {
-        userBody = Instantiate(headPrefab,
-                        Vector3.zero,
-                        new Quaternion(0f, 0f, 0f, 0f));
-        ClientScene.RegisterPrefab(userBody);
-        NetworkServer.Spawn(userBody);
-    }
-
-    [ClientRpc]
     public void RpcSpawnHead() {
         print("Trying to spawn head");
         userAvatar = Instantiate(headPrefab,
@@ -111,11 +100,6 @@ public class UserAvatarLoader : NetworkBehaviour {
             print("Setting head parent..");
             userAvatar.transform.SetParent(headParent.transform);
         }
-    }
-
-    [Command]
-    public void CmdSpawnBody() {
-        RpcSpawnBody();
     }
 
     [Command]
@@ -255,16 +239,11 @@ public class UserAvatarLoader : NetworkBehaviour {
         //print("rig:" + rig);
         yield return new WaitForSeconds(duration);   //Wait
         Debug.Log("End Wait() function and the time is: " + Time.time);
-        Transform rigg = this.transform.Find("SteamVR").GetComponent<cameraController>().cam.transform;
+        //Transform rigg = this.transform.Find("SteamVR").GetComponent<cameraController>().cam.transform;
+        Transform rigg = this.transform.Find("SteamVR").GetComponent<cameraController>().avatarHead.transform;
         userAvatar.transform.SetParent(rigg);
         userAvatar.transform.localPosition = Vector3.zero;
         userAvatar.transform.localEulerAngles = Vector3.zero;
-
-        //Body
-        userBody.transform.SetParent(rigg);
-        userBody.transform.localPosition = Vector3.zero;
-        userBody.transform.localEulerAngles = Vector3.zero;
-
         print("rig:" + rigg);
         parentSet = true;
     }
@@ -285,7 +264,6 @@ public class UserAvatarLoader : NetworkBehaviour {
                 //playerStorage.spawnPrefabs.Add(avatar);
                 //ClientScene.RegisterPrefab(avatar);
                 CmdSpawnHead();
-                CmdSpawnBody();
             }
         }
     }
@@ -315,7 +293,6 @@ public class UserAvatarLoader : NetworkBehaviour {
             print("Spawned a head?");
             findAvatar = true;
             CmdSpawnHead();
-            CmdSpawnBody();
         }
     }
 
