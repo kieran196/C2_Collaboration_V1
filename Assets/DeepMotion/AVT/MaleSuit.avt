@@ -1,0 +1,3705 @@
+[
+    {
+        "IsKinematic": false,
+        "angularDamping": 0.04,
+        "angularDrag": 0.0,
+        "angularVelocity": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "boneName": "simAvatarRoot",
+        "bone_xform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.20000004244503e-05,
+            104.712783813477,
+            -0.816681981086731,
+            1.0
+        ],
+        "children": [
+            {
+                "angularDrag": 0.0,
+                "boneName": "lHip",
+                "bone_xform": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    13.4982662200928,
+                    -25.7901458740234,
+                    2.04074001312256,
+                    1.0
+                ],
+                "breakingReactionImpulse": -1.0,
+                "children": [
+                    {
+                        "angularDrag": 0.0,
+                        "axisA": [
+                            1.0,
+                            0.0,
+                            0.0
+                        ],
+                        "boneName": "lKnee",
+                        "bone_xform": [
+                            1.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0,
+                            0.0,
+                            4.60339641571045,
+                            -45.8954010009766,
+                            0.981335997581482,
+                            1.0
+                        ],
+                        "breakingReactionImpulse": -1.0,
+                        "children": [
+                            {
+                                "angularDrag": 0.0,
+                                "axisA": [
+                                    1.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "axisB": [
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "boneName": "lAnkle",
+                                "bone_xform": [
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    2.60922050476074,
+                                    -26.0678329467773,
+                                    5.96052742004395,
+                                    1.0
+                                ],
+                                "breakingReactionImpulse": -1.0,
+                                "children": [
+                                    {
+                                        "angularDrag": 0.0,
+                                        "axisA": [
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "boneName": "lToe",
+                                        "bone_xform": [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.176721572875977,
+                                            -3.39052391052246,
+                                            4.92714977264404,
+                                            1.0
+                                        ],
+                                        "breakingReactionImpulse": -1.0,
+                                        "children": null,
+                                        "collidable": true,
+                                        "collideWithParent": false,
+                                        "collider_type": "Box",
+                                        "computeMoiFromColliders": false,
+                                        "dofData": [
+                                            {
+                                                "desiredPosition": 0.0,
+                                                "desiredVelocity": 0.0,
+                                                "isPositionMotor": false,
+                                                "limitHigh": 0.0,
+                                                "limitLow": 0.0,
+                                                "maxLimitForce": 0.0,
+                                                "maxMotorForce": 0.0,
+                                                "neutralPoint": 0.0,
+                                                "positionLockThreshold": 0.0,
+                                                "springDamping": 0.0,
+                                                "springStiffness": 0.0,
+                                                "useLimit": false,
+                                                "useMotor": false
+                                            }
+                                        ],
+                                        "drag": 0.0,
+                                        "joint_type": "hinge",
+                                        "kd": 10.0,
+                                        "kp": 100.0,
+                                        "mass": 0.5,
+                                        "material": {
+                                            "friction": 1.2,
+                                            "restitution": 0.0,
+                                            "rollingFriction": 1.2
+                                        },
+                                        "maxPDTorque": 0.0,
+                                        "moi": [
+                                            0.01,
+                                            0.01,
+                                            0.01
+                                        ],
+                                        "parent": "lAnkle",
+                                        "pivotA": [
+                                            0.176721572875977,
+                                            -3.39052391052246,
+                                            4.92714977264404
+                                        ],
+                                        "pivotB": [
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "showJoint": true,
+                                        "targetBoneOffset": [
+                                            0.0,
+                                            -1.78813934326172e-07,
+                                            0.0
+                                        ],
+                                        "target_bone": "ball_l_end",
+                                        "useSoftConstraint": false
+                                    }
+                                ],
+                                "collidable": true,
+                                "collideWithParent": false,
+                                "collider_type": "Box",
+                                "computeMoiFromColliders": false,
+                                "dofData": [
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 0.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 0.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    },
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 0.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 0.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    }
+                                ],
+                                "drag": 0.0,
+                                "joint_type": "universal",
+                                "kd": 20.0,
+                                "kp": 400.0,
+                                "mass": 2.0,
+                                "material": {
+                                    "friction": 1.2,
+                                    "restitution": 0.0,
+                                    "rollingFriction": 1.2
+                                },
+                                "maxPDTorque": 0.0,
+                                "moi": [
+                                    0.02,
+                                    0.02,
+                                    0.01
+                                ],
+                                "parent": "lKnee",
+                                "pivotA": [
+                                    2.43249702453613,
+                                    -22.6773071289062,
+                                    -0.777348756790161
+                                ],
+                                "pivotB": [
+                                    -0.176723480224609,
+                                    3.39052391052246,
+                                    -6.73787593841553
+                                ],
+                                "showJoint": false,
+                                "targetBoneOffset": [
+                                    -0.176723480224609,
+                                    3.39052438735962,
+                                    -6.73787641525269
+                                ],
+                                "target_bone": "foot_l",
+                                "useSoftConstraint": false
+                            }
+                        ],
+                        "collidable": true,
+                        "collideWithParent": false,
+                        "collider_type": "Box",
+                        "computeMoiFromColliders": false,
+                        "dofData": [
+                            {
+                                "desiredPosition": 130.0,
+                                "desiredVelocity": 200.0,
+                                "isPositionMotor": false,
+                                "limitHigh": 130.0,
+                                "limitLow": 0.0,
+                                "maxLimitForce": 1000.0,
+                                "maxMotorForce": 200.0,
+                                "neutralPoint": 0.0,
+                                "positionLockThreshold": 0.0,
+                                "springDamping": 0.0,
+                                "springStiffness": 0.0,
+                                "useLimit": true,
+                                "useMotor": false
+                            }
+                        ],
+                        "drag": 0.0,
+                        "joint_type": "hinge",
+                        "kd": 1.0,
+                        "kp": 50.0,
+                        "mass": 4.0,
+                        "material": {
+                            "friction": 1.2,
+                            "restitution": 0.0,
+                            "rollingFriction": 1.2
+                        },
+                        "maxPDTorque": 0.0,
+                        "moi": [
+                            0.06,
+                            0.01,
+                            0.06
+                        ],
+                        "parent": "lHip",
+                        "pivotA": [
+                            2.1708984375,
+                            -23.218090057373,
+                            1.75868499279022
+                        ],
+                        "pivotB": [
+                            -2.43249797821045,
+                            22.6773090362549,
+                            0.77734899520874
+                        ],
+                        "showJoint": true,
+                        "targetBoneOffset": [
+                            -2.43249797821045,
+                            22.6773090362549,
+                            0.77734899520874
+                        ],
+                        "target_bone": "calf_l",
+                        "useSoftConstraint": false
+                    }
+                ],
+                "collidable": true,
+                "collideWithParent": false,
+                "collider_type": "Box",
+                "computeMoiFromColliders": false,
+                "dofData": [
+                    {
+                        "desiredPosition": 0.0,
+                        "desiredVelocity": 0.0,
+                        "isPositionMotor": false,
+                        "limitHigh": 0.0,
+                        "limitLow": 0.0,
+                        "maxLimitForce": 0.0,
+                        "maxMotorForce": 0.0,
+                        "neutralPoint": 0.0,
+                        "positionLockThreshold": 0.0,
+                        "springDamping": 0.0,
+                        "springStiffness": 0.0,
+                        "useLimit": false,
+                        "useMotor": false
+                    },
+                    {
+                        "desiredPosition": 0.0,
+                        "desiredVelocity": 0.0,
+                        "isPositionMotor": false,
+                        "limitHigh": 0.0,
+                        "limitLow": 0.0,
+                        "maxLimitForce": 0.0,
+                        "maxMotorForce": 0.0,
+                        "neutralPoint": 0.0,
+                        "positionLockThreshold": 0.0,
+                        "springDamping": 0.0,
+                        "springStiffness": 0.0,
+                        "useLimit": false,
+                        "useMotor": false
+                    },
+                    {
+                        "desiredPosition": 0.0,
+                        "desiredVelocity": 0.0,
+                        "isPositionMotor": false,
+                        "limitHigh": 0.0,
+                        "limitLow": 0.0,
+                        "maxLimitForce": 0.0,
+                        "maxMotorForce": 0.0,
+                        "neutralPoint": 0.0,
+                        "positionLockThreshold": 0.0,
+                        "springDamping": 0.0,
+                        "springStiffness": 0.0,
+                        "useLimit": false,
+                        "useMotor": false
+                    }
+                ],
+                "drag": 0.0,
+                "joint_type": "ball",
+                "kd": 10.0,
+                "kp": 100.0,
+                "mass": 7.0,
+                "material": {
+                    "friction": 1.0,
+                    "restitution": 0.0,
+                    "rollingFriction": 1.0
+                },
+                "maxPDTorque": 0.0,
+                "moi": [
+                    0.15,
+                    0.02,
+                    0.15
+                ],
+                "parent": "simAvatarRoot",
+                "pivotA": [
+                    11.3273687362671,
+                    -2.57205963134766,
+                    0.282055020332336
+                ],
+                "pivotB": [
+                    -2.17089748382568,
+                    23.2180862426758,
+                    -1.75868499279022
+                ],
+                "showJoint": false,
+                "targetBoneOffset": [
+                    -2.1708984375,
+                    23.2180862426758,
+                    -1.75868487358093
+                ],
+                "target_bone": "thigh_l",
+                "useSoftConstraint": false
+            },
+            {
+                "angularDrag": 0.0,
+                "boneName": "rHip",
+                "bone_xform": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    -13.4982671737671,
+                    -25.7901458740234,
+                    2.04074001312256,
+                    1.0
+                ],
+                "breakingReactionImpulse": -1.0,
+                "children": [
+                    {
+                        "angularDrag": 0.0,
+                        "axisA": [
+                            1.0,
+                            0.0,
+                            0.0
+                        ],
+                        "boneName": "rKnee",
+                        "bone_xform": [
+                            1.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0,
+                            0.0,
+                            -4.60339546203613,
+                            -45.8954010009766,
+                            0.981335997581482,
+                            1.0
+                        ],
+                        "breakingReactionImpulse": -1.0,
+                        "children": [
+                            {
+                                "angularDrag": 0.0,
+                                "axisA": [
+                                    1.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "axisB": [
+                                    0.0,
+                                    0.0,
+                                    1.0
+                                ],
+                                "boneName": "rAnkle",
+                                "bone_xform": [
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    -2.60922050476074,
+                                    -26.0678329467773,
+                                    5.96052742004395,
+                                    1.0
+                                ],
+                                "breakingReactionImpulse": -1.0,
+                                "children": [
+                                    {
+                                        "angularDrag": 0.0,
+                                        "axisA": [
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        "boneName": "rToe",
+                                        "bone_xform": [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            -0.176721572875977,
+                                            -3.39052391052246,
+                                            5.83251285552979,
+                                            1.0
+                                        ],
+                                        "breakingReactionImpulse": -1.0,
+                                        "children": null,
+                                        "collidable": true,
+                                        "collideWithParent": false,
+                                        "collider_type": "Box",
+                                        "computeMoiFromColliders": false,
+                                        "dofData": [
+                                            {
+                                                "desiredPosition": 0.0,
+                                                "desiredVelocity": 0.0,
+                                                "isPositionMotor": false,
+                                                "limitHigh": 0.0,
+                                                "limitLow": 0.0,
+                                                "maxLimitForce": 0.0,
+                                                "maxMotorForce": 0.0,
+                                                "neutralPoint": 0.0,
+                                                "positionLockThreshold": 0.0,
+                                                "springDamping": 0.0,
+                                                "springStiffness": 0.0,
+                                                "useLimit": false,
+                                                "useMotor": false
+                                            }
+                                        ],
+                                        "drag": 0.0,
+                                        "joint_type": "hinge",
+                                        "kd": 10.0,
+                                        "kp": 100.0,
+                                        "mass": 0.5,
+                                        "material": {
+                                            "friction": 1.2,
+                                            "restitution": 0.0,
+                                            "rollingFriction": 1.2
+                                        },
+                                        "maxPDTorque": 0.0,
+                                        "moi": [
+                                            0.01,
+                                            0.01,
+                                            0.01
+                                        ],
+                                        "parent": "rAnkle",
+                                        "pivotA": [
+                                            -0.176721572875977,
+                                            -3.39052391052246,
+                                            6.73787593841553
+                                        ],
+                                        "pivotB": [
+                                            0.0,
+                                            0.0,
+                                            0.905363082885742
+                                        ],
+                                        "showJoint": true,
+                                        "targetBoneOffset": [
+                                            0.0,
+                                            1.19209289550781e-07,
+                                            0.905363082885742
+                                        ],
+                                        "target_bone": "ball_r",
+                                        "useSoftConstraint": false
+                                    }
+                                ],
+                                "collidable": true,
+                                "collideWithParent": false,
+                                "collider_type": "Box",
+                                "computeMoiFromColliders": false,
+                                "dofData": [
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 0.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 0.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    },
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 0.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 0.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    }
+                                ],
+                                "drag": 0.0,
+                                "joint_type": "universal",
+                                "kd": 20.0,
+                                "kp": 400.0,
+                                "mass": 2.0,
+                                "material": {
+                                    "friction": 1.2,
+                                    "restitution": 0.0,
+                                    "rollingFriction": 1.2
+                                },
+                                "maxPDTorque": 0.0,
+                                "moi": [
+                                    0.02,
+                                    0.02,
+                                    0.01
+                                ],
+                                "parent": "rKnee",
+                                "pivotA": [
+                                    -2.43249893188477,
+                                    -22.6773071289062,
+                                    -0.777348756790161
+                                ],
+                                "pivotB": [
+                                    0.176721572875977,
+                                    3.39052391052246,
+                                    -6.73787593841553
+                                ],
+                                "showJoint": false,
+                                "targetBoneOffset": [
+                                    0.176721572875977,
+                                    3.39052438735962,
+                                    -6.73787641525269
+                                ],
+                                "target_bone": "foot_r",
+                                "useSoftConstraint": false
+                            }
+                        ],
+                        "collidable": true,
+                        "collideWithParent": false,
+                        "collider_type": "Box",
+                        "computeMoiFromColliders": false,
+                        "dofData": [
+                            {
+                                "desiredPosition": 130.0,
+                                "desiredVelocity": 200.0,
+                                "isPositionMotor": false,
+                                "limitHigh": 130.0,
+                                "limitLow": 0.0,
+                                "maxLimitForce": 1000.0,
+                                "maxMotorForce": 200.0,
+                                "neutralPoint": 0.0,
+                                "positionLockThreshold": 0.0,
+                                "springDamping": 0.0,
+                                "springStiffness": 0.0,
+                                "useLimit": true,
+                                "useMotor": false
+                            }
+                        ],
+                        "drag": 0.0,
+                        "joint_type": "hinge",
+                        "kd": 1.0,
+                        "kp": 50.0,
+                        "mass": 4.0,
+                        "material": {
+                            "friction": 1.2,
+                            "restitution": 0.0,
+                            "rollingFriction": 1.2
+                        },
+                        "maxPDTorque": 0.0,
+                        "moi": [
+                            0.06,
+                            0.01,
+                            0.06
+                        ],
+                        "parent": "rHip",
+                        "pivotA": [
+                            -2.1708984375,
+                            -23.218090057373,
+                            1.75868499279022
+                        ],
+                        "pivotB": [
+                            2.43249702453613,
+                            22.6773090362549,
+                            0.77734899520874
+                        ],
+                        "showJoint": true,
+                        "targetBoneOffset": [
+                            2.43249702453613,
+                            22.6773090362549,
+                            0.77734899520874
+                        ],
+                        "target_bone": "calf_r",
+                        "useSoftConstraint": false
+                    }
+                ],
+                "collidable": true,
+                "collideWithParent": false,
+                "collider_type": "Box",
+                "computeMoiFromColliders": false,
+                "dofData": [
+                    {
+                        "desiredPosition": 0.0,
+                        "desiredVelocity": 0.0,
+                        "isPositionMotor": false,
+                        "limitHigh": 0.0,
+                        "limitLow": 0.0,
+                        "maxLimitForce": 0.0,
+                        "maxMotorForce": 0.0,
+                        "neutralPoint": 0.0,
+                        "positionLockThreshold": 0.0,
+                        "springDamping": 0.0,
+                        "springStiffness": 0.0,
+                        "useLimit": false,
+                        "useMotor": false
+                    },
+                    {
+                        "desiredPosition": 0.0,
+                        "desiredVelocity": 0.0,
+                        "isPositionMotor": false,
+                        "limitHigh": 0.0,
+                        "limitLow": 0.0,
+                        "maxLimitForce": 0.0,
+                        "maxMotorForce": 0.0,
+                        "neutralPoint": 0.0,
+                        "positionLockThreshold": 0.0,
+                        "springDamping": 0.0,
+                        "springStiffness": 0.0,
+                        "useLimit": false,
+                        "useMotor": false
+                    },
+                    {
+                        "desiredPosition": 0.0,
+                        "desiredVelocity": 0.0,
+                        "isPositionMotor": false,
+                        "limitHigh": 0.0,
+                        "limitLow": 0.0,
+                        "maxLimitForce": 0.0,
+                        "maxMotorForce": 0.0,
+                        "neutralPoint": 0.0,
+                        "positionLockThreshold": 0.0,
+                        "springDamping": 0.0,
+                        "springStiffness": 0.0,
+                        "useLimit": false,
+                        "useMotor": false
+                    }
+                ],
+                "drag": 0.0,
+                "joint_type": "ball",
+                "kd": 10.0,
+                "kp": 100.0,
+                "mass": 7.0,
+                "material": {
+                    "friction": 1.0,
+                    "restitution": 0.0,
+                    "rollingFriction": 1.0
+                },
+                "maxPDTorque": 0.0,
+                "moi": [
+                    0.15,
+                    0.02,
+                    0.15
+                ],
+                "parent": "simAvatarRoot",
+                "pivotA": [
+                    -11.3273687362671,
+                    -2.57205963134766,
+                    0.282055020332336
+                ],
+                "pivotB": [
+                    2.1708984375,
+                    23.2180862426758,
+                    -1.75868499279022
+                ],
+                "showJoint": false,
+                "targetBoneOffset": [
+                    2.1708984375,
+                    23.2180862426758,
+                    -1.75868487358093
+                ],
+                "target_bone": "thigh_r",
+                "useSoftConstraint": false
+            },
+            {
+                "angularDrag": 0.0,
+                "boneName": "pelvis_lowerback",
+                "bone_xform": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    17.4884185791016,
+                    -1.40200006961823,
+                    1.0
+                ],
+                "breakingReactionImpulse": -1.0,
+                "children": [
+                    {
+                        "angularDrag": 0.0,
+                        "boneName": "lowerback_torso",
+                        "bone_xform": [
+                            1.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0,
+                            0.0,
+                            0.0,
+                            26.6806182861328,
+                            3.2367901802063,
+                            1.0
+                        ],
+                        "breakingReactionImpulse": -1.0,
+                        "children": [
+                            {
+                                "angularDrag": 0.0,
+                                "boneName": "lClav",
+                                "bone_xform": [
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    11.0207185745239,
+                                    3.68597412109375,
+                                    1.32957804203033,
+                                    1.0
+                                ],
+                                "breakingReactionImpulse": -1.0,
+                                "children": [
+                                    {
+                                        "angularDrag": 0.0,
+                                        "boneName": "lShoulder",
+                                        "bone_xform": [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            17.6609840393066,
+                                            -11.8494262695312,
+                                            -0.343759059906006,
+                                            1.0
+                                        ],
+                                        "breakingReactionImpulse": -1.0,
+                                        "children": [
+                                            {
+                                                "angularDrag": 0.0,
+                                                "axisA": [
+                                                    0.0,
+                                                    -1.0,
+                                                    0.0
+                                                ],
+                                                "boneName": "lElbow",
+                                                "bone_xform": [
+                                                    1.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    1.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    1.0,
+                                                    0.0,
+                                                    16.0645351409912,
+                                                    -17.0537033081055,
+                                                    10.015453338623,
+                                                    1.0
+                                                ],
+                                                "breakingReactionImpulse": -1.0,
+                                                "children": [
+                                                    {
+                                                        "angularDrag": 0.0,
+                                                        "boneName": "lWrist",
+                                                        "bone_xform": [
+                                                            1.0,
+                                                            0.0,
+                                                            0.0,
+                                                            0.0,
+                                                            0.0,
+                                                            1.0,
+                                                            0.0,
+                                                            0.0,
+                                                            0.0,
+                                                            0.0,
+                                                            1.0,
+                                                            0.0,
+                                                            10.4055442810059,
+                                                            -11.8578262329102,
+                                                            22.3858470916748,
+                                                            1.0
+                                                        ],
+                                                        "breakingReactionImpulse": -1.0,
+                                                        "children": null,
+                                                        "collidable": true,
+                                                        "collideWithParent": false,
+                                                        "collider_type": "Box",
+                                                        "computeMoiFromColliders": false,
+                                                        "dofData": [
+                                                            {
+                                                                "desiredPosition": 0.0,
+                                                                "desiredVelocity": 0.0,
+                                                                "isPositionMotor": false,
+                                                                "limitHigh": 0.0,
+                                                                "limitLow": 0.0,
+                                                                "maxLimitForce": 0.0,
+                                                                "maxMotorForce": 0.0,
+                                                                "neutralPoint": 0.0,
+                                                                "positionLockThreshold": 0.0,
+                                                                "springDamping": 0.0,
+                                                                "springStiffness": 0.0,
+                                                                "useLimit": false,
+                                                                "useMotor": false
+                                                            },
+                                                            {
+                                                                "desiredPosition": 0.0,
+                                                                "desiredVelocity": 0.0,
+                                                                "isPositionMotor": false,
+                                                                "limitHigh": 0.0,
+                                                                "limitLow": 0.0,
+                                                                "maxLimitForce": 0.0,
+                                                                "maxMotorForce": 0.0,
+                                                                "neutralPoint": 0.0,
+                                                                "positionLockThreshold": 0.0,
+                                                                "springDamping": 0.0,
+                                                                "springStiffness": 0.0,
+                                                                "useLimit": false,
+                                                                "useMotor": false
+                                                            },
+                                                            {
+                                                                "desiredPosition": 0.0,
+                                                                "desiredVelocity": 0.0,
+                                                                "isPositionMotor": false,
+                                                                "limitHigh": 0.0,
+                                                                "limitLow": 0.0,
+                                                                "maxLimitForce": 0.0,
+                                                                "maxMotorForce": 0.0,
+                                                                "neutralPoint": 0.0,
+                                                                "positionLockThreshold": 0.0,
+                                                                "springDamping": 0.0,
+                                                                "springStiffness": 0.0,
+                                                                "useLimit": false,
+                                                                "useMotor": false
+                                                            }
+                                                        ],
+                                                        "drag": 0.0,
+                                                        "joint_type": "ball",
+                                                        "kd": 0.5,
+                                                        "kp": 0.5,
+                                                        "mass": 1.0,
+                                                        "material": {
+                                                            "friction": 0.0,
+                                                            "restitution": 0.0,
+                                                            "rollingFriction": 0.0
+                                                        },
+                                                        "maxPDTorque": 0.0,
+                                                        "moi": [
+                                                            0.001,
+                                                            0.01,
+                                                            0.01
+                                                        ],
+                                                        "parent": "lElbow",
+                                                        "pivotA": [
+                                                            10.219123840332,
+                                                            -11.0208969116211,
+                                                            21.1514720916748
+                                                        ],
+                                                        "pivotB": [
+                                                            -0.186420440673828,
+                                                            0.836929321289062,
+                                                            -1.234375
+                                                        ],
+                                                        "showJoint": true,
+                                                        "targetBoneOffset": [
+                                                            -0.186420440673828,
+                                                            0.836929321289062,
+                                                            -1.234375
+                                                        ],
+                                                        "target_bone": "index_01_l",
+                                                        "useSoftConstraint": false
+                                                    }
+                                                ],
+                                                "collidable": true,
+                                                "collideWithParent": false,
+                                                "collider_type": "Box",
+                                                "computeMoiFromColliders": false,
+                                                "dofData": [
+                                                    {
+                                                        "desiredPosition": -130.0,
+                                                        "desiredVelocity": 100.0,
+                                                        "isPositionMotor": false,
+                                                        "limitHigh": 130.0,
+                                                        "limitLow": 10.0,
+                                                        "maxLimitForce": 1000.0,
+                                                        "maxMotorForce": 200.0,
+                                                        "neutralPoint": 0.0,
+                                                        "positionLockThreshold": 0.0,
+                                                        "springDamping": 0.0,
+                                                        "springStiffness": 0.0,
+                                                        "useLimit": true,
+                                                        "useMotor": false
+                                                    }
+                                                ],
+                                                "drag": 0.0,
+                                                "joint_type": "hinge",
+                                                "kd": 0.5,
+                                                "kp": 1.0,
+                                                "mass": 2.5,
+                                                "material": {
+                                                    "friction": 0.0,
+                                                    "restitution": 0.0,
+                                                    "rollingFriction": 0.0
+                                                },
+                                                "maxPDTorque": 0.0,
+                                                "moi": [
+                                                    0.002,
+                                                    0.02,
+                                                    0.02
+                                                ],
+                                                "parent": "lShoulder",
+                                                "pivotA": [
+                                                    9.03127479553223,
+                                                    -10.3252029418945,
+                                                    -0.00250697135925293
+                                                ],
+                                                "pivotB": [
+                                                    -7.03326034545898,
+                                                    6.72850036621094,
+                                                    -10.0179605484009
+                                                ],
+                                                "showJoint": true,
+                                                "targetBoneOffset": [
+                                                    -7.03326034545898,
+                                                    6.72850036621094,
+                                                    -10.0179605484009
+                                                ],
+                                                "target_bone": "lowerarm_l",
+                                                "useSoftConstraint": false
+                                            }
+                                        ],
+                                        "collidable": true,
+                                        "collideWithParent": false,
+                                        "collider_type": "Box",
+                                        "computeMoiFromColliders": false,
+                                        "dofData": [
+                                            {
+                                                "desiredPosition": 0.0,
+                                                "desiredVelocity": 100.0,
+                                                "isPositionMotor": false,
+                                                "limitHigh": 0.0,
+                                                "limitLow": 0.0,
+                                                "maxLimitForce": 0.0,
+                                                "maxMotorForce": 100.0,
+                                                "neutralPoint": 0.0,
+                                                "positionLockThreshold": 0.0,
+                                                "springDamping": 0.0,
+                                                "springStiffness": 0.0,
+                                                "useLimit": false,
+                                                "useMotor": false
+                                            },
+                                            {
+                                                "desiredPosition": 0.0,
+                                                "desiredVelocity": 100.0,
+                                                "isPositionMotor": false,
+                                                "limitHigh": 0.0,
+                                                "limitLow": 0.0,
+                                                "maxLimitForce": 0.0,
+                                                "maxMotorForce": 100.0,
+                                                "neutralPoint": 0.0,
+                                                "positionLockThreshold": 0.0,
+                                                "springDamping": 0.0,
+                                                "springStiffness": 0.0,
+                                                "useLimit": false,
+                                                "useMotor": false
+                                            },
+                                            {
+                                                "desiredPosition": 0.0,
+                                                "desiredVelocity": 100.0,
+                                                "isPositionMotor": false,
+                                                "limitHigh": 70.0,
+                                                "limitLow": -70.0,
+                                                "maxLimitForce": 10.0,
+                                                "maxMotorForce": 100.0,
+                                                "neutralPoint": 0.0,
+                                                "positionLockThreshold": 0.0,
+                                                "springDamping": 0.0,
+                                                "springStiffness": 0.0,
+                                                "useLimit": true,
+                                                "useMotor": false
+                                            }
+                                        ],
+                                        "drag": 0.0,
+                                        "joint_type": "ball",
+                                        "kd": 2.0,
+                                        "kp": 15.0,
+                                        "mass": 3.0,
+                                        "material": {
+                                            "friction": 0.0,
+                                            "restitution": 0.0,
+                                            "rollingFriction": 0.0
+                                        },
+                                        "maxPDTorque": 0.0,
+                                        "moi": [
+                                            0.005,
+                                            0.02,
+                                            0.02
+                                        ],
+                                        "parent": "lClav",
+                                        "pivotA": [
+                                            8.62970924377441,
+                                            -1.52421569824219,
+                                            -0.341252088546753
+                                        ],
+                                        "pivotB": [
+                                            -9.03127479553223,
+                                            10.3252105712891,
+                                            0.00250697135925293
+                                        ],
+                                        "showJoint": true,
+                                        "targetBoneOffset": [
+                                            -9.03127479553223,
+                                            10.3252105712891,
+                                            0.00250744819641113
+                                        ],
+                                        "target_bone": "upperarm_l",
+                                        "useSoftConstraint": false
+                                    }
+                                ],
+                                "collidable": true,
+                                "collideWithParent": false,
+                                "collider_type": "Box",
+                                "computeMoiFromColliders": false,
+                                "dofData": [
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 100.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 100.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    },
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 100.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 100.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    },
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 100.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 80.0,
+                                        "limitLow": -80.0,
+                                        "maxLimitForce": 10.0,
+                                        "maxMotorForce": 100.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    }
+                                ],
+                                "drag": 0.0,
+                                "joint_type": "ball",
+                                "kd": 5.0,
+                                "kp": 25.0,
+                                "mass": 3.0,
+                                "material": {
+                                    "friction": 0.0,
+                                    "restitution": 0.0,
+                                    "rollingFriction": 0.0
+                                },
+                                "maxPDTorque": 0.0,
+                                "moi": [
+                                    0.005,
+                                    0.02,
+                                    0.02
+                                ],
+                                "parent": "lowerback_torso",
+                                "pivotA": [
+                                    2.39100980758667,
+                                    5.21018981933594,
+                                    1.67082893848419
+                                ],
+                                "pivotB": [
+                                    -8.62970924377441,
+                                    1.52421569824219,
+                                    0.341250896453857
+                                ],
+                                "showJoint": true,
+                                "targetBoneOffset": [
+                                    -8.62970924377441,
+                                    1.52421569824219,
+                                    0.341250896453857
+                                ],
+                                "target_bone": "clavicle_l",
+                                "useSoftConstraint": false
+                            },
+                            {
+                                "angularDrag": 0.0,
+                                "boneName": "rClav",
+                                "bone_xform": [
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    -11.0207204818726,
+                                    3.68597412109375,
+                                    1.32957804203033,
+                                    1.0
+                                ],
+                                "breakingReactionImpulse": -1.0,
+                                "children": [
+                                    {
+                                        "angularDrag": 0.0,
+                                        "boneName": "rShoulder",
+                                        "bone_xform": [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            -17.6609840393066,
+                                            -11.8494262695312,
+                                            -0.343759059906006,
+                                            1.0
+                                        ],
+                                        "breakingReactionImpulse": -1.0,
+                                        "children": [
+                                            {
+                                                "angularDrag": 0.0,
+                                                "axisA": [
+                                                    0.0,
+                                                    -1.0,
+                                                    0.0
+                                                ],
+                                                "boneName": "rElbow",
+                                                "bone_xform": [
+                                                    1.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    1.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    1.0,
+                                                    0.0,
+                                                    -16.0645351409912,
+                                                    -17.0537033081055,
+                                                    10.015453338623,
+                                                    1.0
+                                                ],
+                                                "breakingReactionImpulse": -1.0,
+                                                "children": [
+                                                    {
+                                                        "angularDrag": 0.0,
+                                                        "boneName": "rWrist",
+                                                        "bone_xform": [
+                                                            1.0,
+                                                            0.0,
+                                                            0.0,
+                                                            0.0,
+                                                            0.0,
+                                                            1.0,
+                                                            0.0,
+                                                            0.0,
+                                                            0.0,
+                                                            0.0,
+                                                            1.0,
+                                                            0.0,
+                                                            -10.4055442810059,
+                                                            -11.8578262329102,
+                                                            22.3858470916748,
+                                                            1.0
+                                                        ],
+                                                        "breakingReactionImpulse": -1.0,
+                                                        "children": null,
+                                                        "collidable": true,
+                                                        "collideWithParent": false,
+                                                        "collider_type": "Box",
+                                                        "computeMoiFromColliders": false,
+                                                        "dofData": [
+                                                            {
+                                                                "desiredPosition": 0.0,
+                                                                "desiredVelocity": 0.0,
+                                                                "isPositionMotor": false,
+                                                                "limitHigh": 0.0,
+                                                                "limitLow": 0.0,
+                                                                "maxLimitForce": 0.0,
+                                                                "maxMotorForce": 0.0,
+                                                                "neutralPoint": 0.0,
+                                                                "positionLockThreshold": 0.0,
+                                                                "springDamping": 0.0,
+                                                                "springStiffness": 0.0,
+                                                                "useLimit": false,
+                                                                "useMotor": false
+                                                            },
+                                                            {
+                                                                "desiredPosition": 0.0,
+                                                                "desiredVelocity": 0.0,
+                                                                "isPositionMotor": false,
+                                                                "limitHigh": 0.0,
+                                                                "limitLow": 0.0,
+                                                                "maxLimitForce": 0.0,
+                                                                "maxMotorForce": 0.0,
+                                                                "neutralPoint": 0.0,
+                                                                "positionLockThreshold": 0.0,
+                                                                "springDamping": 0.0,
+                                                                "springStiffness": 0.0,
+                                                                "useLimit": false,
+                                                                "useMotor": false
+                                                            },
+                                                            {
+                                                                "desiredPosition": 0.0,
+                                                                "desiredVelocity": 0.0,
+                                                                "isPositionMotor": false,
+                                                                "limitHigh": 0.0,
+                                                                "limitLow": 0.0,
+                                                                "maxLimitForce": 0.0,
+                                                                "maxMotorForce": 0.0,
+                                                                "neutralPoint": 0.0,
+                                                                "positionLockThreshold": 0.0,
+                                                                "springDamping": 0.0,
+                                                                "springStiffness": 0.0,
+                                                                "useLimit": false,
+                                                                "useMotor": false
+                                                            }
+                                                        ],
+                                                        "drag": 0.0,
+                                                        "joint_type": "ball",
+                                                        "kd": 0.5,
+                                                        "kp": 0.5,
+                                                        "mass": 1.0,
+                                                        "material": {
+                                                            "friction": 0.0,
+                                                            "restitution": 0.0,
+                                                            "rollingFriction": 0.0
+                                                        },
+                                                        "maxPDTorque": 0.0,
+                                                        "moi": [
+                                                            0.001,
+                                                            0.01,
+                                                            0.01
+                                                        ],
+                                                        "parent": "rElbow",
+                                                        "pivotA": [
+                                                            -10.219123840332,
+                                                            -11.0208969116211,
+                                                            21.1514720916748
+                                                        ],
+                                                        "pivotB": [
+                                                            0.186420440673828,
+                                                            0.836929321289062,
+                                                            -1.234375
+                                                        ],
+                                                        "showJoint": true,
+                                                        "targetBoneOffset": [
+                                                            0.186420440673828,
+                                                            0.836929321289062,
+                                                            -1.234375
+                                                        ],
+                                                        "target_bone": "index_01_r",
+                                                        "useSoftConstraint": false
+                                                    }
+                                                ],
+                                                "collidable": true,
+                                                "collideWithParent": false,
+                                                "collider_type": "Box",
+                                                "computeMoiFromColliders": false,
+                                                "dofData": [
+                                                    {
+                                                        "desiredPosition": -130.0,
+                                                        "desiredVelocity": 100.0,
+                                                        "isPositionMotor": false,
+                                                        "limitHigh": -10.0,
+                                                        "limitLow": -130.0,
+                                                        "maxLimitForce": 1000.0,
+                                                        "maxMotorForce": 200.0,
+                                                        "neutralPoint": 0.0,
+                                                        "positionLockThreshold": 0.0,
+                                                        "springDamping": 0.0,
+                                                        "springStiffness": 0.0,
+                                                        "useLimit": true,
+                                                        "useMotor": false
+                                                    }
+                                                ],
+                                                "drag": 0.0,
+                                                "joint_type": "hinge",
+                                                "kd": 0.5,
+                                                "kp": 1.0,
+                                                "mass": 2.5,
+                                                "material": {
+                                                    "friction": 0.0,
+                                                    "restitution": 0.0,
+                                                    "rollingFriction": 0.0
+                                                },
+                                                "maxPDTorque": 0.0,
+                                                "moi": [
+                                                    0.002,
+                                                    0.02,
+                                                    0.02
+                                                ],
+                                                "parent": "rShoulder",
+                                                "pivotA": [
+                                                    -9.03127479553223,
+                                                    -10.3252029418945,
+                                                    -0.00250697135925293
+                                                ],
+                                                "pivotB": [
+                                                    7.03326034545898,
+                                                    6.72850036621094,
+                                                    -10.0179605484009
+                                                ],
+                                                "showJoint": true,
+                                                "targetBoneOffset": [
+                                                    7.03326034545898,
+                                                    6.72850036621094,
+                                                    -10.0179605484009
+                                                ],
+                                                "target_bone": "lowerarm_r",
+                                                "useSoftConstraint": false
+                                            }
+                                        ],
+                                        "collidable": true,
+                                        "collideWithParent": false,
+                                        "collider_type": "Box",
+                                        "computeMoiFromColliders": false,
+                                        "dofData": [
+                                            {
+                                                "desiredPosition": 0.0,
+                                                "desiredVelocity": 100.0,
+                                                "isPositionMotor": false,
+                                                "limitHigh": 0.0,
+                                                "limitLow": 0.0,
+                                                "maxLimitForce": 0.0,
+                                                "maxMotorForce": 100.0,
+                                                "neutralPoint": 0.0,
+                                                "positionLockThreshold": 0.0,
+                                                "springDamping": 0.0,
+                                                "springStiffness": 0.0,
+                                                "useLimit": false,
+                                                "useMotor": false
+                                            },
+                                            {
+                                                "desiredPosition": 0.0,
+                                                "desiredVelocity": 100.0,
+                                                "isPositionMotor": false,
+                                                "limitHigh": 0.0,
+                                                "limitLow": 0.0,
+                                                "maxLimitForce": 0.0,
+                                                "maxMotorForce": 100.0,
+                                                "neutralPoint": 0.0,
+                                                "positionLockThreshold": 0.0,
+                                                "springDamping": 0.0,
+                                                "springStiffness": 0.0,
+                                                "useLimit": false,
+                                                "useMotor": false
+                                            },
+                                            {
+                                                "desiredPosition": 0.0,
+                                                "desiredVelocity": 100.0,
+                                                "isPositionMotor": false,
+                                                "limitHigh": 70.0,
+                                                "limitLow": -70.0,
+                                                "maxLimitForce": 10.0,
+                                                "maxMotorForce": 100.0,
+                                                "neutralPoint": 0.0,
+                                                "positionLockThreshold": 0.0,
+                                                "springDamping": 0.0,
+                                                "springStiffness": 0.0,
+                                                "useLimit": true,
+                                                "useMotor": false
+                                            }
+                                        ],
+                                        "drag": 0.0,
+                                        "joint_type": "ball",
+                                        "kd": 2.0,
+                                        "kp": 15.0,
+                                        "mass": 3.0,
+                                        "material": {
+                                            "friction": 0.0,
+                                            "restitution": 0.0,
+                                            "rollingFriction": 0.0
+                                        },
+                                        "maxPDTorque": 0.0,
+                                        "moi": [
+                                            0.005,
+                                            0.02,
+                                            0.02
+                                        ],
+                                        "parent": "rClav",
+                                        "pivotA": [
+                                            -8.62970924377441,
+                                            -1.52421569824219,
+                                            -0.341252088546753
+                                        ],
+                                        "pivotB": [
+                                            9.03127479553223,
+                                            10.3252105712891,
+                                            0.00250697135925293
+                                        ],
+                                        "showJoint": true,
+                                        "targetBoneOffset": [
+                                            9.03127479553223,
+                                            10.3252105712891,
+                                            0.00250744819641113
+                                        ],
+                                        "target_bone": "upperarm_r",
+                                        "useSoftConstraint": false
+                                    }
+                                ],
+                                "collidable": true,
+                                "collideWithParent": false,
+                                "collider_type": "Box",
+                                "computeMoiFromColliders": false,
+                                "dofData": [
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 100.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 100.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    },
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 100.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 100.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    },
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 100.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 80.0,
+                                        "limitLow": -80.0,
+                                        "maxLimitForce": 10.0,
+                                        "maxMotorForce": 100.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    }
+                                ],
+                                "drag": 0.0,
+                                "joint_type": "ball",
+                                "kd": 5.0,
+                                "kp": 25.0,
+                                "mass": 3.0,
+                                "material": {
+                                    "friction": 0.0,
+                                    "restitution": 0.0,
+                                    "rollingFriction": 0.0
+                                },
+                                "maxPDTorque": 0.0,
+                                "moi": [
+                                    0.005,
+                                    0.02,
+                                    0.02
+                                ],
+                                "parent": "lowerback_torso",
+                                "pivotA": [
+                                    -2.39100980758667,
+                                    5.21018981933594,
+                                    1.67082893848419
+                                ],
+                                "pivotB": [
+                                    8.62971019744873,
+                                    1.52421569824219,
+                                    0.341250896453857
+                                ],
+                                "showJoint": true,
+                                "targetBoneOffset": [
+                                    8.62971019744873,
+                                    1.52421569824219,
+                                    0.341250896453857
+                                ],
+                                "target_bone": "clavicle_r",
+                                "useSoftConstraint": false
+                            },
+                            {
+                                "angularDrag": 0.0,
+                                "boneName": "torso_head",
+                                "bone_xform": [
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    0.0,
+                                    1.0,
+                                    0.0,
+                                    0.0,
+                                    23.1104431152344,
+                                    2.85680389404297,
+                                    1.0
+                                ],
+                                "breakingReactionImpulse": -1.0,
+                                "children": null,
+                                "collidable": true,
+                                "collideWithParent": false,
+                                "collider_type": "Box",
+                                "computeMoiFromColliders": false,
+                                "dofData": [
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 0.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 0.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    },
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 0.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 0.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    },
+                                    {
+                                        "desiredPosition": 0.0,
+                                        "desiredVelocity": 0.0,
+                                        "isPositionMotor": false,
+                                        "limitHigh": 0.0,
+                                        "limitLow": 0.0,
+                                        "maxLimitForce": 0.0,
+                                        "maxMotorForce": 0.0,
+                                        "neutralPoint": 0.0,
+                                        "positionLockThreshold": 0.0,
+                                        "springDamping": 0.0,
+                                        "springStiffness": 0.0,
+                                        "useLimit": false,
+                                        "useMotor": false
+                                    }
+                                ],
+                                "drag": 0.0,
+                                "joint_type": "ball",
+                                "kd": 5.0,
+                                "kp": 100.0,
+                                "mass": 5.0,
+                                "material": {
+                                    "friction": 0.0,
+                                    "restitution": 0.0,
+                                    "rollingFriction": 0.0
+                                },
+                                "maxPDTorque": 0.0,
+                                "moi": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "parent": "lowerback_torso",
+                                "pivotA": [
+                                    0.0,
+                                    23.1104431152344,
+                                    3.76216697692871
+                                ],
+                                "pivotB": [
+                                    0.0,
+                                    0.0,
+                                    0.905362844467163
+                                ],
+                                "showJoint": false,
+                                "targetBoneOffset": [
+                                    -6.58492353977636e-08,
+                                    0.0,
+                                    0.905363321304321
+                                ],
+                                "target_bone": "head",
+                                "useSoftConstraint": false
+                            }
+                        ],
+                        "collidable": true,
+                        "collideWithParent": false,
+                        "collider_type": "Box",
+                        "computeMoiFromColliders": false,
+                        "dofData": [
+                            {
+                                "desiredPosition": 0.0,
+                                "desiredVelocity": 0.0,
+                                "isPositionMotor": false,
+                                "limitHigh": 0.0,
+                                "limitLow": 0.0,
+                                "maxLimitForce": 0.0,
+                                "maxMotorForce": 0.0,
+                                "neutralPoint": 0.0,
+                                "positionLockThreshold": 0.0,
+                                "springDamping": 0.0,
+                                "springStiffness": 0.0,
+                                "useLimit": false,
+                                "useMotor": false
+                            },
+                            {
+                                "desiredPosition": 0.0,
+                                "desiredVelocity": 0.0,
+                                "isPositionMotor": false,
+                                "limitHigh": 0.0,
+                                "limitLow": 0.0,
+                                "maxLimitForce": 0.0,
+                                "maxMotorForce": 0.0,
+                                "neutralPoint": 0.0,
+                                "positionLockThreshold": 0.0,
+                                "springDamping": 0.0,
+                                "springStiffness": 0.0,
+                                "useLimit": false,
+                                "useMotor": false
+                            },
+                            {
+                                "desiredPosition": 0.0,
+                                "desiredVelocity": 0.0,
+                                "isPositionMotor": false,
+                                "limitHigh": 0.0,
+                                "limitLow": 0.0,
+                                "maxLimitForce": 0.0,
+                                "maxMotorForce": 0.0,
+                                "neutralPoint": 0.0,
+                                "positionLockThreshold": 0.0,
+                                "springDamping": 0.0,
+                                "springStiffness": 0.0,
+                                "useLimit": false,
+                                "useMotor": false
+                            }
+                        ],
+                        "drag": 0.0,
+                        "joint_type": "ball",
+                        "kd": 20.0,
+                        "kp": 200.0,
+                        "mass": 15.0,
+                        "material": {
+                            "friction": 0.0,
+                            "restitution": 0.0,
+                            "rollingFriction": 0.0
+                        },
+                        "maxPDTorque": 0.0,
+                        "moi": [
+                            0.3,
+                            0.2,
+                            0.5
+                        ],
+                        "parent": "pelvis_lowerback",
+                        "pivotA": [
+                            0.0,
+                            3.25090789794922,
+                            -0.435270071029663
+                        ],
+                        "pivotB": [
+                            0.0,
+                            -23.4297103881836,
+                            -3.67206001281738
+                        ],
+                        "showJoint": false,
+                        "targetBoneOffset": [
+                            -6.58492353977636e-08,
+                            -23.4297103881836,
+                            -3.67206001281738
+                        ],
+                        "target_bone": "spine_03",
+                        "useSoftConstraint": true
+                    }
+                ],
+                "collidable": true,
+                "collideWithParent": false,
+                "collider_type": "Box",
+                "computeMoiFromColliders": false,
+                "dofData": [
+                    {
+                        "desiredPosition": 0.0,
+                        "desiredVelocity": 0.0,
+                        "isPositionMotor": false,
+                        "limitHigh": 0.0,
+                        "limitLow": 0.0,
+                        "maxLimitForce": 0.0,
+                        "maxMotorForce": 0.0,
+                        "neutralPoint": 0.0,
+                        "positionLockThreshold": 0.0,
+                        "springDamping": 0.0,
+                        "springStiffness": 0.0,
+                        "useLimit": false,
+                        "useMotor": false
+                    },
+                    {
+                        "desiredPosition": 0.0,
+                        "desiredVelocity": 0.0,
+                        "isPositionMotor": false,
+                        "limitHigh": 0.0,
+                        "limitLow": 0.0,
+                        "maxLimitForce": 0.0,
+                        "maxMotorForce": 0.0,
+                        "neutralPoint": 0.0,
+                        "positionLockThreshold": 0.0,
+                        "springDamping": 0.0,
+                        "springStiffness": 0.0,
+                        "useLimit": false,
+                        "useMotor": false
+                    },
+                    {
+                        "desiredPosition": 0.0,
+                        "desiredVelocity": 0.0,
+                        "isPositionMotor": false,
+                        "limitHigh": 0.0,
+                        "limitLow": 0.0,
+                        "maxLimitForce": 0.0,
+                        "maxMotorForce": 0.0,
+                        "neutralPoint": 0.0,
+                        "positionLockThreshold": 0.0,
+                        "springDamping": 0.0,
+                        "springStiffness": 0.0,
+                        "useLimit": false,
+                        "useMotor": false
+                    }
+                ],
+                "drag": 0.0,
+                "joint_type": "ball",
+                "kd": 20.0,
+                "kp": 200.0,
+                "mass": 15.0,
+                "material": {
+                    "friction": 0.0,
+                    "restitution": 0.0,
+                    "rollingFriction": 0.0
+                },
+                "maxPDTorque": 0.0,
+                "moi": [
+                    0.2,
+                    0.2,
+                    0.3
+                ],
+                "parent": "simAvatarRoot",
+                "pivotA": [
+                    0.0,
+                    14.2375106811523,
+                    -0.966729998588562
+                ],
+                "pivotB": [
+                    0.0,
+                    -3.25090789794922,
+                    0.435270071029663
+                ],
+                "showJoint": false,
+                "targetBoneOffset": [
+                    -6.58492353977636e-08,
+                    -3.25090789794922,
+                    0.435269951820374
+                ],
+                "target_bone": "spine_02",
+                "useSoftConstraint": true
+            }
+        ],
+        "collidable": true,
+        "collider_type": "Box",
+        "computeMoiFromColliders": false,
+        "drag": 0.0,
+        "enableSelfCollision": false,
+        "highDefIntegrator": false,
+        "isOutOfSim": false,
+        "joint_type": "base",
+        "linearDamping": 0.04,
+        "linearVelocity": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "mass": 12.0,
+        "material": {
+            "friction": 0.0,
+            "restitution": 0.0,
+            "rollingFriction": 0.0
+        },
+        "maxAppliedImpulse": 1000.0,
+        "maxCoordinateVelocity": 100.0,
+        "moi": [
+            0.1,
+            0.1,
+            0.1
+        ],
+        "simulationFrequencyMultiplier": 8.0,
+        "targetBoneOffset": [
+            -6.58492353977636e-08,
+            -1.85486602783203,
+            1.37523126602173
+        ],
+        "target_bone": "pelvis",
+        "useGlobalVel": false
+    },
+    [
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "simAvatarRoot",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "simAvatarRoot_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "lHip",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "lHip_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "lKnee",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "lKnee_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "lAnkle",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "lAnkle_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "lToe",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "lToe_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "rHip",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "rHip_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "rKnee",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "rKnee_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "rAnkle",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "rAnkle_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "rToe",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "rToe_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "pelvis_lowerback",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "pelvis_lowerback_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "lowerback_torso",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "lowerback_torso_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "lClav",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "lClav_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "lShoulder",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "lShoulder_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "lElbow",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "lElbow_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "lWrist",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "lWrist_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "rClav",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "rClav_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "rShoulder",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "rShoulder_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "rElbow",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "rElbow_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "rWrist",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "rWrist_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        },
+        {
+            "angularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "bone": "torso_head",
+            "breadth": 1.0,
+            "collidable": true,
+            "colliderName": "torso_head_colliderBox",
+            "colliderType": "Box",
+            "collider_list": [
+                "empty"
+            ],
+            "collider_rotation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "collider_scale": [
+                5.63056612014771,
+                5.63056612014771,
+                5.63056612014771
+            ],
+            "collider_translation": [
+                0,
+                0,
+                0
+            ],
+            "collider_xform": [
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                11.2611322402954,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "compound_collider": false,
+            "height": 1.0,
+            "isKinematic": false,
+            "length": 1.0,
+            "material": {
+                "friction": 0.0,
+                "restitution": 0.0,
+                "rollingFriction": 0.0
+            }
+        }
+    ],
+    {
+        "BFRAME_LEAN_FORWARD": 0.0,
+        "BFRAME_LEAN_FORWARD_TRAJ1": 0.0,
+        "BFRAME_LEAN_FORWARD_TRAJ2": 0.0,
+        "BFRAME_LEAN_FORWARD_TRAJ3": 0.0,
+        "BFRAME_LEAN_FORWARD_TRAJ4": 0.0,
+        "BFRAME_LEAN_FORWARD_TRAJ5": 0.0,
+        "BFRAME_LEAN_FORWARD_TRAJ6": 0.0,
+        "BFRAME_LEAN_SIDEWAYS": 0.0,
+        "BFRAME_LEAN_SIDEWAYS_TRAJ1": 0.0,
+        "BFRAME_LEAN_SIDEWAYS_TRAJ2": 0.0,
+        "BFRAME_LEAN_SIDEWAYS_TRAJ3": 0.0,
+        "BFRAME_LEAN_SIDEWAYS_TRAJ4": 0.0,
+        "BFRAME_LEAN_SIDEWAYS_TRAJ5": 0.0,
+        "BFRAME_LEAN_SIDEWAYS_TRAJ6": 0.0,
+        "BODYFRAME_TORQUE_KD": 700.0,
+        "BODYFRAME_TORQUE_KP": 2000.0,
+        "DESIRED_HEIGHT": 1.18,
+        "DESIRED_HEIGHT_TRAJ1": 0.0,
+        "DESIRED_HEIGHT_TRAJ2": 0.05,
+        "DESIRED_HEIGHT_TRAJ3": 0.075,
+        "DESIRED_HEIGHT_TRAJ4": 0.0,
+        "DESIRED_HEIGHT_TRAJ5": 0.05,
+        "DESIRED_HEIGHT_TRAJ6": 0.075,
+        "EARLY_SWING_TERMINATE": 0.3,
+        "GRF_REGULARIZER": 0.001,
+        "GRF_TORQUE_TO_FORCE_OBJECTIVE_RATIO": 3.0,
+        "GYRO_RATIO": 1,
+        "LATE_SWING_TERMINATE": 0.0,
+        "LEFT_LEG_SWING_END": 0.985,
+        "LEFT_LEG_SWING_START": 0.535,
+        "LEG_PLANE_ANGLE_LEFT": 0.0,
+        "LEG_PLANE_ANGLE_RIGHT": 0.0,
+        "MAX_CONTACT_POINTS_PER_FOOT": 4.0,
+        "RIGHT_LEG_SWING_END": 0.465,
+        "RIGHT_LEG_SWING_START": 0.015,
+        "ROTATION_FRICTION_KD": 0.0,
+        "SPINE_SLOUCH_FORWARD": 0.0,
+        "SPINE_SLOUCH_FORWARD_TRAJ1": 0.0,
+        "SPINE_SLOUCH_FORWARD_TRAJ2": 0.0,
+        "SPINE_SLOUCH_FORWARD_TRAJ3": 0.0,
+        "SPINE_SLOUCH_FORWARD_TRAJ4": 0.0,
+        "SPINE_SLOUCH_FORWARD_TRAJ5": 0.0,
+        "SPINE_SLOUCH_FORWARD_TRAJ6": 0.0,
+        "SPINE_SLOUCH_SIDEWAYS": 0.0,
+        "SPINE_SLOUCH_SIDEWAYS_TRAJ1": 0.0,
+        "SPINE_SLOUCH_SIDEWAYS_TRAJ2": 0.0,
+        "SPINE_SLOUCH_SIDEWAYS_TRAJ3": 0.0,
+        "SPINE_SLOUCH_SIDEWAYS_TRAJ4": 0.0,
+        "SPINE_SLOUCH_SIDEWAYS_TRAJ5": 0.0,
+        "SPINE_SLOUCH_SIDEWAYS_TRAJ6": 0.0,
+        "SPINE_TWIST": 0.0,
+        "SPINE_TWIST_TRAJ1": 0.0,
+        "SPINE_TWIST_TRAJ2": 0.0,
+        "SPINE_TWIST_TRAJ3": 0.0,
+        "SPINE_TWIST_TRAJ4": 0.0,
+        "SPINE_TWIST_TRAJ5": 0.0,
+        "SPINE_TWIST_TRAJ6": 0.0,
+        "STANCE_ANKLE_ROT1": -0.38,
+        "STANCE_ANKLE_ROT2": -0.19,
+        "STANCE_ANKLE_ROT3": 0.04,
+        "STANCE_ANKLE_ROT4": 0.37,
+        "STANCE_ANKLE_ROT5": 0.69,
+        "STANCE_ANKLE_ROT6": 1.28,
+        "STANCE_TOE_ROT1": 1,
+        "STANCE_TOE_ROT2": 1,
+        "STANCE_TOE_ROT3": 1,
+        "STANCE_TOE_ROT4": 0.11,
+        "STANCE_TOE_ROT5": -0.4,
+        "STANCE_TOE_ROT6": -0.15,
+        "STAND_STILL_THRESHOLD": 0.4,
+        "STEP_FORWARD_OFFSET": 0.0,
+        "STEP_TARGET_INTERPOLATION_FUNCTION1": 0.0,
+        "STEP_TARGET_INTERPOLATION_FUNCTION2": 0.2,
+        "STEP_TARGET_INTERPOLATION_FUNCTION3": 0.4,
+        "STEP_TARGET_INTERPOLATION_FUNCTION4": 0.7,
+        "STEP_TARGET_INTERPOLATION_FUNCTION5": 0.85,
+        "STEP_TARGET_INTERPOLATION_FUNCTION6": 0.96,
+        "STEP_WIDTH": 0.055,
+        "STRIDE_DURATION": 1.25,
+        "SWING_ANKLE_ROT1": 1.29,
+        "SWING_ANKLE_ROT2": 0.75,
+        "SWING_ANKLE_ROT3": 0.33,
+        "SWING_ANKLE_ROT4": 0.0,
+        "SWING_ANKLE_ROT5": -0.49,
+        "SWING_ANKLE_ROT6": -0.72,
+        "SWING_FOOT_HEIGHT_TRAJ1": 0.074,
+        "SWING_FOOT_HEIGHT_TRAJ2": 0.147,
+        "SWING_FOOT_HEIGHT_TRAJ3": 0.16,
+        "SWING_FOOT_HEIGHT_TRAJ4": 0.14,
+        "SWING_FOOT_HEIGHT_TRAJ5": 0.099,
+        "SWING_FOOT_HEIGHT_TRAJ6": 0.028,
+        "SWING_FOOT_MAX_FORCE": 300.0,
+        "SWING_FOOT_VFORCE_KD": 100.0,
+        "SWING_FOOT_VFORCE_KP": 2500.0,
+        "SWING_TOE_ROT1": -0.43,
+        "SWING_TOE_ROT2": -0.04,
+        "SWING_TOE_ROT3": 0.16,
+        "SWING_TOE_ROT4": 0.07,
+        "SWING_TOE_ROT5": 0.0,
+        "SWING_TOE_ROT6": 0.0,
+        "VFORCE_FF_VERTICAL_WEIGHT_PERCENTAGE": 0.9,
+        "VFORCE_KD_CORONAL": 1500.0,
+        "VFORCE_KD_SAGITTAL": 1500.0,
+        "VFORCE_KD_VERTICAL": 600.0,
+        "VFORCE_KP_CORONAL": 4500.0,
+        "VFORCE_KP_SAGITTAL": 4500.0,
+        "VFORCE_KP_VERTICAL": 2000.0
+    },
+    {
+        "controllerState": {
+            "grounded": false,
+            "leftStancePhase": -1.0,
+            "leftSwingPhase": 0.160682678222656,
+            "rightStancePhase": 0.199095949530602,
+            "rightSwingPhase": -1.0,
+            "standStill": false,
+            "stridePhase": 0.590520858764648
+        },
+        "currentPose": {
+            "Heading": 0.0,
+            "HeadingAxes": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "LinkNames": [
+                "lHip",
+                "rHip",
+                "lKnee",
+                "rKnee",
+                "lAnkle",
+                "rAnkle",
+                "lToe",
+                "rToe",
+                "pelvis_lowerback",
+                "lowerback_torso",
+                "torso_head",
+                "lClav",
+                "rClav",
+                "lShoulder",
+                "rShoulder",
+                "lElbow",
+                "rElbow",
+                "lWrist",
+                "rWrist"
+            ],
+            "LinksStatus": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "RootAngularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "RootOrientation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "RootPosition": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "RootVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        "desiredPose": {
+            "Heading": 0.0,
+            "HeadingAxes": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "LinkNames": [
+                "lHip",
+                "rHip",
+                "lKnee",
+                "rKnee",
+                "lAnkle",
+                "rAnkle",
+                "lToe",
+                "rToe",
+                "pelvis_lowerback",
+                "lowerback_torso",
+                "torso_head",
+                "lClav",
+                "rClav",
+                "lShoulder",
+                "rShoulder",
+                "lElbow",
+                "rElbow",
+                "lWrist",
+                "rWrist"
+            ],
+            "LinksStatus": [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            "RootAngularVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "RootOrientation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "RootPosition": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "RootVelocity": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        "disableGRFSolver": false,
+        "forward": [
+            0.0,
+            0.0,
+            1.0
+        ],
+        "keepRootPosition": true,
+        "limbs": {
+            "antiLegCrossing": false,
+            "deadThresholdGRF": 1000.0,
+            "deadThresholdSwingLeg": 1000.0,
+            "headTarget": "none",
+            "kickIfDead": false,
+            "lFootTarget": "none",
+            "lHand": "lWrist",
+            "lHandTarget": "none",
+            "lShoulder": "lShoulder",
+            "lToes": "lToe",
+            "limbMaxTrackingForce": 2000.0,
+            "limbTrackingKd": 100.0,
+            "limbTrackingKp": 2000.0,
+            "locomotionEnabled": true,
+            "lowerBack": "pelvis_lowerback",
+            "neck": "torso_head",
+            "rFootTarget": "none",
+            "rHand": "rWrist",
+            "rHandTarget": "none",
+            "rShoulder": "rShoulder",
+            "rToes": "rToe",
+            "rootTarget": "none",
+            "stepRelativeToCOM": true,
+            "stepRelativeToRoot": false,
+            "upperBack": "lowerback_torso"
+        },
+        "protectControlParamsScriptObject": true,
+        "protectDesiredPoseScriptObject": true,
+        "protectPDParamSetScriptObject": true,
+        "reflectControllerState": true,
+        "reflectCurrentPose": false,
+        "reflectDesiredPose": true,
+        "right": [
+            -1.0,
+            0.0,
+            0.0
+        ],
+        "rootPdParams": {
+            "controlled": true,
+            "kd": 100.0,
+            "kp": 1000.0,
+            "maxAbsTorque": 0.0,
+            "name": "root",
+            "relToCharFrame": false,
+            "scale": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "strength": 1.0
+        },
+        "useBlendspace": false
+    },
+    null
+]

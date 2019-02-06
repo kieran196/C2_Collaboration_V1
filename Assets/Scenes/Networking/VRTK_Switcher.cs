@@ -125,6 +125,7 @@ public class VRTK_Switcher : NetworkBehaviour {
             CmdAssignRig(rig.name);
             updateLabel();
         }
+        usingHololens = false;
     }
 
     void SwitchClient() {

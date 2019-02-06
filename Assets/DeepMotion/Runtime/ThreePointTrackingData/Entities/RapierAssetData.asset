@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af465e431f42ad44bda9438b8106d1b, type: 3}
+  m_Name: RapierAssetData
+  m_EditorClassIdentifier: 
+  networkEntityPrefab: {fileID: 1801142210707814, guid: bb1e537a638ca493c9264ea9484e1bd0,
+    type: 2}
+  clientAssetPrefab: {fileID: 1275354187722270, guid: 7e6303a8ca149ed41bf5bca9e94a2e51,
+    type: 2}
+  localClientAssetPrefab: {fileID: 1275354187722270, guid: 7e6303a8ca149ed41bf5bca9e94a2e51,
+    type: 2}
+  serverAssetPrefab: {fileID: 1275354187722270, guid: 7e6303a8ca149ed41bf5bca9e94a2e51,
+    type: 2}
+  spawnLocation: {x: -0.889, y: 0.941, z: 0.5}
+  spawnRotation: {x: 0, y: -59.318, z: 90.00001}

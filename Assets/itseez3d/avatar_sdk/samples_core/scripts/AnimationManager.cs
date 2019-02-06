@@ -70,8 +70,7 @@ namespace ItSeez3D.AvatarSdkSamples.Core
 			ChangeCurrentAnimation (+1);
 		}
 
-		public void PlayCurrentAnimation ()
-		{
+		public void PlayCurrentAnimation () {
 			if (animator != null)
 				animator.Play (animations [currentAnimationIdx]);
 		}

@@ -11,6 +11,7 @@ public class UserAvatarLoader : NetworkBehaviour {
     public GameObject syncVarAvatar;
     public GameObject avatar;
     public string avatarID;
+    private PlayerStorage playerStorage;
     public GameObject headParent;
 
     public GameObject headPrefab;
@@ -20,6 +21,7 @@ public class UserAvatarLoader : NetworkBehaviour {
 
     private void Awake() {
         print("CODE:" + AvatarInfo.STORED_CODE);
+        playerStorage = GameObject.Find("NetworkManager").GetComponent<PlayerStorage>();
         if(AvatarInfo.STORED_AVATAR != null) {
             AvatarInfo.STORED_AVATAR.SetActive(false);
         }
@@ -152,6 +154,12 @@ public class UserAvatarLoader : NetworkBehaviour {
         NetworkServer.Spawn(userAvatar);
     }*/
 
+    [ClientRpc]
+    public void RpcUpdateNetworkSpawn(GameObject avatar) {
+        playerStorage.spawnPrefabs.Add(avatar);
+        ClientScene.RegisterPrefab(avatar);
+    }
+
     public GameObject Find(GameObject objToFind, GameObject[] gameObjects) {
         foreach(GameObject obj in gameObjects) {
             if(objToFind.name == obj.name) {
@@ -224,8 +232,8 @@ public class UserAvatarLoader : NetworkBehaviour {
         Debug.Log("Float duration = " + duration);
         userAvatar.transform.SetParent(this.transform);
         //userAvatar.transform.SetParent();
-        Transform rig = this.transform.Find("VRSimulator").GetComponent<cameraController>().cam.transform;
-        print("rig:" + rig);
+        //Transform rig = this.transform.Find("VRSimulator").GetComponent<cameraController>().cam.transform;
+        //print("rig:" + rig);
         yield return new WaitForSeconds(duration);   //Wait
         Debug.Log("End Wait() function and the time is: " + Time.time);
         Transform rigg = this.transform.Find("VRSimulator").GetComponent<cameraController>().cam.transform;
@@ -277,7 +285,7 @@ public class UserAvatarLoader : NetworkBehaviour {
             }
         }
 
-        if (isLocalPlayer && !findAvatar) {
+        if(isLocalPlayer && !findAvatar) {
             print("Spawned a head?");
             findAvatar = true;
             CmdSpawnHead();

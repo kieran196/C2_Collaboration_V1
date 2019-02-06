@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class cameraController : NetworkBehaviour {
 
+    public GameObject avatarHead;
     public Camera cam;
     public Canvas canvas;
 	
