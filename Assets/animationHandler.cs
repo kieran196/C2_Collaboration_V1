@@ -67,15 +67,17 @@ public class animationHandler : MonoBehaviour {
     private float timer = 0f;
 
     void Update() {
-        timer += Time.deltaTime;
-        if (timer >= BLINK_TIMER) {
-            Blink();
-            //print("Playing anim at index:"+ currentAnimationIdx);
-            //PlayCurrentAnimation();
-            //OnNextAnimation();
-            timer = 0f;
-            BLINK_TIMER = Random.Range(BLINK_AMOUNT[0], BLINK_AMOUNT[1]);
-            print("New blink timer set:" + BLINK_TIMER);
+        if(this.name != "") {
+            timer += Time.deltaTime;
+            if(timer >= BLINK_TIMER) {
+                Blink();
+                //print("Playing anim at index:"+ currentAnimationIdx);
+                //PlayCurrentAnimation();
+                //OnNextAnimation();
+                timer = 0f;
+                BLINK_TIMER = Random.Range(BLINK_AMOUNT[0], BLINK_AMOUNT[1]);
+                print("New blink timer set:" + BLINK_TIMER);
+            }
         }
     }
 

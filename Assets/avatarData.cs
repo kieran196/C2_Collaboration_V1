@@ -26,8 +26,8 @@ public class avatarData : NetworkBehaviour {
     }
 
     public void assignParent(GameObject parent) {
-        //this.transform.SetParent(parent.transform.Find("VRSimulator").transform.Find("[VRSimulator_CameraRig]"));
-        this.transform.SetParent(parent.GetComponent<VRTK_Switcher>().VRSimulator_Rig.GetComponent<cameraController>().cam.transform);
+        //this.transform.SetParent(parent.GetComponent<VRTK_Switcher>().VRSimulator_Rig.GetComponent<cameraController>().cam.transform);
+        this.transform.SetParent(parent.GetComponent<VRTK_Switcher>().SteamVR_Rig.GetComponent<cameraController>().cam.transform);
         this.transform.localPosition = Vector3.zero;
     }
 
@@ -54,7 +54,9 @@ public class avatarData : NetworkBehaviour {
                     this.transform.localPosition = Vector3.zero;
                 }
             }
-        }
+        } /*else {
+            Destroy(this.gameObject);
+        }*/
     }
 
 

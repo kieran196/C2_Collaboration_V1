@@ -33,9 +33,19 @@ public class boxCollision : NetworkBehaviour {
         cubeParent = GameObject.Find("CubeParent").transform;
     }
 
-
-
     private float reactionRate = 0;
+
+    public void setSpawnSpeed(float speed) {
+        SPAWN_SPEED = speed;
+    }
+
+    public void setDestroySpeed(float speed) {
+        DESTROY_SPEED = speed;
+    }
+
+    public void setSpawnAmount(int amount) {
+        SPAWN_AMOUNT = amount;
+    }
 
     [Command]
     public void CmdspawnCube(GameObject obj, int randomNum) {

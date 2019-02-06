@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class VRTK_Switcher : NetworkBehaviour {
 
+    public bool usingHololens = false;
+
     public GameObject VRSimulator_Rig;
     public GameObject SteamVR_Rig;
     public GameObject OptiTracker;
+    public GameObject AR_Rig;
    // public GameObject AR_Rig;
     public GameObject Operator_Panel;
 
@@ -77,7 +80,7 @@ public class VRTK_Switcher : NetworkBehaviour {
 
     [ClientRpc]
     void RpcAssignRig(string rig) {
-        if(rig != "OperatorPanel" && rig != "AR_Rig") {
+        if(rig != "OperatorPanel") {
             rigType = rig;
             //print("New rig enabled:" + rigType);
         }
@@ -105,6 +108,26 @@ public class VRTK_Switcher : NetworkBehaviour {
             if(prefab != null) {
                 ClientScene.RegisterPrefab(prefab);
             }
+        }
+    }
+
+    void AutoSwitchClientHololens() {
+        print("Auto Switching Client..");
+        GameObject rig = AR_Rig;
+        if(rig == null) return;
+        print("Activated Rig:" + rig.name);
+        CmdLastRig();
+        if(currentRig == null) currentRig = rig; CmdAssignRig(rig.name); mainPanel.SetActive(false); sidePanel.SetActive(true); loadPrefabs();
+
+        if(rig.activeInHierarchy == false) {
+            currentRig.SetActive(false);
+            if(rig == Operator_Panel) { //Local rigs
+                rig.SetActive(true);
+                Operator_Panel.transform.GetComponentInChildren<Camera>().enabled = true;
+            }
+            currentRig = rig;
+            CmdAssignRig(rig.name);
+            updateLabel();
         }
     }
 
@@ -152,11 +175,15 @@ public class VRTK_Switcher : NetworkBehaviour {
         }*/
 
 
-        if(isLocalPlayer) {
+        if(isLocalPlayer && !usingHololens) {
             if(currentRig != null) {
                 CmdAssignRig(currentRig.name);
             }
             SwitchClient();
+        } else if(isLocalPlayer && usingHololens) {
+            if(currentRig == null && AR_Rig != null) {
+                AutoSwitchClientHololens();
+            }
         }
         /*if(isServer) {
             if(rigType != null) {
