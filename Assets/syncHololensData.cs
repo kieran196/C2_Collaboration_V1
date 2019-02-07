@@ -57,17 +57,19 @@ public class syncHololensData : NetworkBehaviour {
     [ClientRpc]
     public void RpcSyncAllVarsWithClient(float varSS, float varDS, int varSA) {
         boxCollision boxCol = this.GetComponent<boxCollision>();
-        if(varSS != -1) {
-            SpawnSpeedSync = varSS;
-            boxCol.setSpawnSpeed(SpawnSpeedSync);
-        }
-        if(varDS != -1) {
-            DestroySpeedSync = varDS;
-            boxCol.setDestroySpeed(DestroySpeedSync);
-        }
-        if(varSA != -1) {
-            SpawnAmountSync = varSA;
-            boxCol.setSpawnAmount(SpawnAmountSync);
+        if(boxCol.Task_Type == boxCollision.TASK_TYPE.HOLOLENS_MANIPULATION && boxCol.hasStarted()) {
+            if(varSS != -1) {
+                SpawnSpeedSync = varSS;
+                boxCol.setSpawnSpeed(SpawnSpeedSync);
+            }
+            if(varDS != -1) {
+                DestroySpeedSync = varDS;
+                boxCol.setDestroySpeed(DestroySpeedSync);
+            }
+            if(varSA != -1) {
+                SpawnAmountSync = varSA;
+                boxCol.setSpawnAmount(SpawnAmountSync);
+            }
         }
     }
 

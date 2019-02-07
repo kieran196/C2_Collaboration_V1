@@ -104,6 +104,7 @@ public class UserAvatarLoader : NetworkBehaviour {
 
     [Command]
     public void CmdSpawnHead() {
+        print("Calling RpcSpawnHead");
         RpcSpawnHead();
     }
 
@@ -233,12 +234,13 @@ public class UserAvatarLoader : NetworkBehaviour {
         //This is a coroutine
         Debug.Log("Start Wait() function. The time is: " + Time.time);
         Debug.Log("Float duration = " + duration);
-        userAvatar.transform.SetParent(this.transform);
+        //userAvatar.transform.SetParent(this.transform);
         //userAvatar.transform.SetParent();
         //Transform rig = this.transform.Find("VRSimulator").GetComponent<cameraController>().cam.transform;
         //print("rig:" + rig);
         yield return new WaitForSeconds(duration);   //Wait
         Debug.Log("End Wait() function and the time is: " + Time.time);
+        //Transform rigg = this.transform.Find("VRSimulator").GetComponent<cameraController>().cam.transform;
         //Transform rigg = this.transform.Find("SteamVR").GetComponent<cameraController>().cam.transform;
         Transform rigg = this.transform.Find("SteamVR").GetComponent<cameraController>().avatarHead.transform;
         userAvatar.transform.SetParent(rigg);
@@ -271,7 +273,7 @@ public class UserAvatarLoader : NetworkBehaviour {
     private bool parentSet = false;
     // Update is called once per frame
     void Update() {
-        if(NetworkServer.connections.Count >= 2 && isServer && !parentSet) {
+        if(NetworkServer.connections.Count >= 2 && isServer && !parentSet && userAvatar != null) {
             print("Setting parent..");
             StartCoroutine(Wait(2));
         }

@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class boxCollision : NetworkBehaviour {
 
 
-    public float globalTimer = 0;
+    private float globalTimer = 0;
 
     public float SPAWN_SPEED; //Spawns an object for every "" seconds
     public float DESTROY_SPEED; //Destroys an object for every "" seconds
@@ -18,6 +18,11 @@ public class boxCollision : NetworkBehaviour {
 
     public float TASK_DIFFICULTY;
 
+    public enum TASK_TYPE {DEFAULT_VALUES, HOLOLENS_MANIPULATION}
+    public TASK_TYPE Task_Type;
+
+    private csvWriter csvWriter;
+
     private float[,] positions = new float[,] { {-1f, 0.5f}, { -0.35f, 0.5f } , { 0.35f, 0.5f }, { 1f, 0.5f },
                                                 {-1f, -0.175f}, { -0.35f, -0.175f } , { 0.35f, -0.175f }, { 1f, -0.175f},
                                                 {-1f, 0.175f}, { -0.35f, 0.175f } , { 0.35f, 0.175f }, { 1f, 0.175f},
@@ -27,10 +32,9 @@ public class boxCollision : NetworkBehaviour {
     //public GameObject selectedCube;
     public List<GameObject> activeCubes = new List<GameObject>();
 
-    public List<float> reactionRates = new List<float>();
-
     void Start() {
         cubeParent = GameObject.Find("CubeParent").transform;
+        csvWriter = GameObject.Find("Debugger").GetComponent<csvWriter>();
     }
 
     private float reactionRate = 0;
@@ -79,10 +83,30 @@ public class boxCollision : NetworkBehaviour {
 
     }
 
+    public SteamVR_TrackedObject trackedObjL;
+    public SteamVR_TrackedObject trackedObjR;
+    public SteamVR_TrackedObject trackedObjH;
+    public void collectData() {
+        string HR = GetComponent<readPythonData>().currData;
+        //HR, Movement, Reaction Rate, Difficulty (SPAWN, DESTROY, AMOUNT)
+        //OVERALL TIME, SPAWN SPEED, DESTROY SPEED, AMOUNT SPAWNED, HEART RATE, REACTION RATE, 
+        float distL = trackedObjL.GetComponent<CountDistance>().totalDistance; //Left hand distance
+        float distR = trackedObjR.GetComponent<CountDistance>().totalDistance; //Right hand distance
+        float distH = trackedObjH.GetComponent<CountDistance>().totalDistance; //Head distance
+
+        csvWriter.WriteLine(globalTimer+", "+SPAWN_SPEED+", "+DESTROY_SPEED+ ", "+SPAWN_AMOUNT+ ", "+HR + ", "+reactionRate);
+
+        //Resetting data
+        trackedObjL.GetComponent<CountDistance>().resetProperties();
+        trackedObjR.GetComponent<CountDistance>().resetProperties();
+        trackedObjH.GetComponent<CountDistance>().resetProperties();
+        reactionRate = 0;
+    }
+
     public void onSelect(GameObject obj) {
         print("Selected object:" + obj.name);
-        reactionRates.Add(reactionRate);
-        reactionRate = 0;
+        collectData();
+
         activePositions.Remove(int.Parse(obj.name));
         activeCubes.Remove(obj);
         Destroy(obj.gameObject);
@@ -145,6 +169,12 @@ public class boxCollision : NetworkBehaviour {
                 addSecond();
             }
             if(globalTimer == 0) {
+
+                //Start counting movement speed
+                trackedObjL.GetComponent<CountDistance>().counting = true;
+                trackedObjR.GetComponent<CountDistance>().counting = true;
+                trackedObjH.GetComponent<CountDistance>().counting = true;
+
                 print("Spawn first item..");
                 activeCubes.Add(randomlySelectCube());
                 /*if(increaseDifficulty) {
