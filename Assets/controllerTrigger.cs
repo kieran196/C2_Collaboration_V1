@@ -28,9 +28,16 @@ public class controllerTrigger : MonoBehaviour {
         }
     }
 
+    public void OnTriggerPress() {
+        if (rootParent.GetComponent<syncTransformData>().vivePressed == false && controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && CONSTANTS.CALIBRATION_ENABLED) {
+            rootParent.GetComponent<syncTransformData>().CmdSyncControllerPress();
+        }
+    }
+
     void Update() {
         controller = SteamVR_Controller.Input((int)trackedObj.index);
         startApplication();
+        OnTriggerPress();
     }
 
 }

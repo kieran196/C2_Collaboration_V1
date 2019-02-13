@@ -10,8 +10,7 @@ using System.Reflection;
 using Valve.VR;
 
 [RequireComponent(typeof(Camera))]
-public class SteamVR_Camera : MonoBehaviour
-{
+public class SteamVR_Camera : MonoBehaviour {
 	[SerializeField]
 	private Transform _head;
 	public Transform head { get { return _head; } }

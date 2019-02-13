@@ -6,22 +6,36 @@ using UnityEngine.Networking;
 
 public class boxCollision : NetworkBehaviour {
 
+    /// ===============================
+    /// AUTHOR: Kieran William May
+    /// PURPOSE: This class is handles the core functionality of the box-selection game
+    /// NOTES:
+    /// 
+    /// ===============================
 
     private float globalTimer = 0;
 
     public float SPAWN_SPEED; //Spawns an object for every "" seconds
     public float DESTROY_SPEED; //Destroys an object for every "" seconds
     public int SPAWN_AMOUNT; //Spawns * objects at a time
+    public int BLOCK_SPAWN_LIMIT; //How many blocks will be spawned (e.g 50 will spawn a total of 50 blocks)
 
     public GameObject popupPrefab;
     private Transform cubeParent;
 
     public float TASK_DIFFICULTY;
 
-    public enum TASK_TYPE {DEFAULT_VALUES, HOLOLENS_MANIPULATION}
+    /// <summary>
+    /// The three tasks measured:
+    /// 1. DEFAULT_VALUES = The Spawn/Destroy speed stay at a constant value throughout the task
+    /// 2. HOLOLENS_MANIPULATION_FULL = The Hololens user manipulates the task difficulty using HR activity & other relevant data
+    /// 3. HOLOLENS_MANIPULATION_LIMITED = The hololens user manipulations the task difficulty without any data
+    /// </summary>
+    public enum TASK_TYPE {DEFAULT_VALUES, HOLOLENS_MANIPULATION_FULL, HOLOLENS_MANIPULATION_LIMITED}
     public TASK_TYPE Task_Type;
 
     private csvWriter csvWriter;
+    private int blocksSpawned = 0;
 
     private float[,] positions = new float[,] { {-1f, 0.5f}, { -0.35f, 0.5f } , { 0.35f, 0.5f }, { 1f, 0.5f },
                                                 {-1f, -0.175f}, { -0.35f, -0.175f } , { 0.35f, -0.175f }, { 1f, -0.175f},
@@ -35,6 +49,10 @@ public class boxCollision : NetworkBehaviour {
     void Start() {
         cubeParent = GameObject.Find("CubeParent").transform;
         csvWriter = GameObject.Find("Debugger").GetComponent<csvWriter>();
+        originalSpawnSpeed = SPAWN_SPEED;
+        originalDestroySpeed = DESTROY_SPEED;
+        originalSpawnAmount = SPAWN_AMOUNT;
+        originalSpawnLimit = BLOCK_SPAWN_LIMIT;
     }
 
     private float reactionRate = 0;
@@ -73,29 +91,30 @@ public class boxCollision : NetworkBehaviour {
         }
         activePositions.Add(randomNum);
         GameObject obj = Instantiate(popupPrefab);
+        blocksSpawned++;
         print("Created new object:"+obj.name);
         CmdspawnCube(obj, randomNum);
         return obj;
     }
 
 
-    public void initializeCube() {
-
-    }
-
     public SteamVR_TrackedObject trackedObjL;
     public SteamVR_TrackedObject trackedObjR;
-    public SteamVR_TrackedObject trackedObjH;
-    public void collectData() {
+    public GameObject trackedObjH;
+
+    //Param - True - User successfully selected a block, False - The block disappeared before the user could select it
+    public void collectData(bool successful) {
         string HR = GetComponent<readPythonData>().currData;
         //HR, Movement, Reaction Rate, Difficulty (SPAWN, DESTROY, AMOUNT)
-        //OVERALL TIME, SPAWN SPEED, DESTROY SPEED, AMOUNT SPAWNED, HEART RATE, REACTION RATE, 
+        //TASK, OVERALL TIME, SELECTED BLOCK?, BLOCK COUNT, SPAWN SPEED, DESTROY SPEED, AMOUNT SPAWNED, HEART RATE, REACTION RATE, Movement (Head, Left/Right Hand)
         float distL = trackedObjL.GetComponent<CountDistance>().totalDistance; //Left hand distance
         float distR = trackedObjR.GetComponent<CountDistance>().totalDistance; //Right hand distance
         float distH = trackedObjH.GetComponent<CountDistance>().totalDistance; //Head distance
-
-        csvWriter.WriteLine(globalTimer+", "+SPAWN_SPEED+", "+DESTROY_SPEED+ ", "+SPAWN_AMOUNT+ ", "+HR + ", "+reactionRate);
-
+        if(successful) {
+            csvWriter.WriteLine(Task_Type+", " + Mathf.RoundToInt(globalTimer) + ", " + "TRUE, " + blocksSpawned + ", " + SPAWN_SPEED + ", " + DESTROY_SPEED + ", " + SPAWN_AMOUNT + ", " + HR + ", " + reactionRate + ", " + distH + ", " + distL + ", " + distR);
+        } else {
+            csvWriter.WriteLine(Task_Type + ", " + Mathf.RoundToInt(globalTimer) + ", " + "FALSE, " + blocksSpawned + ", " + SPAWN_SPEED + ", " + DESTROY_SPEED + ", " + SPAWN_AMOUNT + ", " + HR + ", " + "NULL" + ", " + distH + ", " + distL + ", " + distR);
+        }
         //Resetting data
         trackedObjL.GetComponent<CountDistance>().resetProperties();
         trackedObjR.GetComponent<CountDistance>().resetProperties();
@@ -105,11 +124,14 @@ public class boxCollision : NetworkBehaviour {
 
     public void onSelect(GameObject obj) {
         print("Selected object:" + obj.name);
-        collectData();
+        collectData(true);
 
         activePositions.Remove(int.Parse(obj.name));
         activeCubes.Remove(obj);
         Destroy(obj.gameObject);
+        if(blocksSpawned == BLOCK_SPAWN_LIMIT) {
+            resetTask = true;
+        }
         currentDifficulty += 0.1f;
         for (int i=0; i<(int)currentDifficulty&&increaseDifficulty; i++)
             activeCubes.Add(randomlySelectCube());
@@ -122,9 +144,12 @@ public class boxCollision : NetworkBehaviour {
 
     public void addSecond() {
         secondCounter = (int)globalTimer;
-        if ((int)(secondCounter % SPAWN_SPEED) == 0) {
+        if((int)(secondCounter % SPAWN_SPEED) == 0 && blocksSpawned < BLOCK_SPAWN_LIMIT) {
+            print(blocksSpawned);
             for(int i = 0; i < SPAWN_AMOUNT; i++)
                 activeCubes.Add(randomlySelectCube());
+        } else if((int)(secondCounter % SPAWN_SPEED) == 0 && blocksSpawned == BLOCK_SPAWN_LIMIT && resetTask == true) {
+            ResetTask();
         }
     }
 
@@ -150,12 +175,45 @@ public class boxCollision : NetworkBehaviour {
                 activePositions.Remove(int.Parse(cube.name));
                 activeCubes.Remove(cube);
                 Destroy(cube.gameObject);
-                if (increaseDifficulty)
+                collectData(false);
+                if (blocksSpawned == BLOCK_SPAWN_LIMIT) {
+                    resetTask = true;
+                }
+                if(increaseDifficulty && hasStarted()) {
                     activeCubes.Add(randomlySelectCube());
+                }
                 //currentDifficulty++;
 
             }
         }
+    }
+
+    private float originalSpawnSpeed;
+    private float originalDestroySpeed;
+    private int originalSpawnAmount;
+    private int originalSpawnLimit;
+    private bool resetTask = false;
+
+    void ResetTask() {
+        print("Task has been reset automatically..");
+        if(csvWriter.logData) {
+            csvWriter.writeToFile();
+        }
+        //Resetting everything
+        started = false;
+        globalTimer = 0f;
+        activePositions = new List<int>();
+        activeCubes = new List<GameObject>();
+        blocksSpawned = 0;
+        secondCounter = 0;
+        SPAWN_SPEED = originalSpawnSpeed; 
+        DESTROY_SPEED = originalDestroySpeed;
+        SPAWN_AMOUNT = originalSpawnAmount;
+        BLOCK_SPAWN_LIMIT = originalSpawnLimit;
+        trackedObjL.GetComponent<CountDistance>().counting = false;
+        trackedObjR.GetComponent<CountDistance>().counting = false;
+        trackedObjH.GetComponent<CountDistance>().counting = false;
+        resetTask = false;
     }
 
 
@@ -168,7 +226,7 @@ public class boxCollision : NetworkBehaviour {
             if((int)globalTimer != secondCounter) {
                 addSecond();
             }
-            if(globalTimer == 0) {
+            if(globalTimer == 0 && hasStarted()) {
 
                 //Start counting movement speed
                 trackedObjL.GetComponent<CountDistance>().counting = true;

@@ -57,7 +57,7 @@ public class syncHololensData : NetworkBehaviour {
     [ClientRpc]
     public void RpcSyncAllVarsWithClient(float varSS, float varDS, int varSA) {
         boxCollision boxCol = this.GetComponent<boxCollision>();
-        if(boxCol.Task_Type == boxCollision.TASK_TYPE.HOLOLENS_MANIPULATION && boxCol.hasStarted()) {
+        if(boxCol.Task_Type != boxCollision.TASK_TYPE.DEFAULT_VALUES && boxCol.hasStarted()) {
             if(varSS != -1) {
                 SpawnSpeedSync = varSS;
                 boxCol.setSpawnSpeed(SpawnSpeedSync);

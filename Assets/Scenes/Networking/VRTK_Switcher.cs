@@ -4,6 +4,19 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+/// ===============================
+/// AUTHOR: Kieran William May
+/// PURPOSE: This class is responsible for users switching between Rigs. SyncVars are used to synchronize data about the different types of rigs to the server/client(s)
+/// NOTES:
+/// 4 types of rigs are supported
+/// * A VR Simulator: (Useful for testing VR. Simulates a SteamVR camerarig without a HMD)
+/// * SteamVR Camera Rig: Supports HTC Vive & Oculus Rift HMDs
+/// * AR Camera Rig: Using Holo-Toolkit. Supports Hololens & other Mixed Reality HMDs
+/// * Opti-Track rig: Communicates with Motif to track Opti-track objects.
+/// Currently I'm not using the Opti-Track for anything in the system, but it can be used for full-body tracking or using controllers with the Hololens
+/// ===============================
+
+
 public class VRTK_Switcher : NetworkBehaviour {
 
     public bool usingHololens = false;

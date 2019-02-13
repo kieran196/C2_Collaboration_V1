@@ -1,4 +1,4 @@
-﻿#define COMPOUND
+#define COMPOUND
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;

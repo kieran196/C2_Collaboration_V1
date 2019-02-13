@@ -5,29 +5,31 @@ using UnityEngine;
 
 public class csvWriter : MonoBehaviour {
 
+    /// ===============================
+    /// AUTHOR: Kieran William May
+    /// PURPOSE: Writes to and generates a .csv file
+    /// NOTES:
+    /// (If CSV file(s) with the same name already exists it will loop through using a counter until it finds a name that doesn't exist)
+    /// ===============================
+
     public bool logData;
     private List<string> logInfo = new List<string>();
 
-
-    void Start() {
-        //Basic example logging data to .csv file
-        //logInfo.Add("Dataset1, Dataset2, Dataset3");
-        if(logData) {
-            writeToFile();
-        }
-    }
+    private const string FILE_NAME = "trial";
+    private const string DIR = "Logs/";
 
     public void WriteLine(string line) {
         logInfo.Add(line);
     }
 
     public void writeToFile() {
-        string dest = "Logs/trial" + ".csv";
+        string dest = DIR + FILE_NAME + ".csv";
         StreamWriter writer = null;
         int count = 1;
         bool foundPath = false;
         while(foundPath == false) {
             if(File.Exists(dest)) {
+                dest = DIR + FILE_NAME + count + ".csv";
                 dest = "Logs/trial" + count + ".csv";
                 count++;
             } else {
