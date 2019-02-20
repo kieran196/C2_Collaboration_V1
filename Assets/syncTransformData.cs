@@ -21,6 +21,9 @@ public class syncTransformData : NetworkBehaviour {
     [SyncVar]
     public bool vivePressed;
 
+    [SyncVar]
+    public bool viveARPressed;
+
     //The positions and rotations of the right/left controller and head
     [SyncVar]
     public Vector3 positionR;
@@ -48,6 +51,18 @@ public class syncTransformData : NetworkBehaviour {
     [Command]
     public void CmdSyncControllerPress() {
         RpcSyncControllerPress();
+    }
+
+    [ClientRpc]
+    public void RpcSyncARControllerPress(bool arController, bool enable) {
+        if(arController == true) {
+            viveARPressed = enable;
+        }
+    }
+
+    [Command]
+    public void CmdSyncARControllerPress(bool arController, bool enable) {
+        RpcSyncARControllerPress(arController, enable);
     }
 
     [ClientRpc]

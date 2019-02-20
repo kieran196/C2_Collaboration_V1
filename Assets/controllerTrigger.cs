@@ -10,6 +10,8 @@ public class controllerTrigger : MonoBehaviour {
     private SteamVR_TrackedObject trackedObj;
     private SteamVR_Controller.Device controller;
 
+    public bool VRController; // If the user holding the controller is a VR/AR user. (1 controller each for the experiment)
+
     void Awake() {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
         BoxCollision = rootParent.GetComponent<boxCollision>();
@@ -29,8 +31,14 @@ public class controllerTrigger : MonoBehaviour {
     }
 
     public void OnTriggerPress() {
-        if (rootParent.GetComponent<syncTransformData>().vivePressed == false && controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && CONSTANTS.CALIBRATION_ENABLED) {
-            rootParent.GetComponent<syncTransformData>().CmdSyncControllerPress();
+        if(controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
+            if(VRController == false) {
+                rootParent.GetComponent<syncTransformData>().CmdSyncARControllerPress(true, true);
+            }
+
+            if(rootParent.GetComponent<syncTransformData>().vivePressed == false && CONSTANTS.CALIBRATION_ENABLED) {
+                rootParent.GetComponent<syncTransformData>().CmdSyncControllerPress();
+            }
         }
     }
 

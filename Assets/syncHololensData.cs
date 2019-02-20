@@ -19,6 +19,9 @@ public class syncHololensData : NetworkBehaviour {
     [SyncVar]
     public int SpawnAmountSync;
 
+    [SyncVar]
+    public string TaskType;
+
     public float spawn_speed = 0;
     public float destroy_speed = 0;
     public int spawn_amount = 0;
@@ -27,14 +30,17 @@ public class syncHololensData : NetworkBehaviour {
         spawn_speed = this.GetComponent<boxCollision>().SPAWN_SPEED;
         destroy_speed = this.GetComponent<boxCollision>().DESTROY_SPEED;
         spawn_amount = this.GetComponent<boxCollision>().SPAWN_AMOUNT;
+        TaskType = this.GetComponent<boxCollision>().Task_Type.ToString();
     }
 
     void Update() {
+        //CmdSyncTaskType(GetComponent<boxCollision>().Task_Type.ToString());
         if(isLocalPlayer) {
             if (!foundHololens) {
                 findHololensUser();
             } else if (foundHololens && NetworkServer.connections.Count > 1) {
                 syncHololensData holoScript = hololensUser.GetComponent<syncHololensData>();
+                holoScript.CmdSyncTaskType(this.GetComponent<boxCollision>().Task_Type.ToString());
                 CmdSyncAllVarsWithClient(holoScript.SpawnSpeedSync, holoScript.DestroySpeedSync, holoScript.SpawnAmountSync);
             }
         }
@@ -57,7 +63,7 @@ public class syncHololensData : NetworkBehaviour {
     [ClientRpc]
     public void RpcSyncAllVarsWithClient(float varSS, float varDS, int varSA) {
         boxCollision boxCol = this.GetComponent<boxCollision>();
-        if(boxCol.Task_Type != boxCollision.TASK_TYPE.DEFAULT_VALUES && boxCol.hasStarted()) {
+        if(boxCol.Task_Type != boxCollision.TASK_TYPE.DEFAULT_VALUES) {
             if(varSS != -1) {
                 SpawnSpeedSync = varSS;
                 boxCol.setSpawnSpeed(SpawnSpeedSync);
@@ -76,6 +82,18 @@ public class syncHololensData : NetworkBehaviour {
     [Command]
     public void CmdSyncAllVarsWithClient(float varSS, float varDS, int varSA) {
         RpcSyncAllVarsWithClient(varSS, varDS, varSA);
+    }
+
+    [ClientRpc]
+    public void RpcSyncTaskType(string task) {
+        if(task != TaskType) {
+            TaskType = task;
+        }
+    }
+
+    [Command]
+    public void CmdSyncTaskType(string task) {
+        RpcSyncTaskType(task);
     }
 
 }

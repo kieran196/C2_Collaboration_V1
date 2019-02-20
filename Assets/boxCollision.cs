@@ -53,6 +53,9 @@ public class boxCollision : NetworkBehaviour {
         originalDestroySpeed = DESTROY_SPEED;
         originalSpawnAmount = SPAWN_AMOUNT;
         originalSpawnLimit = BLOCK_SPAWN_LIMIT;
+        if(isLocalPlayer) {
+            csvWriter.WriteLine("TASK TYPE" + ", " + "OVERALL TIME" + ", " + "SUCCESSFUL SELECTION, " + "SPAWN SPEED" + ", " + "DESTROY SPEED" + ", " + "AMOUNT SPAWNED" + ", " + "HEART RATE" + ", " + "REACTION RATE" + ", " + "HEAD MOVEMENT" + ", " + "LEFT HAND MOVEMENT" + ", " + "RIGHT HAND MOVEMENT");
+        }
     }
 
     private float reactionRate = 0;
@@ -102,16 +105,29 @@ public class boxCollision : NetworkBehaviour {
     public SteamVR_TrackedObject trackedObjR;
     public GameObject trackedObjH;
 
+    public GameObject playerWithHRData;
+
+    public void findPlayerWithHRData() {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players) {
+            if (player.GetComponent<readPythonData>().data.Length > 0) {
+                playerWithHRData = player;
+            }
+        }
+    }
+
     //Param - True - User successfully selected a block, False - The block disappeared before the user could select it
     public void collectData(bool successful) {
-        string HR = GetComponent<readPythonData>().currData;
-        //HR, Movement, Reaction Rate, Difficulty (SPAWN, DESTROY, AMOUNT)
-        //TASK, OVERALL TIME, SELECTED BLOCK?, BLOCK COUNT, SPAWN SPEED, DESTROY SPEED, AMOUNT SPAWNED, HEART RATE, REACTION RATE, Movement (Head, Left/Right Hand)
+        string HR = "NULL";
+        if(playerWithHRData != null) {
+            HR = playerWithHRData.GetComponent<readPythonData>().data;
+        }
+        //TASK, OVERALL TIME, SELECTED BLOCK?m SPAWN SPEED, DESTROY SPEED, AMOUNT SPAWNED, HEART RATE, REACTION RATE, Movement (Head, Left/Right Hand)
         float distL = trackedObjL.GetComponent<CountDistance>().totalDistance; //Left hand distance
         float distR = trackedObjR.GetComponent<CountDistance>().totalDistance; //Right hand distance
         float distH = trackedObjH.GetComponent<CountDistance>().totalDistance; //Head distance
         if(successful) {
-            csvWriter.WriteLine(Task_Type+", " + Mathf.RoundToInt(globalTimer) + ", " + "TRUE, " + blocksSpawned + ", " + SPAWN_SPEED + ", " + DESTROY_SPEED + ", " + SPAWN_AMOUNT + ", " + HR + ", " + reactionRate + ", " + distH + ", " + distL + ", " + distR);
+            csvWriter.WriteLine(Task_Type+", " + Mathf.RoundToInt(globalTimer) + ", " + "TRUE, " + SPAWN_SPEED + ", " + DESTROY_SPEED + ", " + SPAWN_AMOUNT + ", " + HR + ", " + reactionRate + ", " + distH + ", " + distL + ", " + distR);
         } else {
             csvWriter.WriteLine(Task_Type + ", " + Mathf.RoundToInt(globalTimer) + ", " + "FALSE, " + blocksSpawned + ", " + SPAWN_SPEED + ", " + DESTROY_SPEED + ", " + SPAWN_AMOUNT + ", " + HR + ", " + "NULL" + ", " + distH + ", " + distL + ", " + distR);
         }
@@ -161,6 +177,15 @@ public class boxCollision : NetworkBehaviour {
         return started;
     }
 
+    [Command]
+    public void CmdforceRemoval() {
+        print("Force removal invoked..");
+        print("Actives cubes:" + activeCubes.Count + " , " + activePositions.Count);
+        GameObject[] cubes = GameObject.FindGameObjectsWithTag("box");
+        foreach(GameObject cube in cubes) {
+            Destroy(cube.gameObject);
+        }
+    }
 
     [Command]
     public void CmdSyncCubes() {
@@ -171,7 +196,7 @@ public class boxCollision : NetworkBehaviour {
             cube.GetComponentInChildren<Text>().text = cube.GetComponent<Renderer>().material.color.a.ToString();
             //cube.GetComponent<SyncTransperancy>().colorAlpha = cube.GetComponent<Renderer>().material.color.a;
             //print(selectedCube.GetComponent<Renderer>().material.color.a + " | " + globalTimer);
-            if(cube.GetComponent<Renderer>().material.color.a <= 0) {
+            if(cube.GetComponent<Renderer>().material.color.a <= 0 ) {
                 activePositions.Remove(int.Parse(cube.name));
                 activeCubes.Remove(cube);
                 Destroy(cube.gameObject);
@@ -214,10 +239,17 @@ public class boxCollision : NetworkBehaviour {
         trackedObjR.GetComponent<CountDistance>().counting = false;
         trackedObjH.GetComponent<CountDistance>().counting = false;
         resetTask = false;
+        CmdforceRemoval();
     }
 
 
     void Update() {
+        if (GetComponent<readPythonData>().HR_DATA_ENABLED) {
+            playerWithHRData = this.gameObject;
+        } else if (NetworkServer.connections.Count >= 2 && playerWithHRData == null) {
+            findPlayerWithHRData();
+        }
+
         TASK_DIFFICULTY = (100f / (SPAWN_SPEED + DESTROY_SPEED)) * SPAWN_AMOUNT;
         if(!isLocalPlayer)
             return;
