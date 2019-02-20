@@ -30,6 +30,46 @@ public class controllerTrigger : MonoBehaviour {
         }
     }
 
+
+    public void handlePaintEvents() {
+        if(controller != null && rootParent.GetComponent<paintbrush>().enabled) {
+            if(controller.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
+                rootParent.GetComponent<paintbrush>().CmdCreateTexture(this.transform.position, this.transform.eulerAngles);
+            }
+            if(controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger)) {
+                rootParent.GetComponent<paintbrush>().disableDrawing();
+            }
+        }
+    }
+
+    public void handleSplashEvents() {
+        if(controller != null && rootParent.GetComponent<splashTool>().enabled) {
+            if(controller.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
+                rootParent.GetComponent<splashTool>().CmdCreateTexture(this.transform.position, this.transform.eulerAngles);
+            }
+            if(controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger)) {
+                rootParent.GetComponent<splashTool>().disableDrawing();
+            }
+        }
+    }
+
+    public void handlePencilEvents() {
+        if(controller != null && rootParent.GetComponent<pencil>().enabled) {
+            if(controller.GetPress(SteamVR_Controller.ButtonMask.Trigger)) {
+                rootParent.GetComponent<pencil>().CmdCreateTexture(this.transform.position, this.transform.eulerAngles);
+            }
+            if(controller.GetPressUp(SteamVR_Controller.ButtonMask.Trigger)) {
+                rootParent.GetComponent<pencil>().disableDrawing();
+            }
+        }
+    }
+
+    public void handleDrawingEvents() {
+        handlePaintEvents();
+        handleSplashEvents();
+        handlePencilEvents();
+    }
+
     public void OnTriggerPress() {
         if(controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
             if(VRController == false) {
@@ -44,6 +84,7 @@ public class controllerTrigger : MonoBehaviour {
 
     void Update() {
         controller = SteamVR_Controller.Input((int)trackedObj.index);
+        handleDrawingEvents();
         startApplication();
         OnTriggerPress();
     }

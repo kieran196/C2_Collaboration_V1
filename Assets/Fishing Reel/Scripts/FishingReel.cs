@@ -189,6 +189,8 @@ public class FishingReel : MonoBehaviour {
 
     void Awake() {
         mirroredCube = this.transform.Find("Mirrored Cube").gameObject;
+        controllerRight.SetActive(true);
+        controllerLeft.SetActive(true);
         if (controllerPicked == ControllerPicked.Right_Controller) {
             print(controllerRight);
             trackedObj = controllerRight.GetComponent<SteamVR_TrackedObject>();
@@ -265,8 +267,9 @@ public class FishingReel : MonoBehaviour {
             if (linking != null && linking.currentlyLinking == true) {
                 linking.hitPos = hitPoint;
             }
-            if (enableTeleporter)
+            if(enableTeleporter) {
                 teleportOnFloor(hit);
+            }
             Hover2DButtons(hit.transform.gameObject);
             PickupObject(hit.transform.gameObject);
             toolPicker.hoverTool(hit.transform.gameObject, trackedObj, hitPoint);

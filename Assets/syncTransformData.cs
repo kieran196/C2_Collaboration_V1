@@ -75,7 +75,6 @@ public class syncTransformData : NetworkBehaviour {
         rotationH = rotH;
     }
 
-    [SerializeField]
     float angX, angY, angZ;
 
     [Command]

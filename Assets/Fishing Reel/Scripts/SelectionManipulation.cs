@@ -153,6 +153,9 @@ public class SelectionManipulation : MonoBehaviour {
                 selectedObject.transform.localScale = new Vector3(selectedObject.transform.localScale.x - sizeDecreaseRate, selectedObject.transform.localScale.y - sizeDecreaseRate, selectedObject.transform.localScale.z - sizeDecreaseRate);
             }
         }
+        if (selectedObject.GetComponent<NetworkTransformHandler>() != null) {
+            selectedObject.GetComponent<NetworkTransformHandler>().CmdSyncTransform(selectedObject.transform.localScale, true);
+        }
     }
 
     void navigateOptions() {

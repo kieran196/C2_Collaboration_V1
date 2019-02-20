@@ -38,7 +38,7 @@ public class ColorPicker : MonoBehaviour {
         }
     }
 
-        private void ChangedHueSaturation(Vector2 touchpadAxis, float touchpadAngle) {
+    private void ChangedHueSaturation(Vector2 touchpadAxis, float touchpadAngle) {
         float normalAngle = touchpadAngle - 90;
         if (normalAngle < 0) {
             normalAngle = 360 + normalAngle;
@@ -63,6 +63,9 @@ public class ColorPicker : MonoBehaviour {
         if (selectedObj != null) {
             Color color = Color.HSVToRGB(hue, saturation, val);
             selectedObj.GetComponent<Renderer>().material.color = color;
+            if (selectedObj.GetComponent<NetworkTransformHandler>() != null) {
+                selectedObj.GetComponent<NetworkTransformHandler>().CmdSyncTransform(new Vector3(color.r, color.g, color.b), false);
+            }
         }
     }
 

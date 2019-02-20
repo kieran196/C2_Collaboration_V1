@@ -7,7 +7,6 @@ using System.Diagnostics;
 
 public class readPythonData : NetworkBehaviour {
 
-    [SyncVar]
     public bool HR_DATA_ENABLED;
 
     public string currData = "";

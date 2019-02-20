@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class ToolPicker : MonoBehaviour {
+public class ToolPicker : NetworkBehaviour {
 
     private GameObject lastHoveredTool;
     private GameObject lastSelectedTool;
@@ -35,8 +35,11 @@ public class ToolPicker : MonoBehaviour {
     }
 
     private void disableTools(SteamVR_TrackedObject trackedObj) {
+        rootParent.GetComponent<paintbrush>().CmdChangeVisibility(false);
         rootParent.GetComponent<paintbrush>().enabled = false;
+        rootParent.GetComponent<pencil>().CmdChangeVisibility(false);
         rootParent.GetComponent<pencil>().enabled = false;
+        rootParent.GetComponent<splashTool>().CmdChangeVisibility(false);
         rootParent.GetComponent<splashTool>().enabled = false;
         eraser.SetActive(false);
     }
@@ -94,16 +97,17 @@ public class ToolPicker : MonoBehaviour {
         obj.transform.localPosition = hitPoint;
         obj.transform.SetParent(trackedObj.transform);
         obj.layer = LayerMask.NameToLayer("InteractableGameObjectGen");
+        rootParent.GetComponent<ObjectSpawnTool>().CmdCreateObject(hitPoint, obj);
     }
 
-    /*[Command]
-    public void CmdCreateObject(Vector3 hitPoint, GameObject prefab) {
-        GameObject obj = Instantiate(prefab);
+    [Command]
+    public void CmdCreateObject(Vector3 hitPoint, GameObject obj) {
+        //GameObject obj = Instantiate(prefab);
         obj.transform.localPosition = hitPoint;
         obj.transform.SetParent(trackedObjTransform);
         obj.layer = LayerMask.NameToLayer("InteractableGameObjectGen");
         NetworkServer.Spawn(obj);
-    }*/
+    }
 
     public void selectTool(GameObject tool, SteamVR_TrackedObject trackedObj, Vector3 hitPoint) {
         if (lastSelectedTool == null) {
@@ -119,6 +123,7 @@ public class ToolPicker : MonoBehaviour {
             this.gameObject.SetActive(false);
         } else if(tool.transform.name == "PaintBrush") {
             rootParent.GetComponent<paintbrush>().enabled = true;
+            rootParent.GetComponent<paintbrush>().CmdChangeVisibility(true);
         } else if(tool.transform.name == "Eraser") {
             eraser.GetComponent<eraser>().trackedObj = trackedObj;
             eraser.SetActive(true);
@@ -127,8 +132,10 @@ public class ToolPicker : MonoBehaviour {
             eraser.transform.localEulerAngles = Vector3.zero;
         } else if(tool.transform.name == "Pencil") {
             rootParent.GetComponent<pencil>().enabled = true;
+            rootParent.GetComponent<pencil>().CmdChangeVisibility(true);
         } else if(tool.transform.name == "Splatter") {
             rootParent.GetComponent<splashTool>().enabled = true;
+            rootParent.GetComponent<splashTool>().CmdChangeVisibility(true);
         } else if(tool.transform.name == "CubeIcon") {
             //createObject(trackedObj, hitPoint, cubePrefab);
             createObject(trackedObj, hitPoint, cubePrefab);
