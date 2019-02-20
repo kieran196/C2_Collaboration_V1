@@ -117,6 +117,8 @@ namespace HoloToolkit.Unity.InputModule
         protected GameObject TargetedObject;
         protected ICursorModifier TargetedCursorModifier;
 
+        public GameObject hitObject;
+
         private uint visibleHandsCount = 0;
 
         [SerializeField]
@@ -322,10 +324,10 @@ namespace HoloToolkit.Unity.InputModule
 
             // Normalize scale on before update
             targetScale = Vector3.one;
-
             // If no game object is hit, put the cursor at the default distance
             if (newTargetedObject == null)
             {
+                hitObject = null;
                 TargetedObject = null;
                 TargetedCursorModifier = null;
 
@@ -352,8 +354,8 @@ namespace HoloToolkit.Unity.InputModule
             {
                 // Update currently targeted object
                 TargetedObject = newTargetedObject;
-
-                if (TargetedCursorModifier != null)
+                hitObject = newTargetedObject;
+                if(TargetedCursorModifier != null)
                 {
                     TargetedCursorModifier.GetModifiedTransform(this, out targetPosition, out targetRotation, out targetScale);
                 }

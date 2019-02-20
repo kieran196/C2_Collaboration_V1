@@ -19,9 +19,26 @@ public class syncHololensData : NetworkBehaviour {
     [SyncVar]
     public int SpawnAmountSync;
 
+    [SyncVar]
+    public string TaskType;
+    private string oldTaskType = "";
+
     public float spawn_speed = 0;
     public float destroy_speed = 0;
     public int spawn_amount = 0;
+
+    private GameObject VRPlayer;
+
+    private GameObject findVRPlayer() {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject player in players) {
+            if(player.GetComponent<VRTK_Switcher>().rigType == player.GetComponent<VRTK_Switcher>().SteamVR_Rig.name) {
+                VRPlayer = player;
+                return player;
+            }
+        }
+        return null;
+    }
 
     void Start() {
         spawn_speed = this.GetComponent<boxCollision>().SPAWN_SPEED;
@@ -30,6 +47,23 @@ public class syncHololensData : NetworkBehaviour {
     }
 
     void Update() {
+        if (VRPlayer == null) {
+            findVRPlayer();
+        } else if (VRPlayer != null) {
+            if (oldTaskType != TaskType && TaskType.Length > 1) {
+                oldTaskType = TaskType;
+                SyncTransperancy.missedBoxes = 0;
+                SyncTransperancy.spawnedBoxes = 0;
+                SyncTransperancy.hitBoxes = 0;
+                print("New task type has been set:" + TaskType);
+                if(TaskType == "HOLOLENS_MANIPULATION_FULL") {
+                    VRPlayer.GetComponent<VRTK_Switcher>().SteamVR_Rig.transform.Find("UICanvas").gameObject.SetActive(true);
+                } else if(TaskType == "HOLOLENS_MANIPULATION_LIMITED") {
+                    VRPlayer.GetComponent<VRTK_Switcher>().SteamVR_Rig.transform.Find("UICanvas").gameObject.SetActive(false);
+                }
+            }
+        }
+
         if(isLocalPlayer) {
             CmdSyncAllVarsWithClient(spawn_speed, destroy_speed, spawn_amount);
         }
@@ -46,5 +80,17 @@ public class syncHololensData : NetworkBehaviour {
     [Command]
     public void CmdSyncAllVarsWithClient(float varSS, float varDS, int varSA) {
         RpcSyncAllVarsWithClient(varSS, varDS, varSA);
+    }
+
+    [ClientRpc]
+    public void RpcSyncTaskType(string task) {
+        if (task != TaskType) {
+            TaskType = task;
+        }
+    }
+
+    [Command]
+    public void CmdSyncTaskType(string task) {
+        RpcSyncTaskType(task);
     }
 }

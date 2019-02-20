@@ -42,7 +42,7 @@ public class SelectionManipulation : MonoBehaviour {
     }
 
     private void resetManipulationMenu() {
-        if (controller.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && inManipulationMode == true) {
+        if (controller != null && controller.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && inManipulationMode == true) {
             inManipulationMode = false;
             colourPickerEnabled = false;
             changeSizeEnabled = false;
@@ -150,7 +150,7 @@ public class SelectionManipulation : MonoBehaviour {
     }
 
     void navigateOptions() {
-        if (controller.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && inManipulationMode == true) {
+        if (controller != null && controller.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && inManipulationMode == true) {
             Vector2 touchpad = (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0));
             if (colourPickerEnabled == false && changeSizeEnabled == false) {
                 if (touchpad.x > 0.7f) {
@@ -199,7 +199,9 @@ public class SelectionManipulation : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        controller = SteamVR_Controller.Input((int)trackedObj.index);
+        if((int)trackedObj.index != -1) {
+            controller = SteamVR_Controller.Input((int)trackedObj.index);
+        }
         navigateOptions();
         resetManipulationMenu();
         if(pickedUpObject == true) {
@@ -212,7 +214,7 @@ public class SelectionManipulation : MonoBehaviour {
         if (manipulationMovementEnabled == true) {
             moveObject();
         }
-        if (controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
+        if (controller != null && controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
             if (inManipulationMode == false && selectedObject != null && selectedObject.name != "Mirrored Cube" && manipulationIcons.activeInHierarchy == false) {
                 print("Made it to manipulation mode..");
                 this.GetComponent<ColorPicker>().selectedObj = selectedObject;

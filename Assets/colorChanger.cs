@@ -12,13 +12,29 @@ public class colorChanger : MonoBehaviour, IInputClickHandler {
     public static GameObject oldinputType;
 
     public GameObject localPlayer;
+    public GameObject VRPlayer;
+
+    private GameObject findVRPlayer() {
+        print("Searching for VR player...");
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject player in players) {
+            if(player.GetComponent<VRTK_Switcher>().rigType == player.GetComponent<VRTK_Switcher>().SteamVR_Rig.name) {
+                VRPlayer = player;
+                print("VR player was found.");
+                return player;
+            }
+        }
+        print("VR player was not found.");
+        return null;
+    }
 
     private GameObject findLocalPlayer() {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in players) {
-            //print(player.GetComponent<NetworkBehaviour>().isLocalPlayer);
             if (player.GetComponent<NetworkBehaviour>().isLocalPlayer) {
                 localPlayer = player;
+                updateTextField();
+                return player;
             }
         }
         return null;
@@ -82,11 +98,37 @@ public class colorChanger : MonoBehaviour, IInputClickHandler {
         }
     }
 
-    void Start() {
-
+    public void updateTextField() {
+        if(localPlayer != null) {
+            //print(transform.name + ", " + localPlayer.GetComponent<syncHololensData>().spawn_speed.ToString() + " , " + localPlayer.GetComponent<syncHololensData>().destroy_speed.ToString());
+            if(transform.name == "SpawnSpeedInput") {
+                this.GetComponent<InputField>().text = localPlayer.GetComponent<syncHololensData>().spawn_speed.ToString();
+            } if(transform.name == "DestroySpeedInput") {
+                this.GetComponent<InputField>().text = localPlayer.GetComponent<syncHololensData>().destroy_speed.ToString();
+            }
+            //inputType.GetComponent<InputField>().text = localPlayer.GetComponent<syncHololensData>().spawn_amount.ToString();
+        }
     }
 
     void Update() {
+        if(VRPlayer == null) {
+            findVRPlayer();
+        }
+        if(localPlayer == null) {
+            findLocalPlayer();
+        }
+        //updateTextField();
+
+
+        //Handle VR Input
+        if(VRPlayer != null && localPlayer != null) {
+            AnimatedCursor cursor = localPlayer.GetComponent<cameraRigs>().AR_Rig.transform.Find("DefaultCursor").GetComponent<AnimatedCursor>();
+            if(VRPlayer.GetComponent<syncTransformData>().viveARPressed && cursor.hitObject != null && cursor.hitObject.name == this.transform.name) {
+                handleClickEvent();
+                VRPlayer.GetComponent<syncTransformData>().viveARPressed = false;
+            }
+        }
+
         //print("CURR:"+inputType + " OLD:"+oldinputType);
         if (oldinputType != null && oldinputType != inputType) {
             if (oldinputType.name == this.transform.name) {
@@ -96,11 +138,14 @@ public class colorChanger : MonoBehaviour, IInputClickHandler {
         }
     }
 
-    public virtual void OnInputClicked(InputClickedEventData eventData) {
-        Debug.Log("Clicked button:"+this.transform.name);
-        //count = (this.transform.name == "PlusButton") ? count = count+1 : (this.transform.name == "MinusButton") ? count-- : count; ;
+    private void handleClickEvent() {
+        //if (this.GetComponent<Button>().high)
+        Debug.Log("Clicked button:" + this.transform.name);
         clickButton(this.transform.name);
-        //clickButton(this.transform.name);
+    }
+
+    public virtual void OnInputClicked(InputClickedEventData eventData) {
+        handleClickEvent();
         eventData.Use();
     }
 

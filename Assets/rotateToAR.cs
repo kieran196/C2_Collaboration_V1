@@ -6,10 +6,14 @@ using UnityEngine.Networking;
 
 public class rotateToAR : MonoBehaviour {
 
-    public Text label;
+    public Text currHR;
+    public Text restHR;
+    public Text MaxMinHR;
+    public Text sucessRate;
+    public Text failRate;
+
     public GameObject rootParent;
-    private bool parentSet = false;
-    public string currRig = "";
+    public bool parentSet = false;
     int count = 0;
     GameObject[] players;
     private string hrVar = "";
@@ -37,7 +41,16 @@ public class rotateToAR : MonoBehaviour {
         if(hrPlayer != null) {
             label.text = hrPlayer.GetComponent<readPythonData>().data;
         }*/
-        label.text = "HR"+rootParent.GetComponent<readPythonData>().data.ToString();
+        readPythonData pyOut = rootParent.GetComponent<readPythonData>();
+        if(pyOut.data.ToString() != "") {
+            currHR.text = "HR" + rootParent.GetComponent<readPythonData>().data.ToString();
+        } else if(pyOut.currData.ToString() != "") {
+            currHR.text = "HR" + rootParent.GetComponent<readPythonData>().currData.ToString();
+        }
+        restHR.text = "";
+        MaxMinHR.text = "";
+        sucessRate.text = "Success Rate:" +SyncTransperancy.hitBoxes.ToString();
+        failRate.text = "Fail Rate:" + SyncTransperancy.missedBoxes.ToString();
     }
 
     void assignParent() {
@@ -56,8 +69,10 @@ public class rotateToAR : MonoBehaviour {
 
     private void LateUpdate() {
         if(parentSet) {
-            Transform findChild = this.transform.parent.GetChild(0).transform;
-            Vector3 newVec = new Vector3(findChild.localPosition.x, findChild.localPosition.y + 2f, findChild.localPosition.z);
+            //Transform findChild = this.transform.parent.GetChild(0).transform;
+            Transform findChild = this.transform.parent.GetComponent<cameraController>().cam.transform;
+            //print(findChild.name);
+            Vector3 newVec = new Vector3(findChild.localPosition.x, findChild.localPosition.y + 0.5f, findChild.localPosition.z);
             this.transform.localPosition = newVec;
         }
     }

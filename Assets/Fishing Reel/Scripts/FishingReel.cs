@@ -188,7 +188,6 @@ public class FishingReel : MonoBehaviour {
     void Awake() {
         mirroredCube = this.transform.Find("Mirrored Cube").gameObject;
         if (controllerPicked == ControllerPicked.Right_Controller) {
-            print(controllerRight);
             trackedObj = controllerRight.GetComponent<SteamVR_TrackedObject>();
             controllerRight.SetActive(true);
         } else if (controllerPicked == ControllerPicked.Left_Controller) {

@@ -80,7 +80,9 @@ public class ColorPicker : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        controller = SteamVR_Controller.Input((int)trackedObj.index);
+        if((int)trackedObj.index != -1) {
+            controller = SteamVR_Controller.Input((int)trackedObj.index);
+        }
         if (this.GetComponent<SelectionManipulation>().colourPickerEnabled == true) {
             if (canvasHolder.activeInHierarchy == false) {
                 canvasHolder.SetActive(true);
