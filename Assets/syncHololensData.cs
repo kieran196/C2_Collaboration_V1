@@ -33,7 +33,7 @@ public class syncHololensData : NetworkBehaviour {
         TaskType = this.GetComponent<boxCollision>().Task_Type.ToString();
     }
 
-    /*void Update() {
+    void Update() {
         //CmdSyncTaskType(GetComponent<boxCollision>().Task_Type.ToString());
         if(isLocalPlayer) {
             if (!foundHololens) {
@@ -44,7 +44,7 @@ public class syncHololensData : NetworkBehaviour {
                 CmdSyncAllVarsWithClient(holoScript.SpawnSpeedSync, holoScript.DestroySpeedSync, holoScript.SpawnAmountSync);
             }
         }
-    }*/
+    }
 
     private bool foundHololens = false;
     private GameObject hololensUser = null;

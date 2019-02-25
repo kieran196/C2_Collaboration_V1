@@ -129,7 +129,7 @@ public class boxCollision : NetworkBehaviour {
         if(successful) {
             csvWriter.WriteLine(Task_Type+", " + Mathf.RoundToInt(globalTimer) + ", " + "TRUE, " + SPAWN_SPEED + ", " + DESTROY_SPEED + ", " + SPAWN_AMOUNT + ", " + HR + ", " + reactionRate + ", " + distH + ", " + distL + ", " + distR);
         } else {
-            csvWriter.WriteLine(Task_Type + ", " + Mathf.RoundToInt(globalTimer) + ", " + "FALSE, " + blocksSpawned + ", " + SPAWN_SPEED + ", " + DESTROY_SPEED + ", " + SPAWN_AMOUNT + ", " + HR + ", " + "NULL" + ", " + distH + ", " + distL + ", " + distR);
+            csvWriter.WriteLine(Task_Type + ", " + Mathf.RoundToInt(globalTimer) + ", " + "FALSE, " + SPAWN_SPEED + ", " + DESTROY_SPEED + ", " + SPAWN_AMOUNT + ", " + HR + ", " + "NULL" + ", " + distH + ", " + distL + ", " + distR);
         }
         //Resetting data
         trackedObjL.GetComponent<CountDistance>().resetProperties();

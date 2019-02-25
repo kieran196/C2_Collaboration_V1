@@ -34,7 +34,7 @@ public class determineLocalPlayer : NetworkBehaviour {
             print(playerNameText.text);
         }*/
 
-        if(isLocalPlayer && playerName == "") { // Assign on client
+        if(isLocalPlayer && playerName == "") { // Assign player name on client
             CmdAssignPlayerName(assignIdOnLoad ? "Player:" + netId : playerNameText.text);
             //print(playerNameText.text);
         }
@@ -44,7 +44,7 @@ public class determineLocalPlayer : NetworkBehaviour {
         }
 
 
-        //Here
+        //Disable the previous rig, enable the current rig.
         int count = 0;
         foreach(GameObject user in getUsers()) {
             if(user.GetComponent<VRTK_Switcher>().rigType != null && user.GetComponent<VRTK_Switcher>().rigType != "" && user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.activeInHierarchy == false) {

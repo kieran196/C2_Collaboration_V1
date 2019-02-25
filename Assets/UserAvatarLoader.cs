@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Linq;
 
+/// ===============================
+/// AUTHOR: Kieran William May
+/// PURPOSE: This class is responsible for handling synchronization of 3D avatars between the server-client
+/// NOTES:
+/// 
+/// ===============================
+
 public class UserAvatarLoader : NetworkBehaviour {
 
     public GameObject userAvatar;

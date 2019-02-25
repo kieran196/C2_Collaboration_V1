@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+/// ===============================
+/// AUTHOR: Kieran William May
+/// PURPOSE: This class handles the functionality of the 3D splash tool
+/// NOTES:
+/// This is a pretty hacky way of doing drawing-functionality and it's not very well optimised.
+/// Basically what happens is it constantly spawns 2D textures while the users holding the trigger down.
+/// After a large amount of drawing, textures could begin to lagg the server.
+
 public class splashTool : NetworkBehaviour {
 
     private bool drawing = false;

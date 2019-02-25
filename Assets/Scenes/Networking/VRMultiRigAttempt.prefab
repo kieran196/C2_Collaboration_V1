@@ -749,7 +749,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1766470751}
+  - {fileID: 4804923961199781}
   m_Father: {fileID: 1791}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3460,7 +3460,6 @@ GameObject:
   - component: {fileID: 2622}
   - component: {fileID: 2683}
   - component: {fileID: 2620}
-  - component: {fileID: 2715}
   - component: {fileID: 2716}
   - component: {fileID: 2719}
   - component: {fileID: 2725}
@@ -3861,25 +3860,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texture: {fileID: 1255747304086458, guid: 47e51bbe97562b64f9ca003d6ea29fed, type: 3}
   drawParent: {fileID: 1788}
---- !u!114 &2715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4828cc4272bbed48b46963ebe7f2898, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerText: {fileID: 2445}
-  bulletPrefab: {fileID: 1213313697824522, guid: 991f8d1bdd5ec2b4dac58f7d994a9b76,
-    type: 3}
-  bulletSpawn: {fileID: 1767}
-  Sphere: {fileID: 0}
-  Cube: {fileID: 0}
-  VRActivated: 0
 --- !u!114 &2716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3898,7 +3878,7 @@ MonoBehaviour:
   BLOCK_SPAWN_LIMIT: 100
   popupPrefab: {fileID: 1332, guid: cea5d5e365d89074889b69ad3d50288d, type: 3}
   TASK_DIFFICULTY: 0
-  Task_Type: 0
+  Task_Type: 1
   activeCubes: []
   trackedObjL: {fileID: 2625}
   trackedObjR: {fileID: 2668}
@@ -10590,6 +10570,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BodyPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 677076610424802403, guid: 9fc76097b02e7104ca45297db67731cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 677822178248094897, guid: 9fc76097b02e7104ca45297db67731cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10747,7 +10732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 991f8d1bdd5ec2b4dac58f7d994a9b76, type: 3}
---- !u!4 &1766470751 stripped
+--- !u!4 &4804923961199781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4804925417291694, guid: 991f8d1bdd5ec2b4dac58f7d994a9b76,
     type: 3}

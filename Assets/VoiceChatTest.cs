@@ -6,6 +6,11 @@ using Steamworks;
 
 public class VoiceChatTest : NetworkBehaviour {
 
+    /// <summary>
+    /// A sample voice-chat listener/receiver for UNet.
+    /// Would strongly advise not using this & replacing with Photon Voice for PUN
+    /// </summary>
+
     public LayerMask playerMask;
     public AudioSource audioSource;
 
