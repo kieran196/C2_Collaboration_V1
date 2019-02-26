@@ -16,6 +16,10 @@ TagManager:
   - networkedAvatar
   - LinkedCube
   - networkedBody
+  - PlayerEntity
+  - projectile
+  - FxTemporaire
+  - avatarWorld
   layers:
   - Default
   - TransparentFX
