@@ -32,3 +32,18 @@ Also make sure to record the IP address of the PC hosting, as we'll need this in
 **Configuring the Mixed Reality side**
 
 Hardware used: Microsoft Hololens, (Optional) Zephyr Bioharness (With a computer that has bluetooth).
+
+1. Download/Clone the HololensBranch repo on GitHub and open the project in Unity. (Using a recent version of Unity)
+
+2. Open the 'NetworkingTestVR' scene. Locate the NetworkManager GameObkect, under NetworkHandler open the 'Network Info' dropdown and set the Network Address to the IP Address of the host PC.
+![Alt Text](https://i.gyazo.com/aa36d668953e68f61291276731492ef5.png)
+
+3. Locate the Debugger GameObject and set COLLAB_TYPE to LOCAL_COLLABORATION.
+![Alt Text](https://i.gyazo.com/6da88ae2a59d120bd7516ab61bf5b561.png)
+
+4. On the Hololens run the Holographic emulation player. (This is much easier than having to build) In Unity go Windows -> XR -> Holographic Emulation. Set Emulation Mode: Remote to Device, Remote Machine = The IP Address shown on the Hololens. Set Max BitRate and connect. If unable to connect, ensure the Hololens is connected to WiFi.
+![Alt Text](https://i.gyazo.com/59db020c53776eab8face424fbcfce0c.png)
+
+5. The correct settings should now be configured. The run application and the Hololens should automatically connect to the host.
+
+6. Calibration setup (unfinished)
