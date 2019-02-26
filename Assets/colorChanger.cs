@@ -49,7 +49,12 @@ public class colorChanger : MonoBehaviour, IInputClickHandler {
         //value.text = count.ToString();
         //inputType.GetComponent<InputField>().text = count.ToString();
         if(inputType != null) {
+            /*if(val <= 0 && localPlayer.GetComponent<syncHololensData>().destroy_speed <= 0.5f || val <= 0 && localPlayer.GetComponent<syncHololensData>().spawn_speed <= 0.5f) {
+                return;
+            }*/
+
             if(inputType.name == "SpawnSpeedInput") {
+
                 localPlayer.GetComponent<syncHololensData>().spawn_speed += val;
                 inputType.GetComponent<InputField>().text = localPlayer.GetComponent<syncHololensData>().spawn_speed.ToString();
             } if(inputType.name == "DestroySpeedInput") {
@@ -110,7 +115,19 @@ public class colorChanger : MonoBehaviour, IInputClickHandler {
         }
     }
 
+    private bool selectable = false;
+    private bool usingMouse = false; //Change to true if inputted through the PC instead of Hololens
+
     void Update() {
+        if(usingMouse) {
+            if(this.GetComponent<InputField>() != null && this.GetComponent<InputField>().isFocused && selectable == false) {
+                selectable = true;
+                handleClickEvent();
+            } else if(this.GetComponent<InputField>() != null && !this.GetComponent<InputField>().isFocused && selectable == true) {
+                selectable = false;
+            }
+        }
+        //print(this.GetComponent<InputField>().isFocused);
         if(VRPlayer == null) {
             findVRPlayer();
         }
@@ -138,7 +155,7 @@ public class colorChanger : MonoBehaviour, IInputClickHandler {
         }
     }
 
-    private void handleClickEvent() {
+    public void handleClickEvent() {
         //if (this.GetComponent<Button>().high)
         Debug.Log("Clicked button:" + this.transform.name);
         clickButton(this.transform.name);

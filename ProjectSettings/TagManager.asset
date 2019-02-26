@@ -16,6 +16,7 @@ TagManager:
   - networkedAvatar
   - ghostController
   - table
+  - avatarWorld
   layers:
   - Default
   - TransparentFX

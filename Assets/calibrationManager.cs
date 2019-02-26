@@ -10,7 +10,7 @@ public class calibrationManager : MonoBehaviour {
     private SteamVR_TrackedObject leftController;
     private SteamVR_TrackedObject rightController;
     private GameObject head;
-    private bool offSetAssigned = false;
+    public bool offSetAssigned = false;
     public bool autoCalibrate; // Calibrate based on manually inputted values
     public Vector3 offset;
     public bool assignValue = false;
@@ -26,9 +26,9 @@ public class calibrationManager : MonoBehaviour {
         float x = -controller.transform.position.x - ghostController.transform.position.x;
         float y = controller.transform.position.y - ghostController.transform.position.y;
         float z = -controller.transform.position.z - ghostController.transform.position.z;
-        //print("Assigning Values:" + x + ", " + y + ", " + z);
+        print("Assigning Values:" + x + ", " + y + ", " + z);
         offset = new Vector3(x, y, z);
-        table.transform.position = new Vector3(-table.transform.position.x - x, -1, -table.transform.position.z - z);
+        table.transform.position = new Vector3(-table.transform.position.x - x, -1.25f, -table.transform.position.z - z);
         table.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
         offSetAssigned = true;
         //Change camera settings

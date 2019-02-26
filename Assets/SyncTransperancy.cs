@@ -14,7 +14,7 @@ public class SyncTransperancy : NetworkBehaviour {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         Vector3 pos = transform.position;
         Vector3 offset = players[0].GetComponent<VRTK_Switcher>().SteamVR_Rig.transform.Find("[CameraRig]").GetComponent<calibrationManager>().offset;
-        this.transform.position = new Vector3(-pos.x - offset.x, 0.2f, -pos.z - offset.z);
+        this.transform.position = new Vector3(-pos.x - offset.x, 0f, -pos.z - offset.z);
         this.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         spawnedBoxes += 1;
     }

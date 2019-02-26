@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class ToolPicker : MonoBehaviour {
+public class ToolPicker : NetworkBehaviour {
 
     private GameObject lastHoveredTool;
     private GameObject lastSelectedTool;
@@ -16,7 +16,7 @@ public class ToolPicker : MonoBehaviour {
         if(tool.transform.tag == "UI_Icons") {
             device = SteamVR_Controller.Input((int)trackedObj.index);
             trackedObjTransform = trackedObj.transform;
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
+            if(device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger)) {
                 selectTool(tool, trackedObj, hitPoint);
             }
             if(lastHoveredTool == null) {
@@ -35,8 +35,11 @@ public class ToolPicker : MonoBehaviour {
     }
 
     private void disableTools(SteamVR_TrackedObject trackedObj) {
+        rootParent.GetComponent<paintbrush>().CmdChangeVisibility(false);
         rootParent.GetComponent<paintbrush>().enabled = false;
+        rootParent.GetComponent<pencil>().CmdChangeVisibility(false);
         rootParent.GetComponent<pencil>().enabled = false;
+        rootParent.GetComponent<splashTool>().CmdChangeVisibility(false);
         rootParent.GetComponent<splashTool>().enabled = false;
         eraser.SetActive(false);
     }
@@ -47,49 +50,15 @@ public class ToolPicker : MonoBehaviour {
     }
 
     public void rotateToolPicker(SteamVR_Controller.Device controller, SteamVR_TrackedObject trackedObj) {
-        if (this.gameObject.activeInHierarchy == true) {
-            if (controller.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
+        if(this.gameObject.activeInHierarchy == true) {
+            if(controller.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
                 Vector2 touchpadAxis = (controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0));
-                if (touchpadAxis.x > 0.7f) {
+                if(touchpadAxis.x > 0.7f) {
                     this.GetComponent<Animator>().SetBool("rotate", true);
-                } else if (touchpadAxis.x < -0.7f) {
+                } else if(touchpadAxis.x < -0.7f) {
                     this.GetComponent<Animator>().SetBool("rotateOpposite", true);
                 }
             }
-        }
-    }
-
-    public GameObject[] getUsers() {
-        return GameObject.FindGameObjectsWithTag("Player");
-    }
-
-    public GameObject findPlayer() {
-        GameObject[] activeUsers = getUsers();
-        int count = 0;
-        foreach(GameObject user in getUsers()) {
-            if (!user.GetComponent<NetworkIdentity>().isLocalPlayer && count == 0) {
-                count += 1;
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public Transform getNonLocalPlayerHead(GameObject player, bool VRMode) {
-        userCameras cameras = player.GetComponent<userCameras>();
-        if (VRMode == true) {
-            return cameras.VR_Camera.transform.parent;
-        } else {
-            return cameras.VRSim_Camera.transform.parent;
-        }
-    }
-
-    public Transform getLocalPlayerHead(bool VRMode) {
-        userCameras cameras = rootParent.GetComponent<userCameras>();
-        if(VRMode == true) {
-            return cameras.VR_Camera.transform.parent;
-        } else {
-            return cameras.VRSim_Camera.transform.parent;
         }
     }
 
@@ -128,19 +97,20 @@ public class ToolPicker : MonoBehaviour {
         obj.transform.localPosition = hitPoint;
         obj.transform.SetParent(trackedObj.transform);
         obj.layer = LayerMask.NameToLayer("InteractableGameObjectGen");
+        rootParent.GetComponent<ObjectSpawnTool>().CmdCreateObject(hitPoint, obj);
     }
 
-    /*[Command]
-    public void CmdCreateObject(Vector3 hitPoint, GameObject prefab) {
-        GameObject obj = Instantiate(prefab);
+    [Command]
+    public void CmdCreateObject(Vector3 hitPoint, GameObject obj) {
+        //GameObject obj = Instantiate(prefab);
         obj.transform.localPosition = hitPoint;
         obj.transform.SetParent(trackedObjTransform);
         obj.layer = LayerMask.NameToLayer("InteractableGameObjectGen");
         NetworkServer.Spawn(obj);
-    }*/
+    }
 
     public void selectTool(GameObject tool, SteamVR_TrackedObject trackedObj, Vector3 hitPoint) {
-        if (lastSelectedTool == null) {
+        if(lastSelectedTool == null) {
             lastSelectedTool = tool;
         }
         disableTools(trackedObj);
@@ -153,6 +123,7 @@ public class ToolPicker : MonoBehaviour {
             this.gameObject.SetActive(false);
         } else if(tool.transform.name == "PaintBrush") {
             rootParent.GetComponent<paintbrush>().enabled = true;
+            rootParent.GetComponent<paintbrush>().CmdChangeVisibility(true);
         } else if(tool.transform.name == "Eraser") {
             eraser.GetComponent<eraser>().trackedObj = trackedObj;
             eraser.SetActive(true);
@@ -161,8 +132,10 @@ public class ToolPicker : MonoBehaviour {
             eraser.transform.localEulerAngles = Vector3.zero;
         } else if(tool.transform.name == "Pencil") {
             rootParent.GetComponent<pencil>().enabled = true;
+            rootParent.GetComponent<pencil>().CmdChangeVisibility(true);
         } else if(tool.transform.name == "Splatter") {
             rootParent.GetComponent<splashTool>().enabled = true;
+            rootParent.GetComponent<splashTool>().CmdChangeVisibility(true);
         } else if(tool.transform.name == "CubeIcon") {
             //createObject(trackedObj, hitPoint, cubePrefab);
             createObject(trackedObj, hitPoint, cubePrefab);
@@ -179,13 +152,48 @@ public class ToolPicker : MonoBehaviour {
 
     public bool perspectiveViewerEnabled = false;
 
+
+    public GameObject[] getUsers() {
+        return GameObject.FindGameObjectsWithTag("Player");
+    }
+
+    public GameObject findPlayer() {
+        GameObject[] activeUsers = getUsers();
+        int count = 0;
+        foreach(GameObject user in getUsers()) {
+            if(!user.GetComponent<NetworkIdentity>().isLocalPlayer && count == 0) {
+                count += 1;
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public Transform getNonLocalPlayerHead(GameObject player, bool VRMode) {
+        userCameras cameras = player.GetComponent<userCameras>();
+        return (VRMode) ? cameras.VR_Camera.transform.parent : cameras.VRSim_Camera.transform.parent;
+    }
+
+    public Transform getLocalPlayerHead(bool VRMode) {
+        userCameras cameras = rootParent.GetComponent<userCameras>();
+        return (VRMode) ? cameras.VR_Camera.transform.parent : cameras.VRSim_Camera.transform.parent;
+    }
+
+
+
     void Update() {
         if(perspectiveViewerEnabled) {
-            Transform nonLocalPlayerPerspective = getNonLocalPlayerHead(findPlayer(), false); //Not in VR
-            Transform localPlayerPerspective = getLocalPlayerHead(true); //In VR
-                                                                         //Set values
-            localPlayerPerspective.position = nonLocalPlayerPerspective.position;
-            localPlayerPerspective.eulerAngles = nonLocalPlayerPerspective.eulerAngles;
+            if(Input.GetKeyDown(KeyCode.P)) { // For testing ..
+                print("Changing user perspective..");
+                Transform nonLocalPlayerPerspective = getNonLocalPlayerHead(findPlayer(), false); //Not in VR
+                if(nonLocalPlayerPerspective != null) {
+                    Transform localPlayerPerspective = getLocalPlayerHead(false); //In VR
+                    nonLocalPlayerPerspective.position = nonLocalPlayerPerspective.position;
+                    nonLocalPlayerPerspective.eulerAngles = nonLocalPlayerPerspective.eulerAngles;
+                }
+            }
+
+
         }
     }
 }

@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 2899016770829447618}
   - component: {fileID: 1520714414775644648}
   - component: {fileID: 8273053125850765318}
+  - component: {fileID: 5768374145254034739}
+  - component: {fileID: 1537186784}
   m_Layer: 0
   m_Name: CubePrefab
   m_TagString: Untagged
@@ -155,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
-  m_SendInterval: 0
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.09090909
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -165,3 +167,30 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &5768374145254034739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165251595685390820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24d80ceb994e54409a237039f7c3350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncScale: {x: 0, y: 0, z: 0}
+  colorType: {x: 0, y: 0, z: 0}
+--- !u!114 &1537186784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165251595685390820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fba099bb75c8f64fa2d70d44ab757fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setTransformOffset: 1
