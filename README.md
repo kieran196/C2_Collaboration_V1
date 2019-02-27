@@ -46,4 +46,11 @@ Hardware used: Microsoft Hololens, (Optional) Zephyr Bioharness (With a computer
 
 5. The correct settings should now be configured. The run application and the Hololens should automatically connect to the host.
 
-6. Calibration setup (unfinished)
+**Part 6. Calibration setup:** The AR user should now take the controller labelled 'AR' (labelled inside of the VR scene). The AR user uses the Vive controller inside the local environment as their input device.
+Note: (The air-tap gesture for the Hololens is also implemented but isn't as precise as the Vive controller)
+
+7. Next, align the Vive Controller with the ghost AR controller floating in the air and pull the trigger. The Hololens will now be calibrated to the Vive coordinate space.
+
+![Alt Text](https://i.gyazo.com/afa67b0d7d732089ff471d5425d62dd4.png)
+
+![Alt Text](https://i.gyazo.com/6e1cc0a6986001c6cdfe3f59669cac07.gif)
