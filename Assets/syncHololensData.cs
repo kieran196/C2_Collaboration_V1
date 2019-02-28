@@ -32,7 +32,7 @@ public class syncHololensData : NetworkBehaviour {
     private GameObject findVRPlayer() {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject player in players) {
-            if(player.GetComponent<VRTK_Switcher>().rigType == player.GetComponent<VRTK_Switcher>().SteamVR_Rig.name) {
+            if(player.GetComponent<cameraRigHandler>().rigType == player.GetComponent<cameraRigHandler>().SteamVR_Rig.name) {
                 VRPlayer = player;
                 return player;
             }
@@ -41,9 +41,9 @@ public class syncHololensData : NetworkBehaviour {
     }
 
     void Start() {
-        spawn_speed = this.GetComponent<boxCollision>().SPAWN_SPEED;
-        destroy_speed = this.GetComponent<boxCollision>().DESTROY_SPEED;
-        spawn_amount = this.GetComponent<boxCollision>().SPAWN_AMOUNT;
+        spawn_speed = this.GetComponent<blockSelectionTask>().SPAWN_SPEED;
+        destroy_speed = this.GetComponent<blockSelectionTask>().DESTROY_SPEED;
+        spawn_amount = this.GetComponent<blockSelectionTask>().SPAWN_AMOUNT;
     }
 
     void Update() {
@@ -57,9 +57,9 @@ public class syncHololensData : NetworkBehaviour {
                 SyncTransperancy.hitBoxes = 0;
                 print("New task type has been set:" + TaskType);
                 if(TaskType == "HOLOLENS_MANIPULATION_FULL") {
-                    VRPlayer.GetComponent<VRTK_Switcher>().SteamVR_Rig.transform.Find("UICanvas").gameObject.SetActive(true);
+                    VRPlayer.GetComponent<cameraRigHandler>().SteamVR_Rig.transform.Find("UICanvas").gameObject.SetActive(true);
                 } else if(TaskType == "HOLOLENS_MANIPULATION_LIMITED") {
-                    VRPlayer.GetComponent<VRTK_Switcher>().SteamVR_Rig.transform.Find("UICanvas").gameObject.SetActive(false);
+                    VRPlayer.GetComponent<cameraRigHandler>().SteamVR_Rig.transform.Find("UICanvas").gameObject.SetActive(false);
                 }
             }
         }

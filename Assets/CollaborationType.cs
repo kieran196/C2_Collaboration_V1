@@ -7,6 +7,7 @@ public class CollaborationType : MonoBehaviour {
 
     public enum COLLAB_TYPE { LOCAL_COLLABORATION, REMOTE_COLLABORATION }
     public COLLAB_TYPE collabType;
+    public bool colibrateRemoteUser;
 
     public GameObject avatarWorld;
 
@@ -25,7 +26,6 @@ public class CollaborationType : MonoBehaviour {
         if(old != collabType) {
             old = collabType;
             updateSettings();
-
         }
     }
 }

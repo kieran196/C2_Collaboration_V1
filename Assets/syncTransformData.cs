@@ -81,7 +81,7 @@ public class syncTransformData : NetworkBehaviour {
             viveARPressed = false;
         }*/
         if (vivePressed && !inputConfirmed) {
-            GetComponent<VRTK_Switcher>().SteamVR_Rig.transform.Find("[CameraRig]").GetComponent<calibrationManager>().assignValue = true;
+            GetComponent<cameraRigHandler>().SteamVR_Rig.transform.Find("[CameraRig]").GetComponent<calibrationManager>().assignValue = true;
             inputConfirmed = true;
         }
     }

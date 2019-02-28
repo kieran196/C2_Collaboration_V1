@@ -73,7 +73,7 @@ public class calibrationManager : MonoBehaviour {
             assignValue = false;
         }
         if(offset != Vector3.zero) {
-            //print(offset);
+            //print(offset);w
             //Transform rightModel = rightController.transform.Find("vr_controller_vive_1_5");
             //Inversing X-Axis..
             if(rightController != null) {

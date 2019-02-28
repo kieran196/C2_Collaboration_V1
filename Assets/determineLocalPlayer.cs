@@ -16,7 +16,7 @@ public class determineLocalPlayer : NetworkBehaviour {
     public string playerName;
 
     private void Start() {
-        rig = GetComponent<VRTK_Switcher>().currentRig;
+        rig = GetComponent<cameraRigHandler>().currentRig;
         this.transform.SetParent(GameObject.Find("Parent").transform);
     }
 
@@ -40,11 +40,11 @@ public class determineLocalPlayer : NetworkBehaviour {
             //print(playerName + "  | Current Rig:" + user.GetComponent<VRTK_Switcher>().rigType + " | Last Rig: " + user.GetComponent<VRTK_Switcher>().lastRig);
 
             //enableAllUsers.GetComponent<VRTK_Switcher>()
-            if(user.GetComponent<VRTK_Switcher>().rigType != null && user.GetComponent<VRTK_Switcher>().rigType != "" && user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.activeInHierarchy == false) {
-                user.transform.Find(user.GetComponent<VRTK_Switcher>().rigType).gameObject.SetActive(true);
-                if(user.GetComponent<VRTK_Switcher>().lastRig != null && user.GetComponent<VRTK_Switcher>().lastRig != "") {
-                    print(user.GetComponent<VRTK_Switcher>().lastRig.Length);
-                    user.transform.Find(user.GetComponent<VRTK_Switcher>().lastRig).gameObject.SetActive(false);
+            if(user.GetComponent<cameraRigHandler>().rigType != null && user.GetComponent<cameraRigHandler>().rigType != "" && user.transform.Find(user.GetComponent<cameraRigHandler>().rigType).gameObject.activeInHierarchy == false) {
+                user.transform.Find(user.GetComponent<cameraRigHandler>().rigType).gameObject.SetActive(true);
+                if(user.GetComponent<cameraRigHandler>().lastRig != null && user.GetComponent<cameraRigHandler>().lastRig != "") {
+                    print(user.GetComponent<cameraRigHandler>().lastRig.Length);
+                    user.transform.Find(user.GetComponent<cameraRigHandler>().lastRig).gameObject.SetActive(false);
                 }
             }
             count++;

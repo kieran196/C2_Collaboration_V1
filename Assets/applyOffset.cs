@@ -10,7 +10,7 @@ public class applyOffset : MonoBehaviour {
         if(setTransformOffset) {
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             Vector3 pos = transform.position;
-            calibrationManager calibrationSettings = players[0].GetComponent<VRTK_Switcher>().SteamVR_Rig.transform.Find("[CameraRig]").GetComponent<calibrationManager>();
+            calibrationManager calibrationSettings = players[0].GetComponent<cameraRigHandler>().SteamVR_Rig.transform.Find("[CameraRig]").GetComponent<calibrationManager>();
             if(calibrationSettings.offSetAssigned) {
                 Vector3 offset = calibrationSettings.offset;
                 this.transform.position = new Vector3(-pos.x - offset.x, pos.y - offset.y, -pos.z - offset.z);

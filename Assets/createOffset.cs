@@ -22,7 +22,7 @@ public class createOffset : MonoBehaviour {
 
     private void assignController() {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        trackedObj = players[0].GetComponent<VRTK_Switcher>().SteamVR_Rig.transform.Find("[CameraRig]").GetComponent<SteamVR_ControllerManager>().right.GetComponent<SteamVR_TrackedObject>();
+        trackedObj = players[0].GetComponent<cameraRigHandler>().SteamVR_Rig.transform.Find("[CameraRig]").GetComponent<SteamVR_ControllerManager>().right.GetComponent<SteamVR_TrackedObject>();
     }
 
     // Update is called once per frame

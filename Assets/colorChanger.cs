@@ -18,7 +18,7 @@ public class colorChanger : MonoBehaviour, IInputClickHandler {
         print("Searching for VR player...");
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject player in players) {
-            if(player.GetComponent<VRTK_Switcher>().rigType == player.GetComponent<VRTK_Switcher>().SteamVR_Rig.name) {
+            if(player.GetComponent<cameraRigHandler>().rigType == player.GetComponent<cameraRigHandler>().SteamVR_Rig.name) {
                 VRPlayer = player;
                 print("VR player was found.");
                 return player;

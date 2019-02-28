@@ -11,7 +11,6 @@ public class UserAvatarLoader : NetworkBehaviour {
     public GameObject syncVarAvatar;
     public GameObject avatar;
     public string avatarID;
-    private PlayerStorage playerStorage;
     public GameObject headParent;
 
     public GameObject headPrefab;
@@ -21,7 +20,6 @@ public class UserAvatarLoader : NetworkBehaviour {
 
     private void Awake() {
         print("CODE:" + AvatarInfo.STORED_CODE);
-        playerStorage = GameObject.Find("NetworkManager").GetComponent<PlayerStorage>();
         if(AvatarInfo.STORED_AVATAR != null) {
             AvatarInfo.STORED_AVATAR.SetActive(false);
         }
@@ -131,35 +129,7 @@ public class UserAvatarLoader : NetworkBehaviour {
         NetworkServer.Spawn(userAvatar);
         //print("Spawned User Avatar at:" + userAvatar.transform);
     }
-
-    /*[ClientRpc]
-    public void RpcSpawnAvatar() {
-        userAvatar = Instantiate(avatar,
-                         Vector3.zero,
-                         new Quaternion(0f, 0f, 0f, 0f));
-        userAvatar.name = avatar.name;
-        userAvatar.AddComponent<NetworkIdentity>();
-        userAvatar.AddComponent<NetworkTransform>();
-        userAvatar.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-        userAvatar.SetActive(true);
-        userAvatar.transform.SetParent(headParent.transform);
-        //userAvatar.transform.localPosition = new Vector3(0f, -0.117f, -0.1f);
-        userAvatar.transform.localPosition = new Vector3(0f, -0.117f, 1f);
-        userAvatar.transform.localScale = new Vector3(1f, 1f, 1f);
-        userAvatar.transform.localEulerAngles = Vector3.zero;
-        //RpcUpdateNetworkSpawn(userAvatar);
-        //ClientScene.RegisterPrefab(userAvatar);
-        //resetOrientation();
-        //CmdSyncVarWithClients(userAvatar.name);
-        NetworkServer.Spawn(userAvatar);
-    }*/
-
-    [ClientRpc]
-    public void RpcUpdateNetworkSpawn(GameObject avatar) {
-        playerStorage.spawnPrefabs.Add(avatar);
-        ClientScene.RegisterPrefab(avatar);
-    }
-
+    
     public GameObject Find(GameObject objToFind, GameObject[] gameObjects) {
         foreach(GameObject obj in gameObjects) {
             if(objToFind.name == obj.name) {
@@ -168,14 +138,6 @@ public class UserAvatarLoader : NetworkBehaviour {
         }
         return null;
     }
-
-    /*public void setTags() {
-        foreach (GameObject obj in FindObjectsOfType(typeof(GameObject))) {
-            if (obj.name == "HeadPrefab(Clone)") {
-                obj.tag = "";
-            }
-        }
-    }*/
 
     [Command]
     public void CmdUpdateData() {

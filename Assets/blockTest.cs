@@ -18,7 +18,7 @@ public class blockTest : MonoBehaviour {
         if(enabled) {
             if(leftController == null && rightController == null) {
                 GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-                GameObject host = players[0].GetComponent<VRTK_Switcher>().SteamVR_Rig.transform.Find("[CameraRig]").gameObject;
+                GameObject host = players[0].GetComponent<cameraRigHandler>().SteamVR_Rig.transform.Find("[CameraRig]").gameObject;
                 leftController = host.GetComponent<SteamVR_ControllerManager>().left.GetComponent<SteamVR_TrackedController>();
                 rightController = host.GetComponent<SteamVR_ControllerManager>().right.GetComponent<SteamVR_TrackedController>();
             }

@@ -10,19 +10,19 @@ public class PlayerController : NetworkBehaviour {
     public GameObject Sphere;
     public GameObject Cube;
     public bool VRActivated = false;
-    private PlayerStorage playerStorage;
+    private NetworkHandler netHandler;
     //public eventHandler events;
 
     private void Awake() {
-        playerStorage = GameObject.Find("NetworkManager").GetComponent<PlayerStorage>();
+        netHandler = GameObject.Find("NetworkManager").GetComponent<NetworkHandler>();
     }
 
     private void Start() {
         //events.spaceDown.AddListener(CmdFire);
         //playerText.text = "Player:" + netId;
         this.name = playerText.text;
-        playerStorage.playerObjects.Add(this.gameObject);
-        playerStorage.updatePerspective(this.gameObject);
+        netHandler.playerObjects.Add(this.gameObject);
+        netHandler.updatePerspective(this.gameObject);
         //camera.targetDisplay = 1;
     }
 

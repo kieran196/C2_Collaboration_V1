@@ -54,9 +54,9 @@ public class rotateToAR : MonoBehaviour {
     }
 
     void assignParent() {
-        string rigType = rootParent.GetComponent<VRTK_Switcher>().rigType;
+        string rigType = rootParent.GetComponent<cameraRigHandler>().rigType;
         if((rigType == "VRSimulator" || rigType == "SteamVR") && rigType != this.transform.parent.name) {
-            GameObject rig = (rigType == "VRSimulator") ? rootParent.GetComponent<VRTK_Switcher>().VRSimulator_Rig : rootParent.GetComponent<VRTK_Switcher>().SteamVR_Rig;
+            GameObject rig = (rigType == "VRSimulator") ? rootParent.GetComponent<cameraRigHandler>().VRSimulator_Rig : rootParent.GetComponent<cameraRigHandler>().SteamVR_Rig;
             this.GetComponent<Canvas>().enabled = true;
             parentSet = true;
             transform.SetParent(rig.transform);
