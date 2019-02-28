@@ -9986,7 +9986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &170169488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28191,7 +28191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6415ced17a8ec654597a1296dc20b062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cyllinderPrefab: {fileID: 0}
 --- !u!114 &499363810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45287,7 +45286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c81cdf7a2a27694ca752603935c30c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collabType: 0
+  collabType: 1
   avatarWorld: {fileID: 170169487}
 --- !u!1 &776196376
 GameObject:
@@ -80037,11 +80036,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 678260896, guid: 22b3de6bfd7af2444b3e42482bfeda9d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.00006908867
+      value: -0.000107962216
       objectReference: {fileID: 0}
     - target: {fileID: 678260896, guid: 22b3de6bfd7af2444b3e42482bfeda9d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000053166463
+      value: -0.0000027914755
       objectReference: {fileID: 0}
     - target: {fileID: 107565000, guid: 22b3de6bfd7af2444b3e42482bfeda9d, type: 3}
       propertyPath: m_AnchorMax.x

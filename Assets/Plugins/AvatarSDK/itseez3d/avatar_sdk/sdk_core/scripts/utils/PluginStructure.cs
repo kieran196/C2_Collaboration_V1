@@ -36,9 +36,9 @@ namespace ItSeez3D.AvatarSdk.Core
 		public static readonly string MISC_OFFLINE_RESOURCES_DIR = "itseez3d_misc//sdk_offline//resources//avatar_sdk";
 		public static readonly string OFFLINE_RESOURCES_DIR = "itseez3d//avatar_sdk//sdk_offline//resources//avatar_sdk";
 		public static readonly string PREFABS_DIR = "itseez3d_prefabs";
-		public static readonly string VIEWER_SCENE_PATH = "itseez3d/avatar_sdk/samples_core/scenes/avatar_viewer.unity";
-
-		private static readonly string itseez3dDir = "itseez3d";
+        //public static readonly string VIEWER_SCENE_PATH = "Plugins/AvatarSDK/itseez3d/avatar_sdk/samples_core/scenes/avatar_viewer.unity";
+        public static readonly string VIEWER_SCENE_PATH = "itseez3d/avatar_sdk/samples_core/scenes/avatar_viewer.unity";
+        private static readonly string itseez3dDir = "itseez3d";
 		private static readonly string avatarSdkDir = "avatar_sdk";
 		private static readonly string assetsDir = "Assets";
 		#endregion

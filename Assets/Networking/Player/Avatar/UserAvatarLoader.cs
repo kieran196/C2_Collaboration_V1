@@ -22,6 +22,7 @@ public class UserAvatarLoader : NetworkBehaviour {
     public GameObject headParent;
 
     public GameObject headPrefab;
+    public bool hideHead = false; // Make the head invisible to the local player (So they can see better)
 
     [SyncVar]
     public string avatarName;
@@ -47,7 +48,6 @@ public class UserAvatarLoader : NetworkBehaviour {
         base.OnStartClient();
         CmdSyncVarWithClients(AvatarInfo.STORED_CODE);
         //CmdSpawnHead();
-        //CmdTest();
     }
 
 
@@ -55,28 +55,11 @@ public class UserAvatarLoader : NetworkBehaviour {
     [ClientRpc]
     void RpcSyncVarWithClients(string varToSync) {
         avatarName = varToSync;
-        //setupAvatar();
     }
 
     [Command]
     void CmdSyncVarWithClients(string varToSync) {
         RpcSyncVarWithClients(varToSync);
-    }
-
-    [ClientRpc]
-    void RpcassignInfo() {
-        userAvatar.tag = "networkedAvatar";
-        userAvatar.name = AvatarInfo.STORED_CODE;
-    }
-
-    [Command]
-    public void CmdTest() {
-        userAvatar = Instantiate(headPrefab,
-                        Vector3.zero,
-                        new Quaternion(0f, 0f, 0f, 0f));
-        RpcassignInfo();
-        ClientScene.RegisterPrefab(userAvatar);
-        NetworkServer.Spawn(userAvatar);
     }
 
     [ClientRpc]
@@ -95,41 +78,10 @@ public class UserAvatarLoader : NetworkBehaviour {
         //initializeHead();
     }
 
-    public void setHeadParent() {
-        if(userAvatar != null && userAvatar.transform.parent == null) {
-            print("Setting head parent..");
-            userAvatar.transform.SetParent(headParent.transform);
-        }
-    }
-
     [Command]
     public void CmdSpawnHead() {
         print("Calling RpcSpawnHead");
         RpcSpawnHead();
-    }
-
-    [Command]
-    public void CmdSpawnAvatar() {
-        //RpcSpawnAvatar();
-        userAvatar = Instantiate(avatar,
-                                 Vector3.zero,
-                                 new Quaternion(0f, 0f, 0f, 0f));
-        userAvatar.name = avatar.name;
-        userAvatar.AddComponent<NetworkIdentity>();
-        userAvatar.AddComponent<NetworkTransform>();
-        userAvatar.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-        userAvatar.SetActive(true);
-        userAvatar.transform.SetParent(headParent.transform);
-        userAvatar.transform.localPosition = new Vector3(0f, -0.117f, -0.1f);
-        userAvatar.transform.localScale = new Vector3(1f, 1f, 1f);
-        userAvatar.transform.localEulerAngles = Vector3.zero;
-        //RpcUpdateNetworkSpawn(userAvatar);
-        //ClientScene.RegisterPrefab(userAvatar);
-        //resetOrientation();
-        //CmdSyncVarWithClients(userAvatar.name);
-        ClientScene.RegisterPrefab(userAvatar);
-        NetworkServer.Spawn(userAvatar);
-        //print("Spawned User Avatar at:" + userAvatar.transform);
     }
 
     public GameObject Find(GameObject objToFind, GameObject[] gameObjects) {
@@ -198,18 +150,16 @@ public class UserAvatarLoader : NetworkBehaviour {
         //This is a coroutine
         Debug.Log("Start Wait() function. The time is: " + Time.time);
         Debug.Log("Float duration = " + duration);
-        //userAvatar.transform.SetParent(this.transform);
-        //userAvatar.transform.SetParent();
-        //Transform rig = this.transform.Find("VRSimulator").GetComponent<cameraController>().cam.transform;
-        //print("rig:" + rig);
         yield return new WaitForSeconds(duration);   //Wait
         Debug.Log("End Wait() function and the time is: " + Time.time);
-        //Transform rigg = this.transform.Find("VRSimulator").GetComponent<cameraController>().cam.transform;
-        //Transform rigg = this.transform.Find("SteamVR").GetComponent<cameraController>().cam.transform;
         Transform rigg = this.transform.Find("SteamVR").GetComponent<cameraController>().avatarHead.transform;
         userAvatar.transform.SetParent(rigg);
         userAvatar.transform.localPosition = Vector3.zero;
         userAvatar.transform.localEulerAngles = Vector3.zero;
+        //Make the head invisible to the local player
+        if (hideHead && isLocalPlayer) {
+            userAvatar.SetActive(false);
+        }
         print("rig:" + rigg);
         parentSet = true;
     }
@@ -241,10 +191,6 @@ public class UserAvatarLoader : NetworkBehaviour {
             print("Setting parent..");
             StartCoroutine(Wait(2));
         }
-
-        /*if(isClient && avatarName != "") {
-            setupAvatar();
-        }*/
 
         //print(NetworkServer.connections.Count);
         if(isLocalPlayer && AvatarInfo.STORED_CODE != null) {

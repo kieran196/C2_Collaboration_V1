@@ -120,7 +120,7 @@ public class ToolPicker : NetworkBehaviour {
             lastSelectedTool = tool;
         }
         if(tool.transform.name == "ReturnIcon") {
-            this.gameObject.SetActive(false);
+            this.transform.parent.gameObject.SetActive(false);
         } else if(tool.transform.name == "PaintBrush") {
             rootParent.GetComponent<paintbrush>().enabled = true;
             rootParent.GetComponent<paintbrush>().CmdChangeVisibility(true);

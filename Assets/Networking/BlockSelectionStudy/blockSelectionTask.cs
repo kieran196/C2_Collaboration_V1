@@ -159,7 +159,7 @@ public class blockSelectionTask : NetworkBehaviour {
 
     private int secondCounter = 0;
     private float currentDifficulty = 1;
-    public bool increaseDifficulty = true;
+    public bool increaseDifficulty = false;
     public bool started = false;
 
     //Method called once per second
